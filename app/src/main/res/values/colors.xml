@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3D9080</color>
+    <color name="colorPrimaryDark">#3D9080</color>
+    <color name="colorAccent">#3fdec3</color>
+    <color name="colorAccentPrimary">#103fdec3</color>
+    <!--<color name="colorAccents">#3fdec3</color>-->
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colortext">#8a8a8a</color>
+    <color name="GrayLight">#efefef</color>
+    <color name="colorbtn">#ED8933</color>
+    <color name="spots_dialog_color">@android:color/holo_blue_dark</color>
+    <color name="black">#000000</color>
+    <color name="gary_tab">#f0f0f0</color>
+    <color name="main_background">#e1e1e1</color>
+    <color name="blue">#4c90f9</color>
+    <!-- 功能不可用disable文字 -->
+    <color name="gray_white">#e8e8e8</color>
+    <color name="colorBlack">#000000</color>
+    <color name="nred_sf">#FF6461</color>
+    <!-- 灰 筛选btn背景色 -->
+    <color name="gary_frame">#eff1f3</color>
+    <color name="gary_background">#ededed</color>
+    <!-- 二级标题 -->
+    <color name="black_title">#333333</color>
+    <!-- 输入框默认文字 列表小字 黑色背景中显暗的 筛选灰字 btn高亮文字色 -->
+    <color name="gary">#898989</color>
+    <color name="gray">#FF888888</color>
+    <color name="light_gray">#575757</color>
+    <!-- 列表大字 深灰 -->
+    <color name="black_lite">#3b3b3b</color>
+    <!-- 分割线灰 -->
+    <color name="divider_color">#f0f0f0</color>
+    <!--dialog-->
+    <color name="black_3">#333333</color>
+    <!-- 搜索按钮颜色 -->
+    <color name="search_red">#000000</color>
+    <!--<color name="search_red">#ff6666</color>-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_background">#80000000</color>
+    <color name="eighty_transparent_background">#ccffffff</color>
+
+    <color name="basemap_location_button_color_black">#333333</color>
+    <color name="basemap_locaiton_button_color_gray">#999999</color>
+    <color name="basemap_location_button_color_blue">#0091ff</color>
+    <color name="colormain">#3D9080</color>
+    <color name="transparent_colorPrimary">#803D9080</color>
+    <color name="transparent_gray">#90000000</color>
+    <color name="orange">#FFE8A140</color>
+
+    <!--标题，一级颜色 85透明度-->
+    <color name="textColorPrimary">#d9000000</color>
+    <!--正文，二级颜色 60透明度-->
+    <color name="textcolorAccent">#99000000</color>
+    <!--提示语，三级颜色 30透明度-->
+    <color name="textcolorTip">#4d000000</color>
+    <color name="colorMyStyle">#2ca347</color>
+</resources>
