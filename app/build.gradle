@@ -3,6 +3,14 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 28
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '1013049860'
+            storeFile file('../keystore.jks')
+            storePassword '1013049860'
+        }
+    }
     defaultConfig {
         applicationId "com.ch.evaporationrate"
         minSdkVersion 23
@@ -10,6 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {

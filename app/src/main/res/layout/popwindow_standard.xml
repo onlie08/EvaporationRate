@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tv_menu_one"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="试验标准"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/tv_menu_two"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="修改标准"
@@ -30,10 +30,10 @@
         android:background="@drawable/popwindow_menu_text_pressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_menu_one" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tv_menu_thire"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="运算参数"
@@ -43,19 +43,19 @@
         android:background="@drawable/popwindow_menu_text_pressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_menu_two" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/tv_menu_four"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="系统设置"
-        android:padding="10dp"
-        android:gravity="center"
-        android:clickable="true"
         android:background="@drawable/popwindow_menu_text_pressed"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="系统设置"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_menu_thire" />
 </android.support.constraint.ConstraintLayout>

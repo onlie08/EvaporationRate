@@ -2,7 +2,6 @@ package com.ch.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.text.InputType;
 import android.view.Gravity;
@@ -19,8 +18,6 @@ import com.ch.base.base.ViewController;
 import com.ch.evaporationrate.R;
 import com.deadline.statebutton.StateButton;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,7 +61,6 @@ public class CommonTitleView extends ViewController<String> {
             case R.id.img_exit:
                 break;
             case R.id.img_person:
-                showStandardDialog();
                 break;
             case R.id.img_more:
                 showPopwindow(imgMore);
@@ -120,9 +116,9 @@ public class CommonTitleView extends ViewController<String> {
         }
     }
 
-    private void showStandardDialog(){
+    private void showEditStandardDialog(){
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View layout = inflater.inflate(R.layout.dialog_standard, null);
+        View layout = inflater.inflate(R.layout.dialog_edit_standard, null);
 
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
@@ -164,9 +160,67 @@ public class CommonTitleView extends ViewController<String> {
 
     }
 
+    private void showStandardDialog(){
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View layout = inflater.inflate(R.layout.dialog_standard, null);
+        ImageView img_close = layout.findViewById(R.id.img_close);
+        StateButton btn_sure = layout.findViewById(R.id.btn_sure);
+        TextView tv_standard = layout.findViewById(R.id.tv_standard);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
+        //通过setView设置我们自己的布局
+        builder.setView(layout);
+        final AlertDialog dialog =builder.create();
+        dialog.show();
+        //此处设置位置窗体大小
+        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        tv_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        tv_standard.setGravity(Gravity.TOP);
+        tv_standard.setText("我的地方的范德萨发达打法的发达大打发打发打发大幅答复\\n的萨芬的发达放大大方点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
+        tv_standard.setSingleLine(false);
+        tv_standard.setHorizontallyScrolling(false);
+
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
     private void showPopwindow(View view){
         View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.popwindow_standard, null);
+        layout.findViewById(R.id.tv_menu_one).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showStandardDialog();
+            }
+        });
+        layout.findViewById(R.id.tv_menu_two).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEditStandardDialog();
+            }
+        });
+        layout.findViewById(R.id.tv_menu_thire).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        layout.findViewById(R.id.tv_menu_four).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(150f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
 //        popupWindow.setOnDismissListener(this);
@@ -174,11 +228,7 @@ public class CommonTitleView extends ViewController<String> {
             popupWindow.dismiss();
         } else {
             popupWindow.showAsDropDown(view,0,DensityUtil.dp2px(8f));
-//            popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
         }
-
-//        popupWindow.setContentView(layout);
-//        popupWindow.showAsDropDown(view);
     }
 
 }
