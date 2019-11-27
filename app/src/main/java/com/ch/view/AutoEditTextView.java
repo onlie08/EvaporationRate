@@ -62,7 +62,7 @@ public class AutoEditTextView extends android.support.v7.widget.AppCompatEditTex
         TypedArray typeArray = context.obtainStyledAttributes(attrs, R.styleable.AutoEditTextView, defStyleAttr, 0);
         leftText = typeArray.getString(R.styleable.AutoEditTextView_leftText);
         leftTextColor = typeArray.getColor(R.styleable.AutoEditTextView_leftTextColor, getColor(R.color.textcolorAccent));
-        leftTextSize = typeArray.getFloat(R.styleable.AutoEditTextView_leftTextSize, sp2px(14f));
+        leftTextSize = typeArray.getFloat(R.styleable.AutoEditTextView_leftTextSize, sp2px(25f));
         clickType = typeArray.getInt(R.styleable.AutoEditTextView_rightButtonClickType, 0);
         isShowDownLine = typeArray.getBoolean(R.styleable.AutoEditTextView_isShowDownLine, true);
         leftTextPadding = typeArray.getInt(R.styleable.AutoEditTextView_leftTextPadding, dip2px(16));
