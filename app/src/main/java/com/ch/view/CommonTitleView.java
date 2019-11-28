@@ -120,6 +120,12 @@ public class CommonTitleView extends ViewController<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View layout = inflater.inflate(R.layout.dialog_edit_standard, null);
 
+        EditText edit_standard = layout.findViewById(R.id.edit_standard);
+        edit_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        edit_standard.setGravity(Gravity.TOP);
+        edit_standard.setText("法的发达大打发打发打发大幅答复的萨芬的发达放大大方点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
+        edit_standard.setSingleLine(false);
+        edit_standard.setHorizontallyScrolling(false);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
@@ -127,14 +133,7 @@ public class CommonTitleView extends ViewController<String> {
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
-        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        EditText edit_standard = layout.findViewById(R.id.edit_standard);
-        edit_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        edit_standard.setGravity(Gravity.TOP);
-        edit_standard.setText("我的地方的范德萨发达打法的发达大打发打发打发大幅答复\\n的萨芬的发达放大大方点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
-        edit_standard.setSingleLine(false);
-        edit_standard.setHorizontallyScrolling(false);
+        dialog.getWindow().setLayout(DensityUtil.dp2px(800f), LinearLayout.LayoutParams.WRAP_CONTENT);
 
         ImageView img_close = layout.findViewById(R.id.img_close);
         StateButton btn_sure = layout.findViewById(R.id.btn_sure);
@@ -167,19 +166,19 @@ public class CommonTitleView extends ViewController<String> {
         StateButton btn_sure = layout.findViewById(R.id.btn_sure);
         TextView tv_standard = layout.findViewById(R.id.tv_standard);
 
+//        tv_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+//        tv_standard.setGravity(Gravity.TOP);
+        tv_standard.setText("点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
+//        tv_standard.setSingleLine(false);
+//        tv_standard.setHorizontallyScrolling(false);
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
         builder.setView(layout);
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
-        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        tv_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        tv_standard.setGravity(Gravity.TOP);
-        tv_standard.setText("我的地方的范德萨发达打法的发达大打发打发打发大幅答复\\n的萨芬的发达放大大方点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
-        tv_standard.setSingleLine(false);
-        tv_standard.setHorizontallyScrolling(false);
+        dialog.getWindow().setLayout(DensityUtil.dp2px(800f), LinearLayout.LayoutParams.WRAP_CONTENT);
 
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,6 +192,7 @@ public class CommonTitleView extends ViewController<String> {
                 dialog.dismiss();
             }
         });
+
     }
 
     private void showPopwindow(View view){
@@ -221,13 +221,13 @@ public class CommonTitleView extends ViewController<String> {
 
             }
         });
-        PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(150f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(250f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
 //        popupWindow.setOnDismissListener(this);
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
         } else {
-            popupWindow.showAsDropDown(view,0,DensityUtil.dp2px(8f));
+            popupWindow.showAsDropDown(view,0,DensityUtil.dp2px(16f));
         }
     }
 

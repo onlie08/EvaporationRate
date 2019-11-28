@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="800dp"
-    android:layout_height="450dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/alie_padding_two"
+        android:layout_marginTop="16dp"
         android:text="试验标准"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_two"
@@ -21,12 +21,13 @@
     <TextView
         android:id="@+id/tv_standard"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/alie_padding_two"
-        android:layout_marginTop="@dimen/alie_padding_two"
-        android:layout_marginEnd="@dimen/alie_padding_two"
-        android:layout_marginBottom="32dp"
-        android:padding="@dimen/alie_padding_two"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:minHeight="200dp"
+        android:padding="@dimen/alie_padding_five"
         android:scrollHorizontally="false"
         android:singleLine="false"
         android:text="dffdafdafdsafdafdadfdafdaf"
@@ -35,7 +36,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_sure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_sure"
@@ -44,7 +46,6 @@
         android:layout_marginBottom="@dimen/alie_padding_two"
         android:text="确定"
         android:textSize="@dimen/text_size_thire"
-        android:background="@drawable/selector_common_btn_normal"
         app:animationDuration="200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/alie_padding_two"
-        android:layout_marginTop="@dimen/alie_padding_two"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/alie_padding_two"
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ch.bean.ChartBean;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.ch.utils.ToastHelper;
 import com.ch.view.CommonChartLineViewController;
 import com.ch.view.CommonSpinnerViewController;

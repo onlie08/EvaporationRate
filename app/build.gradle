@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 28
     signingConfigs {
         config {
             keyAlias 'key0'
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "com.ch.evaporationrate"
         minSdkVersion 23
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -86,4 +86,5 @@ dependencies {
     }
     implementation 'org.greenrobot:greendao:3.2.0'
     implementation 'com.orhanobut:dialogplus:1.11@aar'
+
 }

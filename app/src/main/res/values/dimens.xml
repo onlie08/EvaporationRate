@@ -12,9 +12,10 @@
     <dimen name="alie_padding_two">32dp</dimen>
     <dimen name="alie_padding_thire">28dp</dimen>
     <dimen name="alie_padding_four">22dp</dimen>
+    <dimen name="alie_padding_five">16dp</dimen>
 
     <dimen name="text_size_one">38sp</dimen>
     <dimen name="text_size_two">32sp</dimen>
-    <dimen name="text_size_thire">28sp</dimen>
+    <dimen name="text_size_thire">24sp</dimen>
     <dimen name="text_size_four">22sp</dimen>
 </resources>
