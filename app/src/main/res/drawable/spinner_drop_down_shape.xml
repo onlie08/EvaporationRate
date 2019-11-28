@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <solid
+                android:color="#ffffff"/>
+            <corners
+                android:radius="3dip"
+                />
+            <stroke
+                android:width="0.5px"
+                android:color="#3fdec3"/>
+        </shape>
+    </item>
+
+    <item>
+        <bitmap
+            android:gravity="end"
+            android:src="@mipmap/common_ddm"
+            />
+    </item>
+</layer-list>

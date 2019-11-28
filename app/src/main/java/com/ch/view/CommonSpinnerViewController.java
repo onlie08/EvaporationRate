@@ -1,6 +1,7 @@
 package com.ch.view;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
 
 public class CommonSpinnerViewController extends ViewController<List<String>> {
     @BindView(R.id.spinner_common)
-    Spinner spinnerCommon;
+    AppCompatSpinner spinnerCommon;
     private List<String> items;
     //定义一个ArrayAdapter适配器作为spinner的数据适配器
     private ArrayAdapter<String> adapter;

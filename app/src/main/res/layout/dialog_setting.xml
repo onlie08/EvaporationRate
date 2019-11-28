@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="800dp"
+    android:layout_height="450dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/alie_padding_two"
+        android:text="设置"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_two"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_standard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/alie_padding_two"
+        android:layout_marginTop="32dp"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:text="4G网络："
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toTopOf="@+id/tv_standard2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/tv_standard2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:text="屏幕亮度："
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toTopOf="@+id/tv_standard3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_standard" />
+
+    <TextView
+        android:id="@+id/tv_standard3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
+        android:text="版本："
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_standard2" />
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/alie_padding_two"
+        android:src="@mipmap/common_closed"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/alie_padding_two"
+        android:layout_marginTop="@dimen/alie_padding_two"
+        android:layout_marginEnd="@dimen/alie_padding_two"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="64dp"
+        android:checked="true"
+        app:splitTrack="false"
+        app:showText="false"
+        app:switchMinWidth="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_standard"
+        app:layout_constraintStart_toEndOf="@+id/tv_standard"
+        app:layout_constraintTop_toTopOf="@+id/tv_standard" />
+
+    <SeekBar
+        android:id="@+id/progressBar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_standard2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/switch1"
+        app:layout_constraintTop_toTopOf="@+id/tv_standard2" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="V1.0"
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_standard3"
+        app:layout_constraintStart_toStartOf="@+id/switch1"
+        app:layout_constraintTop_toTopOf="@+id/tv_standard3" />
+
+</android.support.constraint.ConstraintLayout>
