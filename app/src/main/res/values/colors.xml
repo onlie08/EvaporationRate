@@ -6,6 +6,7 @@
     <color name="colorAccentPrimary">#103fdec3</color>
     <color name="colorAccentGreen">#00cc44</color>
     <color name="colorAccentYellow">#ff9900</color>
+    <color name="titleBackgroundAccent">#def8f3</color>
     <!--标题，一级颜色 85透明度-->
     <color name="textColorPrimary">#d9000000</color>
     <!--正文，二级颜色 60透明度-->

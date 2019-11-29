@@ -494,7 +494,7 @@
         android:layout_marginTop="@dimen/alie_padding_one"
         android:layout_marginRight="@dimen/alie_padding_one"
         android:layout_marginBottom="@dimen/alie_padding_one"
-        android:background="#def8f3"
+        android:background="@color/titleBackgroundAccent"
         android:padding="@dimen/alie_padding_two"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
