@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 
 import java.lang.ref.WeakReference;
 

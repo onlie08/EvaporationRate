@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.ch.base.base.ViewController;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;

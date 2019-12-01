@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 
 import com.ch.evaporationrate.R;
 import com.ch.fragment.AlarmFragment;
+import com.ch.fragment.ChartFragment;
+import com.ch.fragment.DateFragment;
 import com.ch.fragment.DeviceFragment;
 import com.ch.fragment.ParameterFragment;
 import com.ch.fragment.ProcessFragment;
@@ -82,9 +84,9 @@ public class MainPageActivity extends AppCompatActivity {
         mFragments = new ArrayList<>();
         mFragments.add(new ProcessFragment());
         mFragments.add(new ParameterFragment());
-        mFragments.add(new MonitorFragment());
+        mFragments.add(new ChartFragment());
         mFragments.add(new DeviceFragment());
-        mFragments.add(new PersonFragment());
+        mFragments.add(new DateFragment());
         // 初始化展示MessageFragment
         setFragmentPosition(0);
     }

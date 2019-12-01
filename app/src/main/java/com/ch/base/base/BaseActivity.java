@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 
 import com.ch.base.mvp.IView;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.gyf.barlibrary.ImmersionBar;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 

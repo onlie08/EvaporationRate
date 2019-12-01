@@ -4,7 +4,7 @@ import android.net.ParseException;
 import android.util.Log;
 
 import com.ch.base.base.BaseResponse;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.google.gson.JsonParseException;
 import org.json.JSONException;
 

@@ -49,6 +49,10 @@
             android:name="com.ch.activity.MainPageActivity"
             android:screenOrientation="landscape"
             ></activity>
+        <activity
+            android:name="com.ch.activity.HistoryActivity"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>

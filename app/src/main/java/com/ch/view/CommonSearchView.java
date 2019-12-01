@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.ch.base.base.ViewController;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 
 import butterknife.ButterKnife;
 

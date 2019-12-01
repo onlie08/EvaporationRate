@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.ch.adapter.CommonListAdapter;
 import com.ch.base.base.ViewController;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.ch.view.CommonListView;
 import com.ch.view.CommonSearchView;
 

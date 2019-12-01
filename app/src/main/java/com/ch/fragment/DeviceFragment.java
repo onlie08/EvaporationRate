@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.ch.view.CommonListView;
 import com.ch.view.CommonSearchView;
 
@@ -19,16 +19,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class DeviceFragment extends Fragment {
-
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.ln_search)
-    LinearLayout lnSearch;
-    @BindView(R.id.ln_list)
-    LinearLayout lnList;
-
-    CommonSearchView commonSearchView;
-    CommonListView commonListView;
     Unbinder unbinder;
 
     @Override
@@ -47,17 +37,10 @@ public class DeviceFragment extends Fragment {
     }
 
     private void initView() {
-        tvTitle.setText("设备");
 
-        commonSearchView = new CommonSearchView(getContext());
-        commonSearchView.attachRoot(lnSearch);
-
-        commonListView = new CommonListView(getContext());
-        commonListView.attachRoot(lnList);
     }
 
     private void initData() {
-        commonListView.fillData("");
     }
 
     @Override
@@ -83,8 +66,6 @@ public class DeviceFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        commonSearchView.detachedRoot();
-        commonListView.detachedRoot();
         unbinder.unbind();
     }
 

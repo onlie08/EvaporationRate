@@ -8,7 +8,7 @@ import android.widget.Button;
 import com.ch.base.base.BaseApplication;
 import com.ch.bean.UserBean;
 import com.ch.bean.UserBeanDao;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.ch.view.AutoEditTextView;
 import com.gyf.barlibrary.ImmersionBar;
 

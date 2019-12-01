@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

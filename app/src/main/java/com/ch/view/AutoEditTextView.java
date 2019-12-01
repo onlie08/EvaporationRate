@@ -12,7 +12,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 
 /**
  * Created by caohai on 2019/11/13.

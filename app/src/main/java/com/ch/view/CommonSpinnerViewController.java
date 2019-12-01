@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.ch.base.base.ViewController;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.ch.utils.ToastHelper;
 
 import java.util.List;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.ch.base.base.ViewController;
 import com.ch.bean.ChartBean;
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.ch.utils.ToastHelper;
 import com.github.mikephil.charting.charts.LineChart;
 

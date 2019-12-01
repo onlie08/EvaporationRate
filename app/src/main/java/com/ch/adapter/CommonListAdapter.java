@@ -1,6 +1,6 @@
 package com.ch.adapter;
 
-import com.ch.evaporationrate.R;;
+import com.ch.evaporationrate.R;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
