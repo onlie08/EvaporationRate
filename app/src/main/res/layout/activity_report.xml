@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gary_background">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="930dp" />
+
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/btn_sure3"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+
+        android:text="打印"
+        android:textSize="@dimen/text_size_thire"
+        app:animationDuration="200"
+        app:normalBackgroundColor="@color/colorAccent"
+        app:normalTextColor="@android:color/white"
+        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedTextColor="@android:color/white"
+        app:round="true"
+        app:unableBackgroundColor="@android:color/darker_gray"
+        app:unableTextColor="@android:color/darker_gray"
+        tools:layout_editor_absoluteX="1584dp"
+        tools:layout_editor_absoluteY="84dp" />
+
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/button3"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+
+        android:text="导出"
+
+        android:textSize="@dimen/text_size_thire"
+        app:animationDuration="200"
+
+        app:normalBackgroundColor="@color/colorAccent"
+        app:normalTextColor="@android:color/white"
+        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedTextColor="@android:color/white"
+        app:round="true"
+        app:unableBackgroundColor="@android:color/darker_gray"
+        app:unableTextColor="@android:color/darker_gray"
+        tools:layout_editor_absoluteX="1736dp"
+        tools:layout_editor_absoluteY="84dp" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="静态蒸发率检测报告"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_two"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@mipmap/common_title_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraint_date"
+                android:layout_width="0dp"
+                android:layout_height="1800dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_background"
+                android:padding="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/textView173"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="容器编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView172" />
+
+                <TextView
+                    android:id="@+id/textView194"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1容器编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView173"
+                    app:layout_constraintEnd_toStartOf="@+id/view18"
+                    app:layout_constraintStart_toEndOf="@+id/view19"
+                    app:layout_constraintTop_toTopOf="@+id/textView173" />
+
+                <TextView
+                    android:id="@+id/textView179"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="试验装置编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view20"
+                    app:layout_constraintStart_toEndOf="@+id/view18"
+                    app:layout_constraintTop_toTopOf="@+id/textView173" />
+
+                <TextView
+                    android:id="@+id/textView200"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1试验装置编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView179"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view20"
+                    app:layout_constraintTop_toTopOf="@+id/textView179" />
+
+                <TextView
+                    android:id="@+id/textView180"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="用户名称"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view20"
+                    app:layout_constraintStart_toEndOf="@+id/view18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView179" />
+
+                <TextView
+                    android:id="@+id/textView201"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1用户名称"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView180"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view20"
+                    app:layout_constraintTop_toTopOf="@+id/textView180" />
+
+                <TextView
+                    android:id="@+id/textView181"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="设备名称"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view20"
+                    app:layout_constraintStart_toEndOf="@+id/view18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView180" />
+
+                <TextView
+                    android:id="@+id/textView202"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1设备名称"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView181"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view20"
+                    app:layout_constraintTop_toTopOf="@+id/textView181" />
+
+                <TextView
+                    android:id="@+id/textView182"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="有效容积(L)"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view20"
+                    app:layout_constraintStart_toEndOf="@+id/view18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView181" />
+
+                <TextView
+                    android:id="@+id/textView203"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1有效容积(L)"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView182"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view20"
+                    app:layout_constraintTop_toTopOf="@+id/textView182" />
+
+                <TextView
+                    android:id="@+id/textView183"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="公测体积(L)"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view20"
+                    app:layout_constraintStart_toEndOf="@+id/view18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView182" />
+
+                <TextView
+                    android:id="@+id/textView204"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1公测体积(L)"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView183"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view20"
+                    app:layout_constraintTop_toTopOf="@+id/textView183" />
+
+                <TextView
+                    android:id="@+id/textView184"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="制造许可证编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view20"
+                    app:layout_constraintStart_toEndOf="@+id/view18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView183" />
+
+                <TextView
+                    android:id="@+id/textView205"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1制造许可证编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView184"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view20"
+                    app:layout_constraintTop_toTopOf="@+id/textView184" />
+
+                <TextView
+                    android:id="@+id/textView174"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="试验日期"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView173" />
+
+                <TextView
+                    android:id="@+id/textView195"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1试验日期"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView174"
+                    app:layout_constraintEnd_toStartOf="@+id/view18"
+                    app:layout_constraintStart_toEndOf="@+id/view19"
+                    app:layout_constraintTop_toTopOf="@+id/textView174" />
+
+                <TextView
+                    android:id="@+id/textView175"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="设备类型"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView174" />
+
+                <TextView
+                    android:id="@+id/textView196"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1设备类型"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView175"
+                    app:layout_constraintEnd_toStartOf="@+id/view18"
+                    app:layout_constraintStart_toEndOf="@+id/view19"
+                    app:layout_constraintTop_toTopOf="@+id/textView175" />
+
+                <TextView
+                    android:id="@+id/textView176"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="制造日期"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView175" />
+
+                <TextView
+                    android:id="@+id/textView197"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1制造日期"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView176"
+                    app:layout_constraintEnd_toStartOf="@+id/view18"
+                    app:layout_constraintStart_toEndOf="@+id/view19"
+                    app:layout_constraintTop_toTopOf="@+id/textView176" />
+
+                <TextView
+                    android:id="@+id/textView177"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="介质类型"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView176" />
+
+                <TextView
+                    android:id="@+id/textView198"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1介质类型"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView177"
+                    app:layout_constraintEnd_toStartOf="@+id/view18"
+                    app:layout_constraintStart_toEndOf="@+id/view19"
+                    app:layout_constraintTop_toTopOf="@+id/textView177" />
+
+                <TextView
+                    android:id="@+id/textView178"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="设计标准"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintEnd_toStartOf="@+id/view19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView177" />
+
+                <TextView
+                    android:id="@+id/textView199"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="1设计标准"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView178"
+                    app:layout_constraintEnd_toStartOf="@+id/view18"
+                    app:layout_constraintStart_toEndOf="@+id/view19"
+                    app:layout_constraintTop_toTopOf="@+id/textView178" />
+
+                <TextView
+                    android:id="@+id/textView186"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="静态蒸发率测试仪\n型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="38dp"
+                    tools:layout_editor_absoluteY="552dp" />
+
+                <TextView
+                    android:id="@+id/textView206"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="静态蒸发率测试仪\n型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="461dp"
+                    tools:layout_editor_absoluteY="553dp" />
+
+                <TextView
+                    android:id="@+id/textView187"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="温度传感器型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="37dp"
+                    tools:layout_editor_absoluteY="625dp" />
+
+                <TextView
+                    android:id="@+id/textView190"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="流量计型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="1170dp"
+                    tools:layout_editor_absoluteY="508dp" />
+
+                <TextView
+                    android:id="@+id/textView191"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="压力传感器型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="1169dp"
+                    tools:layout_editor_absoluteY="565dp" />
+
+                <TextView
+                    android:id="@+id/textView192"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大气压力传感器型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="1170dp"
+                    tools:layout_editor_absoluteY="632dp" />
+
+                <TextView
+                    android:id="@+id/textView193"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="实验前仪器情况"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="1171dp"
+                    tools:layout_editor_absoluteY="693dp" />
+
+                <TextView
+                    android:id="@+id/textView188"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="环境温湿度传感器型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="37dp"
+                    tools:layout_editor_absoluteY="680dp" />
+
+                <TextView
+                    android:id="@+id/textView189"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="激光泄露传感器型号与编号"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    tools:layout_editor_absoluteX="36dp"
+                    tools:layout_editor_absoluteY="735dp" />
+
+                <View
+                    android:id="@+id/view21"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorAccentPrimary"
+                    app:layout_constraintBottom_toTopOf="@+id/textView175"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView173">
+
+                </View>
+
+                <View
+                    android:id="@+id/view22"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorAccentPrimary"
+                    app:layout_constraintBottom_toTopOf="@+id/textView177"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView175">
+
+                </View>
+
+                <View
+                    android:id="@+id/view23"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorAccentPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/view19"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView177">
+
+                </View>
+
+                <View
+                    android:id="@+id/view17"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/titleBackgroundAccent"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/textView173"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </View>
+
+                <TextView
+                    android:id="@+id/textView172"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="1.被检测件基本信息"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView185"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="32dp"
+                    android:text="2.检测设备信息"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView178" />
+
+                <View
+                    android:id="@+id/view18"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintBottom_toTopOf="@+id/textView185"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView172" />
+
+                <View
+                    android:id="@+id/view20"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintBottom_toTopOf="@+id/textView185"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView172" />
+
+                <View
+                    android:id="@+id/view19"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintBottom_toTopOf="@+id/textView185"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView172" />
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

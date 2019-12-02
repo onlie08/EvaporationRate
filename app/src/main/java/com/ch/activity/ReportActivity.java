@@ -2,48 +2,32 @@ package com.ch.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 
-import com.ch.adapter.HistroyListAdapter;
 import com.ch.evaporationrate.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HistoryActivity extends AppCompatActivity {
-    HistroyListAdapter histroyListAdapter;
-    @BindView(R.id.recycler_history)
-    RecyclerView recyclerHistory;
+public class ReportActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_histroy);
+        setContentView(R.layout.activity_report);
         ButterKnife.bind(this);
         initView();
         initData();
     }
 
     private void initView() {
-        recyclerHistory.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private void initData() {
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            strings.add("CYZU155612" + i);
-        }
-        histroyListAdapter = new HistroyListAdapter(strings);
-        recyclerHistory.setAdapter(histroyListAdapter);
-    }
 
+    }
 
     @Override
     protected void onDestroy() {

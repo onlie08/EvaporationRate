@@ -79,7 +79,6 @@ dependencies {
     //    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     implementation project(':MPChartLib')
     //    implementation 'com.github.fanhua1994:FastVideoPlayer:1.0.6'
-    implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
     implementation 'com.github.niniloveyou:StateButton:v1.0.0'
     implementation('com.mikepenz:materialdrawer:5.1.6@aar') {
         transitive = true
