@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import com.ch.activity.HistoryActivity;
+import com.ch.activity.ReportActivity;
 import com.ch.adapter.FragmentDateListAdapter;
 import com.ch.evaporationrate.R;
 import com.deadline.statebutton.StateButton;
@@ -102,6 +103,7 @@ public class DateFragment extends Fragment {
                 startActivity(new Intent(getActivity(),HistoryActivity.class));
                 break;
             case R.id.checkBox_id:
+                startActivity(new Intent(getActivity(),ReportActivity.class));
                 break;
         }
     }

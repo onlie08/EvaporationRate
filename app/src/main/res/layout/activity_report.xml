@@ -447,91 +447,217 @@
                     android:id="@+id/textView186"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="静态蒸发率测试仪\n型号与编号"
+                    android:layout_marginTop="32dp"
+                    android:text="静态蒸发率测试仪型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="38dp"
-                    tools:layout_editor_absoluteY="552dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView185" />
 
                 <TextView
                     android:id="@+id/textView206"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="静态蒸发率测试仪\n型号与编号"
-                    android:textColor="@color/textcolorAccent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1静态蒸发率测试仪型号与编号"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="461dp"
-                    tools:layout_editor_absoluteY="553dp" />
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView186"
+                    app:layout_constraintEnd_toStartOf="@+id/view24"
+                    app:layout_constraintStart_toEndOf="@+id/view25"
+                    app:layout_constraintTop_toTopOf="@+id/textView186" />
 
                 <TextView
                     android:id="@+id/textView187"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="温度传感器型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="37dp"
-                    tools:layout_editor_absoluteY="625dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView186" />
+
+                <TextView
+                    android:id="@+id/textView207"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1温度传感器型号与编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView187"
+                    app:layout_constraintEnd_toStartOf="@+id/view24"
+                    app:layout_constraintStart_toEndOf="@+id/view25"
+                    app:layout_constraintTop_toTopOf="@+id/textView187" />
 
                 <TextView
                     android:id="@+id/textView190"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="流量计型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="1170dp"
-                    tools:layout_editor_absoluteY="508dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view26"
+                    app:layout_constraintStart_toEndOf="@+id/view24"
+                    app:layout_constraintTop_toBottomOf="@+id/textView185" />
+
+                <TextView
+                    android:id="@+id/textView210"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1流量计型号与编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView190"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view26"
+                    app:layout_constraintTop_toTopOf="@+id/textView190" />
 
                 <TextView
                     android:id="@+id/textView191"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="压力传感器型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="1169dp"
-                    tools:layout_editor_absoluteY="565dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view26"
+                    app:layout_constraintStart_toEndOf="@+id/view24"
+                    app:layout_constraintTop_toBottomOf="@+id/textView190" />
+
+                <TextView
+                    android:id="@+id/textView211"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1压力传感器型号与编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView191"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view26"
+                    app:layout_constraintTop_toTopOf="@+id/textView191" />
 
                 <TextView
                     android:id="@+id/textView192"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="大气压力传感器型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="1170dp"
-                    tools:layout_editor_absoluteY="632dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view26"
+                    app:layout_constraintStart_toEndOf="@+id/view24"
+                    app:layout_constraintTop_toBottomOf="@+id/textView191" />
+
+                <TextView
+                    android:id="@+id/textView212"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1大气压力传感器型号与编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView192"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view26"
+                    app:layout_constraintTop_toTopOf="@+id/textView192" />
 
                 <TextView
                     android:id="@+id/textView193"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="实验前仪器情况"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="1171dp"
-                    tools:layout_editor_absoluteY="693dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view26"
+                    app:layout_constraintStart_toEndOf="@+id/view24"
+                    app:layout_constraintTop_toBottomOf="@+id/textView192" />
+
+                <TextView
+                    android:id="@+id/textView213"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1实验前仪器情况"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView193"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view26"
+                    app:layout_constraintTop_toTopOf="@+id/textView193" />
 
                 <TextView
                     android:id="@+id/textView188"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="环境温湿度传感器型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="37dp"
-                    tools:layout_editor_absoluteY="680dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView187" />
+
+                <TextView
+                    android:id="@+id/textView208"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1环境温湿度传感器型号与编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView188"
+                    app:layout_constraintEnd_toStartOf="@+id/view24"
+                    app:layout_constraintStart_toEndOf="@+id/view25"
+                    app:layout_constraintTop_toTopOf="@+id/textView188" />
 
                 <TextView
                     android:id="@+id/textView189"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="激光泄露传感器型号与编号"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
-                    tools:layout_editor_absoluteX="36dp"
-                    tools:layout_editor_absoluteY="735dp" />
+                    app:layout_constraintEnd_toStartOf="@+id/view25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView188" />
+
+                <TextView
+                    android:id="@+id/textView209"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1激光泄露传感器型号与编号"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView189"
+                    app:layout_constraintEnd_toStartOf="@+id/view24"
+                    app:layout_constraintStart_toEndOf="@+id/view25"
+                    app:layout_constraintTop_toTopOf="@+id/textView189" />
 
                 <View
                     android:id="@+id/view21"
@@ -612,6 +738,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView178" />
 
+                <TextView
+                    android:id="@+id/textView214"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="32dp"
+                    android:text="3.检测设备信息"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView189" />
+
                 <View
                     android:id="@+id/view18"
                     android:layout_width="2dp"
@@ -623,6 +761,44 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView172" />
+
+                <View
+                    android:id="@+id/view24"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintBottom_toTopOf="@+id/textView214"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView185" />
+
+                <View
+                    android:id="@+id/view26"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintBottom_toTopOf="@+id/textView214"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView185" />
+
+                <View
+                    android:id="@+id/view25"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintBottom_toTopOf="@+id/textView214"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView185" />
 
                 <View
                     android:id="@+id/view20"
