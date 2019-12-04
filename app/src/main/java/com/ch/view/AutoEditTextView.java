@@ -62,7 +62,7 @@ public class AutoEditTextView extends android.support.v7.widget.AppCompatEditTex
         TypedArray typeArray = context.obtainStyledAttributes(attrs, R.styleable.AutoEditTextView, defStyleAttr, 0);
         leftText = typeArray.getString(R.styleable.AutoEditTextView_leftText);
         leftTextColor = typeArray.getColor(R.styleable.AutoEditTextView_leftTextColor, getColor(R.color.textcolorAccent));
-        leftTextSize = typeArray.getFloat(R.styleable.AutoEditTextView_leftTextSize, sp2px(25f));
+        leftTextSize = typeArray.getFloat(R.styleable.AutoEditTextView_leftTextSize, sp2px(14f));
         clickType = typeArray.getInt(R.styleable.AutoEditTextView_rightButtonClickType, 0);
         isShowDownLine = typeArray.getBoolean(R.styleable.AutoEditTextView_isShowDownLine, true);
         leftTextPadding = typeArray.getInt(R.styleable.AutoEditTextView_leftTextPadding, dip2px(16));
@@ -113,7 +113,7 @@ public class AutoEditTextView extends android.support.v7.widget.AppCompatEditTex
         super.onDraw(canvas);
         //TODO 绘制左侧的文字,并居中显示
         if (!TextUtils.isEmpty(leftText)) {
-            canvas.drawText(leftText, getScrollX()+dip2px(25), (getMeasuredHeight() - mTextPaint.getTextSize()) / 2 + mTextPaint.getTextSize()- dip2px(2), mTextPaint);
+            canvas.drawText(leftText, getScrollX()+dip2px(14), (getMeasuredHeight() - mTextPaint.getTextSize()) / 2 + mTextPaint.getTextSize()- dip2px(2), mTextPaint);
         }
         //绘制底部的线
         if (isShowDownLine) {

@@ -25,7 +25,7 @@ public class HistoryActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_histroy);
+        setContentView(R.layout.activity_history_new);
         ButterKnife.bind(this);
         initView();
         initData();

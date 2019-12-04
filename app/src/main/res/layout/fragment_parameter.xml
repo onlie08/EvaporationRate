@@ -15,6 +15,7 @@
         android:layout_marginStart="64dp"
         android:text="容器类型"
         android:textSize="@dimen/text_size_thire"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,10 +23,13 @@
     <LinearLayout
         android:id="@+id/ln_spinner"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:minHeight="50dp"
         android:orientation="horizontal"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
@@ -33,8 +37,9 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/button"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="64dp"
+
         android:text="取消"
         android:textSize="@dimen/text_size_thire"
 
@@ -43,13 +48,12 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:normalBackgroundColor="@color/gary_background"
+
         app:normalStrokeColor="@color/textcolorAccent"
         app:normalStrokeWidth="1dp"
-
         app:normalTextColor="@color/textcolorAccent"
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@android:color/white"
         app:round="true"
         app:unableBackgroundColor="@android:color/darker_gray"
@@ -71,7 +75,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@android:color/white"
         app:round="true"
         app:unableBackgroundColor="@android:color/darker_gray"
@@ -430,6 +434,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/edit_background"
+            android:drawableRight="@mipmap/common_ddm"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -456,6 +461,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
+            android:drawableRight="@mipmap/common_ddm"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -521,6 +527,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
+            android:drawableRight="@mipmap/common_date"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -534,6 +541,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
+            android:drawableRight="@mipmap/common_date"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -560,6 +568,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
+            android:drawableRight="@mipmap/common_date"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"

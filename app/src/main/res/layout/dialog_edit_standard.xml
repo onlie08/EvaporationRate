@@ -24,8 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/alie_padding_two"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/edit_background"
         android:hint="请输入试验标准"
         android:inputType="text"
@@ -34,43 +33,44 @@
         android:scrollHorizontally="false"
         android:singleLine="false"
         android:text="453254325"
+        android:gravity="center"
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_cancel"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:text="取消"
         android:textSize="@dimen/text_size_thire"
         app:animationDuration="200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_sure"
+
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_standard"
 
         app:normalBackgroundColor="@color/gary_background"
-        app:normalStrokeColor="@color/textcolorAccent"
+        app:normalStrokeColor="#f5f5f5"
 
         app:normalStrokeWidth="1dp"
         app:normalTextColor="@color/textcolorAccent"
+        app:pressedBackgroundColor="@color/colorAccent"
 
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
         app:pressedTextColor="@android:color/white"
         app:round="true"
-
         app:unableBackgroundColor="@android:color/darker_gray"
         app:unableTextColor="@android:color/darker_gray" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_sure"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="确定"
         android:textSize="@dimen/text_size_thire"
         app:animationDuration="200"
@@ -81,7 +81,7 @@
         app:normalBackgroundColor="@color/colorAccent"
 
         app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorAccent"
 
         app:pressedTextColor="@android:color/white"
         app:round="true"

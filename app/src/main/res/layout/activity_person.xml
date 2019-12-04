@@ -111,7 +111,7 @@
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
 
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@android:color/white"
 
         app:round="true"

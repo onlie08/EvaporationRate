@@ -23,7 +23,7 @@
         app:animationDuration="200"
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@android:color/white"
         app:round="true"
         app:unableBackgroundColor="@android:color/darker_gray"
@@ -43,7 +43,7 @@
 
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@android:color/white"
         app:round="true"
         app:unableBackgroundColor="@android:color/darker_gray"

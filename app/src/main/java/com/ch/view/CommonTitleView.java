@@ -59,6 +59,7 @@ public class CommonTitleView extends ViewController<String> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_exit:
+                showExitDialog();
                 break;
             case R.id.img_person:
                 break;
@@ -68,6 +69,25 @@ public class CommonTitleView extends ViewController<String> {
             case R.id.img_back:
                 break;
         }
+    }
+
+    private void showExitDialog() {
+        final CommonDialog dialog = new CommonDialog(getContext());
+
+        dialog.setMessage("您确定要退出系统吗")
+                .setTitle("提示")
+                .setSingle(true).setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+            @Override
+            public void onPositiveClick() {
+                dialog.dismiss();
+                ((Activity)getContext()).finish();
+            }
+
+            @Override
+            public void onNegtiveClick() {
+                dialog.dismiss();
+            }
+        }).show();
     }
 
     public interface ItemClickListener {
@@ -122,8 +142,8 @@ public class CommonTitleView extends ViewController<String> {
 
         EditText edit_standard = layout.findViewById(R.id.edit_standard);
         edit_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        edit_standard.setGravity(Gravity.TOP);
-        edit_standard.setText("法的发达大打发打发打发大幅答复的萨芬的发达放大大方点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
+//        edit_standard.setGravity(Gravity.TOP);
+        edit_standard.setText("GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
         edit_standard.setSingleLine(false);
         edit_standard.setHorizontallyScrolling(false);
 
@@ -166,11 +186,7 @@ public class CommonTitleView extends ViewController<String> {
         StateButton btn_sure = layout.findViewById(R.id.btn_sure);
         TextView tv_standard = layout.findViewById(R.id.tv_standard);
 
-//        tv_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-//        tv_standard.setGravity(Gravity.TOP);
-        tv_standard.setText("点撒放大放大发的萨芬的萨芬的撒范德萨范德萨范德萨范德萨放大");
-//        tv_standard.setSingleLine(false);
-//        tv_standard.setHorizontallyScrolling(false);
+        tv_standard.setText("GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
@@ -197,31 +213,7 @@ public class CommonTitleView extends ViewController<String> {
 
     private void showPopwindow(View view){
         View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.popwindow_standard, null);
-        layout.findViewById(R.id.tv_menu_one).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showStandardDialog();
-            }
-        });
-        layout.findViewById(R.id.tv_menu_two).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showEditStandardDialog();
-            }
-        });
-        layout.findViewById(R.id.tv_menu_thire).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        layout.findViewById(R.id.tv_menu_four).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(250f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(250f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
 //        popupWindow.setOnDismissListener(this);
         if (popupWindow.isShowing()) {
@@ -229,6 +221,52 @@ public class CommonTitleView extends ViewController<String> {
         } else {
             popupWindow.showAsDropDown(view,0,DensityUtil.dp2px(16f));
         }
+        layout.findViewById(R.id.tv_menu_one).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                showStandardDialog();
+            }
+        });
+        layout.findViewById(R.id.tv_menu_two).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                showEditStandardDialog();
+            }
+        });
+        layout.findViewById(R.id.tv_menu_thire).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        layout.findViewById(R.id.tv_menu_four).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                showSettingDialog();
+            }
+        });
+    }
+
+    private void showSettingDialog() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View layout = inflater.inflate(R.layout.dialog_setting, null);
+        ImageView img_close = layout.findViewById(R.id.img_close);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
+        //通过setView设置我们自己的布局
+        builder.setView(layout);
+        final AlertDialog dialog =builder.create();
+        dialog.show();
+        //此处设置位置窗体大小
+        dialog.getWindow().setLayout(DensityUtil.dp2px(600f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
 }
