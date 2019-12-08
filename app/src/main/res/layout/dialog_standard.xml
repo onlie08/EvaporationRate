@@ -25,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:minHeight="200dp"
+        android:minHeight="150dp"
         android:padding="@dimen/alie_padding_five"
         android:gravity="center"
         android:scrollHorizontally="false"
@@ -39,7 +39,7 @@
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_sure"
-        android:layout_width="200dp"
+        android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="@dimen/alie_padding_two"

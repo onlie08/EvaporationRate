@@ -3,6 +3,7 @@ package com.ch.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,12 +17,20 @@ import android.widget.TextView;
 
 import com.ch.base.base.ViewController;
 import com.ch.evaporationrate.R;
+import com.ch.utils.DateUtil;
+import com.ch.utils.RxTimerUtil;
 import com.deadline.statebutton.StateButton;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 public class CommonTitleView extends ViewController<String> {
 
@@ -62,6 +71,7 @@ public class CommonTitleView extends ViewController<String> {
                 showExitDialog();
                 break;
             case R.id.img_person:
+                showPersonDialog();
                 break;
             case R.id.img_more:
                 showPopwindow(imgMore);
@@ -69,6 +79,57 @@ public class CommonTitleView extends ViewController<String> {
             case R.id.img_back:
                 break;
         }
+    }
+
+    private void showPersonDialog() {
+        View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.dialog_person_layout, null);
+        TextView tv_change_pwd = layout.findViewById(R.id.tv_change_pwd);
+        final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(300f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setOnDismissListener(this);
+        if (popupWindow.isShowing()) {
+            popupWindow.dismiss();
+        } else {
+            popupWindow.showAsDropDown(imgPerson,0,0);
+        }
+        tv_change_pwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                showChangePwdDialog();
+            }
+        });
+    }
+
+    private void showChangePwdDialog() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View layout = inflater.inflate(R.layout.dialog_change_pwd, null);
+        StateButton btn_cancel = layout.findViewById(R.id.btn_cancel);
+        StateButton btn_sure = layout.findViewById(R.id.btn_sure);
+        EditText edit_old_pwd = layout.findViewById(R.id.edit_old_pwd);
+        EditText edit_new_pwd = layout.findViewById(R.id.edit_new_pwd);
+        EditText edit_new_pwd_again = layout.findViewById(R.id.edit_new_pwd_again);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
+        //通过setView设置我们自己的布局
+        builder.setView(layout);
+        final AlertDialog dialog =builder.create();
+        dialog.show();
+        //此处设置位置窗体大小
+        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void showExitDialog() {
@@ -119,6 +180,13 @@ public class CommonTitleView extends ViewController<String> {
         commonBatteryView = new CommonBatteryView(getContext());
         commonBatteryView.attachRoot(lnBattery);
         commonBatteryView.fillData("开始检测电量");
+
+        RxTimerUtil.interval(1000, new RxTimerUtil.IRxNext() {
+            @Override
+            public void doNext(long number) {
+                tvTime.setText(DateUtil.getSystemDate());
+            }
+        });
     }
 
     @Override
@@ -153,7 +221,7 @@ public class CommonTitleView extends ViewController<String> {
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
-        dialog.getWindow().setLayout(DensityUtil.dp2px(800f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
 
         ImageView img_close = layout.findViewById(R.id.img_close);
         StateButton btn_sure = layout.findViewById(R.id.btn_sure);
@@ -194,7 +262,7 @@ public class CommonTitleView extends ViewController<String> {
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
-        dialog.getWindow().setLayout(DensityUtil.dp2px(800f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
 
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,7 +287,7 @@ public class CommonTitleView extends ViewController<String> {
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
         } else {
-            popupWindow.showAsDropDown(view,0,DensityUtil.dp2px(16f));
+            popupWindow.showAsDropDown(view,0,0);
         }
         layout.findViewById(R.id.tv_menu_one).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    >
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="admin"
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toTopOf="@+id/view28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_change_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="修改密码"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toTopOf="@+id/view28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView217"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="用户名称: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/view28" />
+
+    <TextView
+        android:id="@+id/tv_login_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="奥海辉龙"
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintStart_toEndOf="@+id/textView217"
+        app:layout_constraintTop_toTopOf="@+id/textView217" />
+
+    <TextView
+        android:id="@+id/tv_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="本次登录: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView217" />
+
+    <TextView
+        android:id="@+id/tv_login_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="2019-12-10 18:20"
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintStart_toEndOf="@+id/tv_company"
+        app:layout_constraintTop_toTopOf="@+id/tv_company" />
+
+    <TextView
+        android:id="@+id/textView221"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="登录地区: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_company" />
+
+    <TextView
+        android:id="@+id/tv_login_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="武汉市 江夏区"
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintStart_toEndOf="@+id/textView221"
+        app:layout_constraintTop_toTopOf="@+id/textView221" />
+
+    <View
+        android:id="@+id/view28"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/divider_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

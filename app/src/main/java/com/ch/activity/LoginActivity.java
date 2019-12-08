@@ -65,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_login)
     public void onViewClicked() {
-        startActivity(new Intent(this, HistoryActivity.class));
-//        startActivity(new Intent(this, MainPageActivity.class));
+//        startActivity(new Intent(this, HistoryActivity.class));
+        startActivity(new Intent(this, MainPageActivity.class));
     }
 
     @Override

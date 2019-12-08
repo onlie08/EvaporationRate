@@ -100,10 +100,10 @@ public class DateFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_search:
-                startActivity(new Intent(getActivity(),HistoryActivity.class));
+//                startActivity(new Intent(getActivity(),HistoryActivity.class));
                 break;
             case R.id.checkBox_id:
-                startActivity(new Intent(getActivity(),ReportActivity.class));
+//                startActivity(new Intent(getActivity(),ReportActivity.class));
                 break;
         }
     }
