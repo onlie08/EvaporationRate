@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <com.deadline.statebutton.StateButton
-        android:id="@+id/button"
+        android:id="@+id/btn_cancel"
         android:layout_width="150dp"
         android:layout_height="38dp"
         android:layout_marginEnd="64dp"
@@ -60,7 +60,7 @@
         app:unableTextColor="@android:color/darker_gray" />
 
     <com.deadline.statebutton.StateButton
-        android:id="@+id/btn_sure"
+        android:id="@+id/btn_save"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginEnd="32dp"
@@ -71,7 +71,7 @@
 
         app:animationDuration="200"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
         app:layout_constraintTop_toTopOf="parent"
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
@@ -111,11 +111,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="容器类型"
+            android:text="检验单位"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_checkout_company"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView24" />
+            app:layout_constraintTop_toTopOf="@+id/edit_checkout_company" />
 
         <TextView
             android:id="@+id/textView27"
@@ -124,9 +124,9 @@
             android:layout_marginStart="32dp"
             android:text="使用单位"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView28"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_use_device_company"
             app:layout_constraintStart_toEndOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/textView28" />
+            app:layout_constraintTop_toTopOf="@+id/edit_use_device_company" />
 
         <TextView
             android:id="@+id/textView29"
@@ -135,9 +135,9 @@
             android:layout_marginStart="32dp"
             android:text="生产厂家"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView31"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_device_madein_company"
             app:layout_constraintStart_toEndOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="@+id/textView31" />
+            app:layout_constraintTop_toTopOf="@+id/edit_device_madein_company" />
 
         <TextView
             android:id="@+id/textView25"
@@ -145,12 +145,12 @@
             android:layout_height="wrap_content"
             android:text="检验地点"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView26"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_test_address"
             app:layout_constraintEnd_toEndOf="@+id/textView17"
-            app:layout_constraintTop_toTopOf="@+id/textView26" />
+            app:layout_constraintTop_toTopOf="@+id/edit_test_address" />
 
         <EditText
-            android:id="@+id/textView24"
+            android:id="@+id/edit_checkout_company"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -166,7 +166,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/textView28"
+            android:id="@+id/edit_use_device_company"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -182,7 +182,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/textView26"
+            android:id="@+id/edit_test_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -193,12 +193,12 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView24"
-            app:layout_constraintStart_toStartOf="@+id/textView24"
-            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+            app:layout_constraintEnd_toEndOf="@+id/edit_checkout_company"
+            app:layout_constraintStart_toStartOf="@+id/edit_checkout_company"
+            app:layout_constraintTop_toBottomOf="@+id/edit_checkout_company" />
 
         <EditText
-            android:id="@+id/textView31"
+            android:id="@+id/edit_device_madein_company"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -213,7 +213,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView29"
-            app:layout_constraintTop_toBottomOf="@+id/textView28" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_use_device_company" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -233,9 +233,9 @@
             android:layout_height="wrap_content"
             android:text="容器编号"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView33"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_device_id"
             app:layout_constraintEnd_toEndOf="@+id/textView42"
-            app:layout_constraintTop_toTopOf="@+id/textView33" />
+            app:layout_constraintTop_toTopOf="@+id/edit_device_id" />
 
         <TextView
             android:id="@+id/textView53"
@@ -244,9 +244,9 @@
             android:layout_marginStart="32dp"
             android:text="试验介质"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView52"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_medium_type"
             app:layout_constraintStart_toEndOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/textView52" />
+            app:layout_constraintTop_toTopOf="@+id/tv_medium_type" />
 
         <TextView
             android:id="@+id/textView60"
@@ -254,9 +254,9 @@
             android:layout_height="wrap_content"
             android:text="设备名称"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView54"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_device_name"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView54" />
+            app:layout_constraintTop_toTopOf="@+id/edit_device_name" />
 
         <TextView
             android:id="@+id/textView61"
@@ -264,9 +264,9 @@
             android:layout_height="wrap_content"
             android:text="设备类型"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView55"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_device_type"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView55" />
+            app:layout_constraintTop_toTopOf="@+id/tv_device_type" />
 
         <TextView
             android:id="@+id/textView62"
@@ -274,9 +274,9 @@
             android:layout_height="wrap_content"
             android:text="充满率"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView56"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_fullness_rate"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView56" />
+            app:layout_constraintTop_toTopOf="@+id/edit_fullness_rate" />
 
         <TextView
             android:id="@+id/textView66"
@@ -285,9 +285,9 @@
             android:layout_marginStart="8dp"
             android:text="%"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView56"
-            app:layout_constraintStart_toEndOf="@+id/textView56"
-            app:layout_constraintTop_toTopOf="@+id/textView56" />
+            app:layout_constraintBottom_toBottomOf="@+id/edit_fullness_rate"
+            app:layout_constraintStart_toEndOf="@+id/edit_fullness_rate"
+            app:layout_constraintTop_toTopOf="@+id/edit_fullness_rate" />
 
         <TextView
             android:id="@+id/textView69"
@@ -296,9 +296,9 @@
             android:layout_marginStart="8dp"
             android:text="%"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView46"
-            app:layout_constraintStart_toEndOf="@+id/textView46"
-            app:layout_constraintTop_toTopOf="@+id/textView46" />
+            app:layout_constraintBottom_toBottomOf="@+id/edit_qualification_rate"
+            app:layout_constraintStart_toEndOf="@+id/edit_qualification_rate"
+            app:layout_constraintTop_toTopOf="@+id/edit_qualification_rate" />
 
         <TextView
             android:id="@+id/textView67"
@@ -307,9 +307,9 @@
             android:layout_marginStart="8dp"
             android:text="L"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView57"
-            app:layout_constraintStart_toEndOf="@+id/textView57"
-            app:layout_constraintTop_toTopOf="@+id/textView57" />
+            app:layout_constraintBottom_toBottomOf="@+id/edit_measurement_volume"
+            app:layout_constraintStart_toEndOf="@+id/edit_measurement_volume"
+            app:layout_constraintTop_toTopOf="@+id/edit_measurement_volume" />
 
         <TextView
             android:id="@+id/textView68"
@@ -318,9 +318,9 @@
             android:layout_marginStart="8dp"
             android:text="L"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView58"
-            app:layout_constraintStart_toEndOf="@+id/textView58"
-            app:layout_constraintTop_toTopOf="@+id/textView58" />
+            app:layout_constraintBottom_toBottomOf="@+id/edit_effective_volume"
+            app:layout_constraintStart_toEndOf="@+id/edit_effective_volume"
+            app:layout_constraintTop_toTopOf="@+id/edit_effective_volume" />
 
         <TextView
             android:id="@+id/textView63"
@@ -328,9 +328,9 @@
             android:layout_height="wrap_content"
             android:text="公测体积"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView57"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_measurement_volume"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView57" />
+            app:layout_constraintTop_toTopOf="@+id/edit_measurement_volume" />
 
         <TextView
             android:id="@+id/textView64"
@@ -338,9 +338,9 @@
             android:layout_height="wrap_content"
             android:text="有效容积"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView58"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_effective_volume"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView58" />
+            app:layout_constraintTop_toTopOf="@+id/edit_effective_volume" />
 
         <TextView
             android:id="@+id/textView65"
@@ -348,9 +348,9 @@
             android:layout_height="wrap_content"
             android:text="制造许可编号"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView59"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_license_no"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView59" />
+            app:layout_constraintTop_toTopOf="@+id/edit_license_no" />
 
         <TextView
             android:id="@+id/textView35"
@@ -358,9 +358,9 @@
             android:layout_height="wrap_content"
             android:text="检测日期"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView44"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_test_date"
             app:layout_constraintEnd_toEndOf="@+id/textView42"
-            app:layout_constraintTop_toTopOf="@+id/textView44" />
+            app:layout_constraintTop_toTopOf="@+id/tv_test_date" />
 
         <TextView
             android:id="@+id/textView36"
@@ -368,9 +368,9 @@
             android:layout_height="wrap_content"
             android:text="试验截止日期和时间"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView45"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_test_end_date"
             app:layout_constraintEnd_toEndOf="@+id/textView42"
-            app:layout_constraintTop_toTopOf="@+id/textView45" />
+            app:layout_constraintTop_toTopOf="@+id/tv_test_end_date" />
 
         <TextView
             android:id="@+id/textView39"
@@ -378,9 +378,9 @@
             android:layout_height="wrap_content"
             android:text="NER合格值"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView46"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_qualification_rate"
             app:layout_constraintEnd_toEndOf="@+id/textView42"
-            app:layout_constraintTop_toTopOf="@+id/textView46" />
+            app:layout_constraintTop_toTopOf="@+id/edit_qualification_rate" />
 
         <TextView
             android:id="@+id/textView40"
@@ -388,9 +388,9 @@
             android:layout_height="wrap_content"
             android:text="制造日期"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView47"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_madein_date"
             app:layout_constraintEnd_toEndOf="@+id/textView42"
-            app:layout_constraintTop_toTopOf="@+id/textView47" />
+            app:layout_constraintTop_toTopOf="@+id/tv_madein_date" />
 
         <TextView
             android:id="@+id/textView42"
@@ -399,9 +399,9 @@
             android:layout_marginStart="32dp"
             android:text="充液结束日期和时间"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView48"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_liquid_filling_end_date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView48" />
+            app:layout_constraintTop_toTopOf="@+id/edit_liquid_filling_end_date" />
 
         <TextView
             android:id="@+id/textView43"
@@ -409,12 +409,12 @@
             android:layout_height="wrap_content"
             android:text="设计标准"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/textView51"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_design_standard"
             app:layout_constraintEnd_toEndOf="@+id/textView34"
-            app:layout_constraintTop_toTopOf="@+id/textView51" />
+            app:layout_constraintTop_toTopOf="@+id/edit_design_standard" />
 
         <EditText
-            android:id="@+id/textView33"
+            android:id="@+id/edit_device_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -422,16 +422,16 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView48"
-            app:layout_constraintStart_toStartOf="@+id/textView48"
+            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/textView52"
+        <TextView
+            android:id="@+id/tv_medium_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/edit_background"
             android:drawableRight="@mipmap/common_ddm"
@@ -443,7 +443,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/textView54"
+            android:id="@+id/edit_device_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -451,12 +451,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView52"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_medium_type"
+            app:layout_constraintTop_toBottomOf="@+id/tv_medium_type" />
 
-        <EditText
-            android:id="@+id/textView55"
+        <TextView
+            android:id="@+id/tv_device_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -465,12 +465,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView52"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_medium_type"
+            app:layout_constraintTop_toBottomOf="@+id/edit_device_name" />
 
         <EditText
-            android:id="@+id/textView56"
+            android:id="@+id/edit_fullness_rate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -478,12 +478,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView52"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_medium_type"
+            app:layout_constraintTop_toBottomOf="@+id/tv_device_type" />
 
         <EditText
-            android:id="@+id/textView57"
+            android:id="@+id/edit_measurement_volume"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -491,12 +491,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView52"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView56" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_medium_type"
+            app:layout_constraintTop_toBottomOf="@+id/edit_fullness_rate" />
 
         <EditText
-            android:id="@+id/textView58"
+            android:id="@+id/edit_effective_volume"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -504,12 +504,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView52"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView57" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_medium_type"
+            app:layout_constraintTop_toBottomOf="@+id/edit_measurement_volume" />
 
         <EditText
-            android:id="@+id/textView59"
+            android:id="@+id/edit_license_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -517,26 +517,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView52"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView58" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_medium_type"
+            app:layout_constraintTop_toBottomOf="@+id/edit_effective_volume" />
 
-        <EditText
-            android:id="@+id/textView44"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_background"
-            android:drawableRight="@mipmap/common_date"
-            android:padding="5dp"
-            android:textColor="@color/textcolorAccent"
-            android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView33"
-            app:layout_constraintStart_toStartOf="@+id/textView48"
-            app:layout_constraintTop_toBottomOf="@+id/textView33" />
-
-        <EditText
-            android:id="@+id/textView45"
+        <TextView
+            android:id="@+id/tv_test_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -545,25 +531,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView48"
-            app:layout_constraintStart_toStartOf="@+id/textView48"
-            app:layout_constraintTop_toBottomOf="@+id/textView44" />
+            app:layout_constraintEnd_toEndOf="@+id/edit_device_id"
+            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/edit_device_id" />
 
-        <EditText
-            android:id="@+id/textView46"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edit_background"
-            android:padding="5dp"
-            android:textColor="@color/textcolorAccent"
-            android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView48"
-            app:layout_constraintStart_toStartOf="@+id/textView48"
-            app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-        <EditText
-            android:id="@+id/textView47"
+        <TextView
+            android:id="@+id/tv_test_end_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -572,12 +545,39 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/textView48"
-            app:layout_constraintStart_toStartOf="@+id/textView48"
-            app:layout_constraintTop_toBottomOf="@+id/textView46" />
+            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_test_date" />
 
         <EditText
-            android:id="@+id/textView48"
+            android:id="@+id/edit_qualification_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_background"
+            android:padding="5dp"
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_test_end_date" />
+
+        <TextView
+            android:id="@+id/tv_madein_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_background"
+            android:drawableRight="@mipmap/common_date"
+            android:padding="5dp"
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/edit_qualification_rate" />
+
+        <TextView
+            android:id="@+id/edit_liquid_filling_end_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -589,10 +589,10 @@
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toEndOf="@+id/textView42"
-            app:layout_constraintTop_toBottomOf="@+id/textView47" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_madein_date" />
 
         <EditText
-            android:id="@+id/textView51"
+            android:id="@+id/edit_design_standard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -602,9 +602,9 @@
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView48"
-            app:layout_constraintStart_toStartOf="@+id/textView48"
-            app:layout_constraintTop_toBottomOf="@+id/textView48" />
+            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/edit_liquid_filling_end_date" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline5"

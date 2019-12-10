@@ -1,16 +1,16 @@
 package com.ch.base.base;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
 import com.ch.bean.DaoMaster;
 import com.ch.bean.DaoSession;
-import com.ch.bean.UserBean;
-import com.ch.bean.UserBeanDao;
+import com.ch.db.DatabaseContext;
 import com.ch.evaporationrate.R;
+import com.ch.utils.AppPreferences;
 import com.ch.utils.ToastHelper;
-import com.gyf.barlibrary.ImmersionBar;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -23,9 +23,6 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.squareup.leakcanary.LeakCanary;
 
-import java.util.ArrayList;
-
-
 /**
  * @author RedLi
  * @date
@@ -33,6 +30,7 @@ import java.util.ArrayList;
 
 public class BaseApplication extends Application {
     private static DaoSession daoSession;
+    public static SharedPreferences sharedPreferences;
 
     static {
         //设置全局的Header构建器
@@ -69,6 +67,7 @@ public class BaseApplication extends Application {
         //使用ToastHelper,必须初始化
         ToastHelper.init(this);
         setupDatabase();
+        sharedPreferences = getSharedPreferences(AppPreferences.PreferenceKey.SP_NAME_NAME,MODE_PRIVATE);
     }
 
     private void setupLeakCanary() {
@@ -82,14 +81,21 @@ public class BaseApplication extends Application {
      * 配置数据库
      */
     private void setupDatabase() {
-        //创建数据库shop.db"
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "user.db", null);
-        //获取可写数据库
+
+        DatabaseContext databaseContext = new DatabaseContext(this);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(databaseContext, "evaporation.db", null);
         SQLiteDatabase db = helper.getWritableDatabase();
-        //获取数据库对象
         DaoMaster daoMaster = new DaoMaster(db);
-        //获取Dao对象管理者
         daoSession = daoMaster.newSession();
+
+//        //创建数据库shop.db"
+//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "evaporation.db", null);
+//        //获取可写数据库
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        //获取数据库对象
+//        DaoMaster daoMaster = new DaoMaster(db);
+//        //获取Dao对象管理者
+//        daoSession = daoMaster.newSession();
 
     }
 

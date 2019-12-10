@@ -1,19 +1,34 @@
 package com.ch.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Process;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.ch.base.base.BaseApplication;
+import com.ch.bean.User;
+import com.ch.bean.UserDao;
 import com.ch.evaporationrate.R;
-import com.gyf.barlibrary.ImmersionBar;
+import com.ch.utils.AppPreferences;
+import com.ch.utils.ToastHelper;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +42,14 @@ public class LoginActivity extends AppCompatActivity {
     ConstraintLayout constraintWelcomeView;
     @BindView(R.id.card_login_view)
     CardView cardLoginView;
+    @BindView(R.id.cb_rember)
+    CheckBox cbRember;
+    @BindView(R.id.edit_name)
+    EditText editName;
+    @BindView(R.id.edit_pwd)
+    EditText editPwd;
+
+    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        requestPermission();
         initView();
         initData();
     }
 
     private void initView() {
-
-    }
-
-    private void initData() {
-//        UserBeanDao dao = BaseApplication.getDaoInstant().getUserBeanDao();
-//        UserBean userBean = new UserBean();
-//        userBean.setAddress("address");
-//        userBean.setName("name");
-//        dao.insert(userBean);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -63,10 +78,72 @@ public class LoginActivity extends AppCompatActivity {
         }, 1500);
     }
 
+    private void initData() {
+        String username = (String) AppPreferences.instance().get("username", "");
+        String pwd = (String) AppPreferences.instance().get("pwd", "");
+        boolean rember = (boolean) AppPreferences.instance().get("rember", false);
+        editName.setText(username);
+        editPwd.setText(pwd);
+        cbRember.setChecked(rember);
+
+        boolean dbinit = (boolean) AppPreferences.instance().get("dbInit", false);
+        userDao = BaseApplication.getDaoInstant().getUserDao();
+        if(!dbinit){
+            AppPreferences.instance().put("dbInit", true);
+            User user = new User();
+            user.setName("superadmin");
+            user.setPassword("123456");
+            user.setRole(0);
+            userDao.insertOrReplace(user);
+
+            User user1 = new User();
+            user1.setName("admin");
+            user1.setPassword("123456");
+            user1.setRole(1);
+            userDao.insertOrReplace(user1);
+
+            User user2 = new User();
+            user2.setName("root");
+            user2.setPassword("123456");
+            user2.setRole(2);
+            userDao.insertOrReplace(user2);
+        }
+
+    }
+
     @OnClick(R.id.btn_login)
     public void onViewClicked() {
-//        startActivity(new Intent(this, HistoryActivity.class));
-        startActivity(new Intent(this, MainPageActivity.class));
+        if(TextUtils.isEmpty(editName.getEditableText().toString())){
+            ToastHelper.showToast("用户名不能为空");
+            return;
+        }
+        if(TextUtils.isEmpty(editPwd.getEditableText().toString())){
+            ToastHelper.showToast("密码不能为空");
+            return;
+        }
+        requestLogin(editName.getEditableText().toString(),editPwd.getEditableText().toString());
+    }
+
+    private void requestLogin(String username, String pwd) {
+        User user = userDao.queryBuilder().where(UserDao.Properties.Name.eq(username)).unique();
+        if(null == user){
+            ToastHelper.showToast("用户不存在");
+        }else {
+            if(user.getPassword().equals(pwd)){
+                AppPreferences.instance().put("username",username);
+                if(cbRember.isChecked()){
+                    AppPreferences.instance().put("rember",true);
+                    AppPreferences.instance().put("pwd",pwd);
+                }else {
+                    AppPreferences.instance().put("rember",false);
+                    AppPreferences.instance().put("pwd","");
+                }
+                startActivity(new Intent(this, MainPageActivity.class));
+                finish();
+            }else {
+                ToastHelper.showToast("密码错误");
+            }
+        }
     }
 
     @Override
@@ -94,5 +171,40 @@ public class LoginActivity extends AppCompatActivity {
         animation.setDuration(500);
         view.startAnimation(animation);
         view.setVisibility(View.GONE);
+    }
+
+
+    private static String[] PERMISSIONS_REQUEST = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (this.checkPermission(Manifest.permission.READ_PHONE_STATE, Process.myPid(), Process.myUid())
+                    != PackageManager.PERMISSION_GRANTED || this.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, Process.myPid(), Process.myUid())
+                    != PackageManager.PERMISSION_GRANTED || this.checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION, Process.myPid(), Process.myUid())
+                    != PackageManager.PERMISSION_GRANTED) {
+                this.requestPermissions(PERMISSIONS_REQUEST, 1);
+            } else {
+            }
+        } else {
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                } else {
+
+                }
+            }
+        }
     }
 }
