@@ -53,7 +53,7 @@ public class SpinnerController {
 
         final AlertDialog dialog = builder.create();
         dialog.show();
-
+        dialog.getWindow().setLayout(DensityUtil.dp2px(200f), LinearLayout.LayoutParams.WRAP_CONTENT);
         spinnerListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

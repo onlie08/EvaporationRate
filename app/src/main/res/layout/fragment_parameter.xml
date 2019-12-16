@@ -158,7 +158,6 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
-            android:text="武汉市奥龙股份有限公司"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -174,7 +173,6 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
-            android:text="武汉市奥龙股份有限公司"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +187,6 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
-            android:text="武汉市奥龙股份有限公司大"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -207,7 +204,6 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
-            android:text="武汉市奥龙股份有限公司大"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -399,9 +395,9 @@
             android:layout_marginStart="32dp"
             android:text="充液结束日期和时间"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_liquid_filling_end_date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edit_liquid_filling_end_date" />
+            app:layout_constraintTop_toTopOf="@+id/tv_liquid_filling_end_date" />
 
         <TextView
             android:id="@+id/textView43"
@@ -422,8 +418,8 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
-            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintEnd_toEndOf="@+id/tv_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_liquid_filling_end_date"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -436,6 +432,7 @@
             android:background="@drawable/edit_background"
             android:drawableRight="@mipmap/common_ddm"
             android:padding="5dp"
+            android:text="LN2"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toEndOf="parent"
@@ -463,6 +460,7 @@
             android:background="@drawable/edit_background"
             android:drawableRight="@mipmap/common_ddm"
             android:padding="5dp"
+            android:text="储罐"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toEndOf="@+id/tv_medium_type"
@@ -532,7 +530,7 @@
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toEndOf="@+id/edit_device_id"
-            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_liquid_filling_end_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_device_id" />
 
         <TextView
@@ -545,8 +543,8 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
-            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintEnd_toEndOf="@+id/tv_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_liquid_filling_end_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_test_date" />
 
         <EditText
@@ -556,10 +554,11 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:text="0.15"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
-            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintEnd_toEndOf="@+id/tv_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_liquid_filling_end_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_test_end_date" />
 
         <TextView
@@ -572,12 +571,12 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
-            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
+            app:layout_constraintEnd_toEndOf="@+id/tv_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_liquid_filling_end_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_qualification_rate" />
 
         <TextView
-            android:id="@+id/edit_liquid_filling_end_date"
+            android:id="@+id/tv_liquid_filling_end_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -602,9 +601,9 @@
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/edit_liquid_filling_end_date"
-            app:layout_constraintStart_toStartOf="@+id/edit_liquid_filling_end_date"
-            app:layout_constraintTop_toBottomOf="@+id/edit_liquid_filling_end_date" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_liquid_filling_end_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_liquid_filling_end_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_liquid_filling_end_date" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline5"

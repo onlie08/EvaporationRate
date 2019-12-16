@@ -59,6 +59,7 @@
             android:name="com.ch.activity.ReportActivity"
             android:screenOrientation="landscape"
             ></activity>
+        <service android:name="com.ch.service.DataService"></service>
     </application>
 
 </manifest>

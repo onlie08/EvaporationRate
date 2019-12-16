@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ch.base.base.BaseApplication;
@@ -63,8 +65,8 @@ public class ParameterFragment extends Fragment {
     EditText editQualificationRate;
     @BindView(R.id.tv_madein_date)
     TextView tvMadeinDate;
-    @BindView(R.id.edit_liquid_filling_end_date)
-    TextView editLiquidFillingEndDate;
+    @BindView(R.id.tv_liquid_filling_end_date)
+    TextView tvLiquidFillingEndDate;
     @BindView(R.id.edit_design_standard)
     EditText editDesignStandard;
     @BindView(R.id.edit_device_madein_company)
@@ -93,6 +95,31 @@ public class ParameterFragment extends Fragment {
 
     private void initData() {
         parameterDao = BaseApplication.getDaoInstant().getParameterDao();
+        List<Parameter> parameters =  parameterDao.loadAll();
+        if(parameters.isEmpty()){
+           return;
+        }
+        Parameter parameter = parameters.get(0);
+        editCheckoutCompany.setText(parameter.getCheckoutCompany());
+        editUseDeviceCompany.setText(parameter.getUseDeviceCompany());
+        editTestAddress.setText(parameter.getTestAddress());
+        editDeviceMadeinCompany.setText(parameter.getDeviceMadeinCompany());
+        editDeviceId.setText(parameter.getDeviceId());
+        tvMediumType.setText(parameter.getMediumType());
+        tvTestDate.setText(parameter.getTestDate());
+        editDeviceName.setText(parameter.getDeviceName());
+        tvTestEndDate.setText(parameter.getTestEndDate());
+        tvDeviceType.setText(parameter.getDeviceType());
+        editQualificationRate.setText(parameter.getQualificationRate());
+        editFullnessRate.setText(parameter.getFullnessRate());
+        tvMadeinDate.setText(parameter.getMadeinDate());
+        editMeasurementVolume.setText(parameter.getMeasurementVolume());
+        tvLiquidFillingEndDate.setText(parameter.getLiquidFillingEndDate());
+        editEffectiveVolume.setText(parameter.getEffectiveVolume());
+        editDesignStandard.setText(parameter.getDesignStandard());
+        editLicenseNo.setText(parameter.getLicenseNo());
+
+
     }
 
     @Override
@@ -126,20 +153,25 @@ public class ParameterFragment extends Fragment {
         super.onDestroy();
     }
 
-    @OnClick({R.id.btn_cancel, R.id.btn_save, R.id.tv_medium_type, R.id.tv_device_type, R.id.tv_test_date, R.id.tv_test_end_date, R.id.tv_madein_date, R.id.edit_liquid_filling_end_date})
+    @OnClick({R.id.btn_cancel, R.id.btn_save, R.id.tv_medium_type, R.id.tv_device_type, R.id.tv_test_date, R.id.tv_test_end_date, R.id.tv_madein_date, R.id.tv_liquid_filling_end_date})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_cancel:
                 break;
             case R.id.btn_save:
+                if(checkInputLegal()){
+                    saveDateToDb();
+                }else {
+                    ToastHelper.showToast("有未填写信息，请填写完整后提交");
+                }
                 break;
             case R.id.tv_medium_type:
                 List<String> mediumType = new ArrayList<>();
-                mediumType.add("介质类型1");
-                mediumType.add("介质类型2");
-                SpinnerController spinnerController = new SpinnerController(getActivity());
-                spinnerController.showSpinnerDialog(mediumType);
-                spinnerController.setListener(new SpinnerController.SpinnerListener() {
+                mediumType.add("LN2");
+                mediumType.add("LNG");
+                SpinnerController spinnerMedium = new SpinnerController(getActivity());
+                spinnerMedium.showSpinnerDialog(mediumType);
+                spinnerMedium.setListener(new SpinnerController.SpinnerListener() {
                     @Override
                     public void selectResult(String date) {
                         tvMediumType.setText(date);
@@ -148,6 +180,18 @@ public class ParameterFragment extends Fragment {
 
                 break;
             case R.id.tv_device_type:
+                List<String> devieceType = new ArrayList<>();
+                devieceType.add("储罐");
+                devieceType.add("气瓶");
+                devieceType.add("槽车");
+                SpinnerController spinnerDevice = new SpinnerController(getActivity());
+                spinnerDevice.showSpinnerDialog(devieceType);
+                spinnerDevice.setListener(new SpinnerController.SpinnerListener() {
+                    @Override
+                    public void selectResult(String date) {
+                        tvDeviceType.setText(date);
+                    }
+                });
                 break;
             case R.id.tv_test_date:
                 DateChooseController startDate = new DateChooseController(getActivity());
@@ -167,11 +211,92 @@ public class ParameterFragment extends Fragment {
                 });
                 break;
             case R.id.tv_test_end_date:
+                DateChooseController testEndDate = new DateChooseController(getActivity());
+                testEndDate.showChooseDateDialog();
+                testEndDate.setListener(new DateChooseController.DateChooseListener() {
+                    @Override
+                    public void dateResult(final String date1) {
+                        DateChooseController endDate = new DateChooseController(getActivity());
+                        endDate.showChooseDateDialog();
+                        endDate.setListener(new DateChooseController.DateChooseListener() {
+                            @Override
+                            public void dateResult(String date2) {
+                                tvTestEndDate.setText(date1 + "——" + date2);
+                            }
+                        });
+                    }
+                });
                 break;
             case R.id.tv_madein_date:
+                DateChooseController madeinDate = new DateChooseController(getActivity());
+                madeinDate.showChooseDateDialog();
+                madeinDate.setListener(new DateChooseController.DateChooseListener() {
+                    @Override
+                    public void dateResult(final String date1) {
+                        DateChooseController endDate = new DateChooseController(getActivity());
+                        endDate.showChooseDateDialog();
+                        endDate.setListener(new DateChooseController.DateChooseListener() {
+                            @Override
+                            public void dateResult(String date2) {
+                                tvMadeinDate.setText(date1 + "——" + date2);
+                            }
+                        });
+                    }
+                });
                 break;
-            case R.id.edit_liquid_filling_end_date:
+            case R.id.tv_liquid_filling_end_date:
+                DateChooseController fillingDate = new DateChooseController(getActivity());
+                fillingDate.showChooseDateDialog();
+                fillingDate.setListener(new DateChooseController.DateChooseListener() {
+                    @Override
+                    public void dateResult(final String date1) {
+                        DateChooseController endDate = new DateChooseController(getActivity());
+                        endDate.showChooseDateDialog();
+                        endDate.setListener(new DateChooseController.DateChooseListener() {
+                            @Override
+                            public void dateResult(String date2) {
+                                tvLiquidFillingEndDate.setText(date1 + "——" + date2);
+                            }
+                        });
+                    }
+                });
                 break;
         }
+    }
+
+    private void saveDateToDb() {
+        Parameter parameter = new Parameter();
+        parameter.setCheckoutCompany(editCheckoutCompany.getText().toString().trim());
+        parameter.setUseDeviceCompany(editUseDeviceCompany.getText().toString().trim());
+        parameter.setTestAddress(editTestAddress.getText().toString().trim());
+        parameter.setDeviceMadeinCompany(editDeviceMadeinCompany.getText().toString().trim());
+        parameter.setDeviceId(editDeviceId.getText().toString().trim());
+        parameter.setMediumType(tvMediumType.getText().toString().trim());
+        parameter.setTestDate(tvTestDate.getText().toString().trim());
+        parameter.setDeviceName(editDeviceName.getText().toString().trim());
+        parameter.setTestEndDate(tvTestEndDate.getText().toString().trim());
+        parameter.setDeviceType(tvDeviceType.getText().toString().trim());
+        parameter.setQualificationRate(editQualificationRate.getText().toString().trim());
+        parameter.setFullnessRate(editFullnessRate.getText().toString().trim());
+        parameter.setMadeinDate(tvMadeinDate.getText().toString().trim());
+        parameter.setMeasurementVolume(editMeasurementVolume.getText().toString().trim());
+        parameter.setLiquidFillingEndDate(tvLiquidFillingEndDate.getText().toString().trim());
+        parameter.setEffectiveVolume(editEffectiveVolume.getText().toString().trim());
+        parameter.setDesignStandard(editDesignStandard.getText().toString().trim());
+        parameter.setLicenseNo(editLicenseNo.getText().toString().trim());
+
+        parameterDao.insert(parameter);
+        ToastHelper.showToast("保存成功");
+    }
+
+    private boolean checkInputLegal(){
+        if(TextUtils.isEmpty(editCheckoutCompany.getText().toString().trim()) || TextUtils.isEmpty(editUseDeviceCompany.getText().toString().trim()) ||TextUtils.isEmpty(editTestAddress.getText().toString().trim()) ||TextUtils.isEmpty(editDeviceMadeinCompany.getText().toString().trim()) ||
+                TextUtils.isEmpty(editDeviceId.getText().toString().trim()) ||TextUtils.isEmpty(tvMediumType.getText().toString().trim()) ||TextUtils.isEmpty(tvTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editDeviceName.getText().toString().trim()) ||
+                TextUtils.isEmpty(tvTestEndDate.getText().toString().trim()) ||TextUtils.isEmpty(tvDeviceType.getText().toString().trim()) ||TextUtils.isEmpty(editQualificationRate.getText().toString().trim()) ||TextUtils.isEmpty(editFullnessRate.getText().toString().trim()) ||
+                TextUtils.isEmpty(tvMadeinDate.getText().toString().trim()) ||TextUtils.isEmpty(editMeasurementVolume.getText().toString().trim()) ||TextUtils.isEmpty(tvLiquidFillingEndDate.getText().toString().trim()) ||TextUtils.isEmpty(editEffectiveVolume.getText().toString().trim()) ||
+                TextUtils.isEmpty(editDesignStandard.getText().toString().trim()) ||TextUtils.isEmpty(editLicenseNo.getText().toString().trim())){
+            return false;
+        }
+        return true;
     }
 }
