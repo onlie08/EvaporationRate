@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/alie_padding_two"
+        android:padding="16dp"
+        android:src="@mipmap/common_closed"
+        app:layout_constraintBottom_toBottomOf="@+id/textView47"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView47" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="运算参数"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_two"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_methane_density"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text="0.676"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_sure5" />
+
+    <EditText
+        android:id="@+id/edit_lng_density"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text="422.53"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_sure5"
+        app:layout_constraintEnd_toEndOf="@+id/edit_methane_density"
+        app:layout_constraintStart_toStartOf="@+id/edit_methane_density" />
+
+    <EditText
+        android:id="@+id/edit_lng_heat_constant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text=""
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_sure5" />
+
+    <EditText
+        android:id="@+id/edit_checkout_company6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text="1.2555"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_sure6" />
+
+    <EditText
+        android:id="@+id/edit_ln2_density"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text="808.61"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_sure6"
+        app:layout_constraintEnd_toEndOf="@+id/edit_checkout_company6"
+        app:layout_constraintStart_toStartOf="@+id/edit_checkout_company6" />
+
+    <EditText
+        android:id="@+id/edit_ln2_heat_constant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text=""
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edit_checkout_company6" />
+
+    <EditText
+        android:id="@+id/edit_ln2_correct_constant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text=""
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_ln2_density"
+        app:layout_constraintEnd_toEndOf="@+id/edit_ln2_heat_constant"
+        app:layout_constraintStart_toStartOf="@+id/edit_ln2_heat_constant" />
+
+    <EditText
+        android:id="@+id/edit_lng_correct_constant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edit_background"
+        android:ems="5"
+        android:inputType="numberDecimal"
+        android:maxLength="8"
+        android:padding="5dp"
+        android:text=""
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_sure5"
+        app:layout_constraintEnd_toEndOf="@+id/edit_lng_heat_constant"
+        app:layout_constraintStart_toStartOf="@+id/edit_lng_heat_constant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="甲烷密度g/L: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_methane_density"
+        app:layout_constraintEnd_toStartOf="@+id/edit_methane_density"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_sure5"
+        app:layout_constraintTop_toTopOf="@+id/edit_methane_density" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="LNG密度kg/m³: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_lng_density"
+        app:layout_constraintEnd_toStartOf="@+id/edit_lng_density"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_sure5"
+        app:layout_constraintTop_toTopOf="@+id/edit_lng_density" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="热力学常数K: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_lng_heat_constant"
+        app:layout_constraintEnd_toStartOf="@+id/edit_lng_heat_constant"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_methane_density"
+        app:layout_constraintTop_toTopOf="@+id/edit_lng_heat_constant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="N2密度g/L: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_checkout_company6"
+        app:layout_constraintEnd_toStartOf="@+id/edit_checkout_company6"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_sure6"
+        app:layout_constraintTop_toTopOf="@+id/edit_checkout_company6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="LN2密度kg/m³: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_ln2_density"
+        app:layout_constraintEnd_toStartOf="@+id/edit_ln2_density"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_sure6"
+        app:layout_constraintTop_toTopOf="@+id/edit_ln2_density" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="热力学常数K: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_ln2_heat_constant"
+        app:layout_constraintEnd_toStartOf="@+id/edit_ln2_heat_constant"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_checkout_company6"
+        app:layout_constraintTop_toTopOf="@+id/edit_ln2_heat_constant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="修正系数: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_ln2_correct_constant"
+        app:layout_constraintEnd_toStartOf="@+id/edit_ln2_correct_constant"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_ln2_density"
+        app:layout_constraintTop_toTopOf="@+id/edit_ln2_correct_constant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="修正系数: "
+        android:textColor="@color/textcolorAccent"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_lng_correct_constant"
+        app:layout_constraintEnd_toStartOf="@+id/edit_lng_correct_constant"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edit_lng_density"
+        app:layout_constraintTop_toTopOf="@+id/edit_lng_correct_constant" />
+
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/btn_sure5"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="LNG"
+        android:textSize="@dimen/text_size_one"
+        app:animationDuration="200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView47"
+        app:normalBackgroundColor="@color/colorAccent"
+        app:normalTextColor="@android:color/white"
+        app:pressedBackgroundColor="@color/colorAccent"
+        app:pressedTextColor="@android:color/white"
+        app:radius="8dp"
+        app:round="false"
+        app:unableBackgroundColor="@android:color/darker_gray"
+        app:unableTextColor="@android:color/darker_gray" />
+
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/btn_sure6"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="LN2"
+        android:textSize="@dimen/text_size_one"
+        app:animationDuration="200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView47"
+        app:normalBackgroundColor="@color/colorAccent"
+        app:normalTextColor="@android:color/white"
+        app:pressedBackgroundColor="@color/colorAccent"
+        app:pressedTextColor="@android:color/white"
+        app:radius="8dp"
+        app:round="false"
+        app:unableBackgroundColor="@android:color/darker_gray"
+        app:unableTextColor="@android:color/darker_gray" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/edit_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sure5">
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="式中: "
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView52" />
+
+        <TextView
+            android:id="@+id/textView55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="式中: "
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView54" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:lineSpacingMultiplier="1.5"
+            android:padding="8dp"
+            android:text="α0 ——— 测试蒸发率，单位为百分比每天（%/d）;\n qm ——— 蒸发气体质量流量日平均值，单位为千克每天（kg/d）;\n Ψ ——— 流量计的校正系数，标定时的给定值;\n ρ1 ——— 标准大气压（101.325kPa）下饱和液体的密度，单位为千克每立方米（kg/m³）;\n V ——— 被检件的有效容积，单位为立方米（m³）。"
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintStart_toEndOf="@+id/textView51"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:lineSpacingMultiplier="1.5"
+            android:padding="8dp"
+            android:text="α20 —— 静态蒸发率，单位为百分比每天（%/d）；\n α0 —— 测试蒸发率，单位为百分比每天（%/d）；\n h —— 试验环境压力下饱和液体的汽化潜热，单位为千焦耳每千克（kJ/kg）；\n hfg —— 标准大气压（101.325kPa）下饱和液体的汽化潜热，单位为千焦耳每千（kJ/kg）；\n Ts —— 标准大气压（101.325kPa）下饱和液体的温度，单位为开尔文（K）；\n T1 —— 试验时日平均环境温度，单位为开尔文（K）；\n T2 —— 试验时被检件内日平均压力对应的深冷液体饱和温度，单位为开尔文（K）。 "
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView51"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/gongshi1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/gongshi2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

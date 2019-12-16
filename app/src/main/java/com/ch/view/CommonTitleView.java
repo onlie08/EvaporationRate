@@ -307,6 +307,7 @@ public class CommonTitleView extends ViewController<String> {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
+                showParamSettingDialog();
             }
         });
         layout.findViewById(R.id.tv_menu_four).setOnClickListener(new View.OnClickListener() {
@@ -337,4 +338,22 @@ public class CommonTitleView extends ViewController<String> {
         });
     }
 
+    private void showParamSettingDialog(){
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View layout = inflater.inflate(R.layout.dialog_param_setting, null);
+        ImageView img_close = layout.findViewById(R.id.img_close);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
+        //通过setView设置我们自己的布局
+        builder.setView(layout);
+        final AlertDialog dialog =builder.create();
+        dialog.show();
+        //此处设置位置窗体大小
+        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
 }

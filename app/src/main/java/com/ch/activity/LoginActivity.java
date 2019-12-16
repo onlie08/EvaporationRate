@@ -21,14 +21,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ch.base.base.BaseApplication;
 import com.ch.bean.User;
-import com.ch.bean.UserDao;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.utils.AppPreferences;
 import com.ch.utils.ToastHelper;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText editName;
     @BindView(R.id.edit_pwd)
     EditText editPwd;
-
-    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,26 +82,25 @@ public class LoginActivity extends AppCompatActivity {
         cbRember.setChecked(rember);
 
         boolean dbinit = (boolean) AppPreferences.instance().get("dbInit", false);
-        userDao = BaseApplication.getDaoInstant().getUserDao();
         if(!dbinit){
             AppPreferences.instance().put("dbInit", true);
             User user = new User();
             user.setName("superadmin");
             user.setPassword("123456");
             user.setRole(0);
-            userDao.insertOrReplace(user);
+            DbManage.getInstance().saveUser(user);
 
             User user1 = new User();
             user1.setName("admin");
             user1.setPassword("123456");
             user1.setRole(1);
-            userDao.insertOrReplace(user1);
+            DbManage.getInstance().saveUser(user1);
 
             User user2 = new User();
             user2.setName("root");
             user2.setPassword("123456");
             user2.setRole(2);
-            userDao.insertOrReplace(user2);
+            DbManage.getInstance().saveUser(user2);
         }
 
     }
@@ -125,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void requestLogin(String username, String pwd) {
-        User user = userDao.queryBuilder().where(UserDao.Properties.Name.eq(username)).unique();
+        User user = DbManage.getInstance().queryUser(username);
         if(null == user){
             ToastHelper.showToast("用户不存在");
         }else {

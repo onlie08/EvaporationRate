@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.ch.base.base.BaseApplication;
 import com.ch.bean.Parameter;
-import com.ch.bean.ParameterDao;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.utils.ToastHelper;
 import com.ch.view.DateChooseController;
@@ -72,7 +72,6 @@ public class ParameterFragment extends Fragment {
     @BindView(R.id.edit_device_madein_company)
     EditText editDeviceMadeinCompany;
 
-    ParameterDao parameterDao;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,12 +93,10 @@ public class ParameterFragment extends Fragment {
     }
 
     private void initData() {
-        parameterDao = BaseApplication.getDaoInstant().getParameterDao();
-        List<Parameter> parameters =  parameterDao.loadAll();
-        if(parameters.isEmpty()){
-           return;
+        Parameter parameter = DbManage.getInstance().getParamter();
+        if(null == parameter){
+            return;
         }
-        Parameter parameter = parameters.get(0);
         editCheckoutCompany.setText(parameter.getCheckoutCompany());
         editUseDeviceCompany.setText(parameter.getUseDeviceCompany());
         editTestAddress.setText(parameter.getTestAddress());
@@ -285,7 +282,7 @@ public class ParameterFragment extends Fragment {
         parameter.setDesignStandard(editDesignStandard.getText().toString().trim());
         parameter.setLicenseNo(editLicenseNo.getText().toString().trim());
 
-        parameterDao.insert(parameter);
+        DbManage.getInstance().saveParamter(parameter);
         ToastHelper.showToast("保存成功");
     }
 
