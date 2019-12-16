@@ -72,12 +72,13 @@
 
         <EditText
             android:id="@+id/edit_evaporationrate_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toEndOf="@+id/textView71"
@@ -85,11 +86,12 @@
 
         <EditText
             android:id="@+id/edit_evaporationrate_num"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toEndOf="@+id/edit_evaporationrate_type"
@@ -97,11 +99,12 @@
 
         <EditText
             android:id="@+id/edit_laser_num"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_num"
@@ -109,11 +112,12 @@
 
         <EditText
             android:id="@+id/edit_flowmeter_num"
-            android:layout_width="200dp"
-            android:layout_height="25dp"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_num"
@@ -121,11 +125,12 @@
 
         <EditText
             android:id="@+id/edit_temperature_num"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_num"
@@ -133,11 +138,12 @@
 
         <EditText
             android:id="@+id/edit_air_pressure_num"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_num"
@@ -145,11 +151,12 @@
 
         <EditText
             android:id="@+id/edit_pressure_num"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_num"
@@ -157,11 +164,12 @@
 
         <EditText
             android:id="@+id/edit_humidity_num"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_num"
@@ -169,73 +177,91 @@
 
         <EditText
             android:id="@+id/edit_humidity_passed_date"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
             app:layout_constraintStart_toStartOf="@+id/edit_laser_passed_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_pressure_passed_date" />
 
         <EditText
             android:id="@+id/edit_laser_passed_date"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
             app:layout_constraintStart_toEndOf="@+id/tv_laser_test_date"
             app:layout_constraintTop_toTopOf="@+id/tv_laser_test_date" />
 
         <EditText
             android:id="@+id/edit_flowmeter_passed_date"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
             app:layout_constraintStart_toStartOf="@+id/edit_laser_passed_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_laser_passed_date" />
 
         <EditText
             android:id="@+id/edit_temperature_passed_date"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
             app:layout_constraintStart_toStartOf="@+id/edit_laser_passed_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_flowmeter_passed_date" />
 
         <EditText
             android:id="@+id/edit_air_pressure_passed_date"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
             app:layout_constraintStart_toStartOf="@+id/edit_laser_passed_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_temperature_passed_date" />
 
         <EditText
             android:id="@+id/edit_pressure_passed_date"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
             app:layout_constraintStart_toStartOf="@+id/edit_laser_passed_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_air_pressure_passed_date" />
 
@@ -248,6 +274,8 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:drawableRight="@mipmap/common_date"
             app:layout_constraintBottom_toBottomOf="@+id/edit_laser_num"
             app:layout_constraintStart_toEndOf="@+id/edit_laser_num"
             app:layout_constraintTop_toTopOf="@+id/edit_laser_num" />
@@ -261,18 +289,22 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:drawableRight="@mipmap/common_date"
             app:layout_constraintStart_toStartOf="@+id/tv_laser_test_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_laser_test_date" />
 
         <TextView
             android:id="@+id/tv_temperature_test_date"
             android:layout_width="120dp"
-            android:layout_height="26dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:drawableRight="@mipmap/common_date"
             app:layout_constraintStart_toStartOf="@+id/tv_laser_test_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_flowmeter_test_date" />
 
@@ -285,6 +317,8 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:drawableRight="@mipmap/common_date"
             app:layout_constraintStart_toStartOf="@+id/tv_laser_test_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_temperature_test_date" />
 
@@ -297,6 +331,8 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:drawableRight="@mipmap/common_date"
             app:layout_constraintStart_toStartOf="@+id/tv_laser_test_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_air_pressure_test_date" />
 
@@ -309,16 +345,19 @@
             android:padding="5dp"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:gravity="center"
+            android:drawableRight="@mipmap/common_date"
             app:layout_constraintStart_toStartOf="@+id/tv_laser_test_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_pressure_test_date" />
 
         <EditText
             android:id="@+id/edit_laser_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
@@ -326,11 +365,12 @@
 
         <EditText
             android:id="@+id/edit_flowmeter_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
@@ -338,11 +378,12 @@
 
         <EditText
             android:id="@+id/edit_temperature_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
@@ -350,11 +391,12 @@
 
         <EditText
             android:id="@+id/edit_air_pressure_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
@@ -362,11 +404,12 @@
 
         <EditText
             android:id="@+id/edit_pressure_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
@@ -374,12 +417,13 @@
 
         <EditText
             android:id="@+id/edit_humidity_type"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="parent"

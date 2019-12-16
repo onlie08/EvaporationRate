@@ -39,6 +39,38 @@ public class DateChooseController {
         mSeconds = calendar.get(Calendar.SECOND);//获取秒钟
     }
 
+    public void chooseSingleDateDialog(){
+        new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                mYear = year;
+                mMonth = monthOfYear + 1;
+                mDay = dayOfMonth;
+                String days;
+                if (mMonth + 1 < 10) {
+                    if (mDay < 10) {
+                        days = new StringBuffer().append(mYear).append("/").append("0").
+                                append(mMonth + 1).append("/").append("0").append(mDay).append("").toString();
+                    } else {
+                        days = new StringBuffer().append(mYear).append("/").append("0").
+                                append(mMonth + 1).append("/").append(mDay).append("").toString();
+                    }
+
+                } else {
+                    if (mDay < 10) {
+                        days = new StringBuffer().append(mYear).append("/").
+                                append(mMonth + 1).append("/").append("0").append(mDay).append("").toString();
+                    } else {
+                        days = new StringBuffer().append(mYear).append("/").
+                                append(mMonth + 1).append("/").append(mDay).append("").toString();
+                    }
+
+                }
+                listener.dateResult(days);
+            }
+        }, mYear, mMonth, mDay).show();
+    }
+
     public void showChooseDateDialog(){
         new DatePickerDialog(mContext, onDateSetListener, mYear, mMonth, mDay).show();
     }

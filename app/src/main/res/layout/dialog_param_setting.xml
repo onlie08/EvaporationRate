@@ -80,7 +80,7 @@
         android:inputType="numberDecimal"
         android:maxLength="8"
         android:padding="5dp"
-        android:text=""
+        android:text="1"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
@@ -139,7 +139,7 @@
         android:inputType="numberDecimal"
         android:maxLength="8"
         android:padding="5dp"
-        android:text=""
+        android:text="1"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
@@ -157,7 +157,7 @@
         android:inputType="numberDecimal"
         android:maxLength="8"
         android:padding="5dp"
-        android:text=""
+        android:text="1"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
@@ -175,7 +175,7 @@
         android:inputType="numberDecimal"
         android:maxLength="8"
         android:padding="5dp"
-        android:text=""
+        android:text="1"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
@@ -350,6 +350,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:padding="1dp"
         android:background="@drawable/edit_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -357,79 +358,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_sure5">
 
-        <TextView
-            android:id="@+id/textView51"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:text="式中: "
-            android:textColor="@color/textcolorAccent"
-            android:textSize="@dimen/text_size_thire"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView52" />
-
-        <TextView
-            android:id="@+id/textView55"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:text="式中: "
-            android:textColor="@color/textcolorAccent"
-            android:textSize="@dimen/text_size_thire"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView54" />
-
-        <TextView
-            android:id="@+id/textView52"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-            android:lineSpacingMultiplier="1.5"
-            android:padding="8dp"
-            android:text="α0 ——— 测试蒸发率，单位为百分比每天（%/d）;\n qm ——— 蒸发气体质量流量日平均值，单位为千克每天（kg/d）;\n Ψ ——— 流量计的校正系数，标定时的给定值;\n ρ1 ——— 标准大气压（101.325kPa）下饱和液体的密度，单位为千克每立方米（kg/m³）;\n V ——— 被检件的有效容积，单位为立方米（m³）。"
-            android:textColor="@color/textcolorAccent"
-            android:textSize="@dimen/text_size_thire"
-            app:layout_constraintStart_toEndOf="@+id/textView51"
-            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-
-        <TextView
-            android:id="@+id/textView54"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:lineSpacingMultiplier="1.5"
-            android:padding="8dp"
-            android:text="α20 —— 静态蒸发率，单位为百分比每天（%/d）；\n α0 —— 测试蒸发率，单位为百分比每天（%/d）；\n h —— 试验环境压力下饱和液体的汽化潜热，单位为千焦耳每千克（kJ/kg）；\n hfg —— 标准大气压（101.325kPa）下饱和液体的汽化潜热，单位为千焦耳每千（kJ/kg）；\n Ts —— 标准大气压（101.325kPa）下饱和液体的温度，单位为开尔文（K）；\n T1 —— 试验时日平均环境温度，单位为开尔文（K）；\n T2 —— 试验时被检件内日平均压力对应的深冷液体饱和温度，单位为开尔文（K）。 "
-            android:textColor="@color/textcolorAccent"
-            android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView51"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@mipmap/gongshi1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginTop="16dp"
-            android:src="@mipmap/gongshi2"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/parma_setting"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

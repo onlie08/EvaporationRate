@@ -219,7 +219,7 @@ public class DeviceFragment extends Fragment {
                 break;
             case R.id.tv_laser_test_date:
                 DateChooseController laserTestDate = new DateChooseController(getActivity());
-                laserTestDate.showChooseDateDialog();
+                laserTestDate.chooseSingleDateDialog();
                 laserTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
@@ -229,7 +229,7 @@ public class DeviceFragment extends Fragment {
                 break;
             case R.id.tv_flowmeter_test_date:
                 DateChooseController flowmeterTestDate = new DateChooseController(getActivity());
-                flowmeterTestDate.showChooseDateDialog();
+                flowmeterTestDate.chooseSingleDateDialog();
                 flowmeterTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
@@ -239,7 +239,7 @@ public class DeviceFragment extends Fragment {
                 break;
             case R.id.tv_temperature_test_date:
                 DateChooseController temperatureTestDate = new DateChooseController(getActivity());
-                temperatureTestDate.showChooseDateDialog();
+                temperatureTestDate.chooseSingleDateDialog();
                 temperatureTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
@@ -249,7 +249,7 @@ public class DeviceFragment extends Fragment {
                 break;
             case R.id.tv_air_pressure_test_date:
                 DateChooseController airPressureTestDate = new DateChooseController(getActivity());
-                airPressureTestDate.showChooseDateDialog();
+                airPressureTestDate.chooseSingleDateDialog();
                 airPressureTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
@@ -259,7 +259,7 @@ public class DeviceFragment extends Fragment {
                 break;
             case R.id.tv_pressure_test_date:
                 DateChooseController pressureTestDate = new DateChooseController(getActivity());
-                pressureTestDate.showChooseDateDialog();
+                pressureTestDate.chooseSingleDateDialog();
                 pressureTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
@@ -269,7 +269,7 @@ public class DeviceFragment extends Fragment {
                 break;
             case R.id.tv_humidity_test_date:
                 DateChooseController humidityDate = new DateChooseController(getActivity());
-                humidityDate.showChooseDateDialog();
+                humidityDate.chooseSingleDateDialog();
                 humidityDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
