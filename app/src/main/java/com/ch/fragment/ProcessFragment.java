@@ -255,8 +255,10 @@ public class ProcessFragment extends Fragment {
         tvPrejudge.setText(String.valueOf(testEvaR));
         if(testEvaR > 5){
             tvPreResult.setSelected(true);
+            tvPreResult.setText("不合格");
         }else {
             tvPreResult.setSelected(false);
+            tvPreResult.setText("合格");
         }
     }
 
