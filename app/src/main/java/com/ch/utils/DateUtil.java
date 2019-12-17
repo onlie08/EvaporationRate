@@ -46,6 +46,12 @@ public class DateUtil {
         return formatStr;
     }
 
+    public static String getSystemDate1(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");// HH:mm:ss
+        Date date = new Date(System.currentTimeMillis());
+        return simpleDateFormat.format(date);
+    }
+
     public static String getSystemDate(){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");// HH:mm:ss
         Date date = new Date(System.currentTimeMillis());

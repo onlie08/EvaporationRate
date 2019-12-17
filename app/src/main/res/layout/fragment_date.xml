@@ -19,7 +19,7 @@
         app:animationDuration="200"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
 
-        app:layout_constraintStart_toEndOf="@+id/tv_device_num"
+        app:layout_constraintStart_toEndOf="@+id/edit_device_num"
         app:layout_constraintTop_toTopOf="parent"
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
@@ -111,8 +111,8 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_device_num"
+    <EditText
+        android:id="@+id/edit_device_num"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
