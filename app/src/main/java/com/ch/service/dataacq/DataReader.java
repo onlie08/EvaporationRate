@@ -3,6 +3,7 @@ package com.ch.service.dataacq;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.RandomDataUtil;
 
+import java.util.Date;
 import java.util.Random;
 
 public class DataReader {
@@ -36,6 +37,7 @@ public class DataReader {
             retData.setInstantQuality(curQuality);
             mAccQuality+=curQuality;
             retData.setAccQuality(mAccQuality);
+            retData.setAcqTime(new Date());
 
         } catch (Exception e) {
             e.printStackTrace();

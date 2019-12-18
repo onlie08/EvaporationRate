@@ -17,6 +17,8 @@ import com.ch.service.DataService;
 import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.DateUtil;
+import com.ch.utils.RxStaticTotalTime;
+import com.ch.utils.RxTestTotalTime;
 import com.ch.utils.RxTimerUtil;
 import com.ch.utils.ToastHelper;
 import com.ch.view.SpinnerController;
@@ -48,7 +50,7 @@ public class ProcessFragment extends BaseProcessFragment{
                 }
 
                 @Override
-                public void revCalResult(Float testEvaR, Float staticEvaR) {
+                public void revCalResult(BeanRTData data,Float testEvaR, Float staticEvaR) {
                     if(suspend){
                         return;
                     }
@@ -67,6 +69,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
                 @Override
                 public void experimentOver(BeanRTData data, Float testEvaR, Float staticEvaR) {
+                    Log.d("Data service", "---experimentOver data:" + new Gson().toJson(data) + "testEvaR:"+testEvaR+" staticEvaR:"+staticEvaR);
                     testControll(staticEvaR);
                 }
             });
@@ -104,7 +107,7 @@ public class ProcessFragment extends BaseProcessFragment{
              */
             long recPeroid = 3 * 60l;
             int mediumtype = 1;
-            long expperiod = 6 * 60l; //6分钟便于测试 ,应该一次实验室24小时
+            long expperiod = 1 * 60l; //6分钟便于测试 ,应该一次实验室24小时
             BeanOperaParam ln2 = new BeanOperaParam(1.2555f, 808.61f, 1f, 1f);
             BeanOperaParam lng = new BeanOperaParam(0.676f, 422.53f, 1f, 1f);
             float validV = 40.5f;
@@ -117,7 +120,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void stopTest() {
-
+        mDataService.stopAcqData();
     }
 
     @Override
@@ -163,10 +166,11 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void startStaticTotalTime() {
-        RxTimerUtil.interval(1000, new RxTimerUtil.IRxNext() {
+        RxStaticTotalTime.interval(1000, new RxStaticTotalTime.IRxNext() {
             @Override
             public void doNext(long number) {
                 try {
+                    Log.i("caohai","startStaticTotalTime number:"+number);
                     String startTime = tvStaticStartTime.getText().toString();
                     Date date = DateUtil.StringToDate(startTime);
                     tvStaticTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
@@ -180,15 +184,16 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void endStaticTotalTime() {
-        RxTimerUtil.cancel();
+        RxStaticTotalTime.cancel();
     }
 
     @Override
     void startTestTotalTime() {
-        RxTimerUtil.interval(1000, new RxTimerUtil.IRxNext() {
+        RxTestTotalTime.interval(1000, new RxTestTotalTime.IRxNext() {
             @Override
             public void doNext(long number) {
                 try {
+                    Log.i("caohai","startTestTotalTime number:"+number);
                     String startTime = tvTestStartTime.getText().toString();
                     Date date = DateUtil.StringToDate(startTime);
                     tvTestTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
@@ -201,34 +206,43 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void endTestTotalTime() {
-        RxTimerUtil.cancel();
+        RxTestTotalTime.cancel();
     }
 
     private void testControll(Float staticEvaR){
         if(testProgress == 1){
             staticEvaR1 = staticEvaR;
             if(staticEvaR1 > 5){
-                ToastHelper.showToast("试验不合格");
+                initAllState();
+                ToastHelper.showToast("第一次试验不合格");
+                tvTestOneResult.setText("不合格");
+                tvTestOneResult.setSelected(true);
+                tvTestOneCount.setText(""+staticEvaR);
             }else {
                 testProgress = 2;
+                stopTest();
                 startTest();
             }
         }else if(testProgress == 2){
             float diff;
             staticEvaR2 = staticEvaR;
+            tvTestTwoCount.setText(""+staticEvaR);
             if(staticEvaR2 > staticEvaR1){
                 diff = (staticEvaR2 - staticEvaR1)/staticEvaR2;
             }else {
                 diff = (staticEvaR1 - staticEvaR2)/staticEvaR1;
             }
+            Log.d("Data service", "---service testControll"+diff);
             if(diff > 5){
                 testProgress = 3;
+                stopTest();
                 startTest();
             }else {
                 testSuccess();
             }
         }else if(testProgress == 3){
             staticEvaR3 = staticEvaR;
+            tvTestThireCount.setText(""+staticEvaR);
             testSuccess();
         }
     }

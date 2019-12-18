@@ -21,6 +21,7 @@ import java.util.TimerTask;
 
 public class DataService extends Service {
 
+    private boolean mIsPause = false;   //是否暂停
     private LocalBinder mBinder = new LocalBinder();
     private List<OnDataCallback> mlstHandler;
     private Timer mTimerRT;
@@ -52,6 +53,7 @@ public class DataService extends Service {
         mlstHandler = new ArrayList<OnDataCallback>();
         mDataReader = new DataReader();
         mlsthisData    = new ArrayList<BeanRTData>();
+        mlstPauseTime = new ArrayList<Long>();
     }
 
     @Override
@@ -84,7 +86,7 @@ public class DataService extends Service {
          * 接收计算结果数据（默认1分钟计算一次）
          * testEvaR - 测试蒸发率  staticEvaR - 静态蒸发率
          */
-        public void revCalResult(Float testEvaR,Float staticEvaR);
+        public void revCalResult(BeanRTData data,Float testEvaR,Float staticEvaR);
 
         /**
          * 接收采集周期的数据
@@ -118,6 +120,7 @@ public class DataService extends Service {
     public void startAcqData(long recPeroid, int mediumtype, long expperiod, BeanOperaParam lng,BeanOperaParam ln2,float validV)
     {
         mlsthisData.clear();
+        mlstPauseTime.clear();
 
         mLNGParam = lng;
         mLN2Param = ln2;
@@ -139,9 +142,35 @@ public class DataService extends Service {
     /**
      * 停止采集数据（结束实验）
      */
+
     public void stopAcqData()
     {
         clearResource();
+    }
+
+    /**
+     * 暂停采集数据
+     */
+    private Date mPauseStartTime=null;
+    private List<Long> mlstPauseTime;
+    public void pauseAcqData()
+    {
+        mPauseStartTime = new Date();
+        mIsPause = true;
+    }
+    /**
+     * 恢复采集数据
+     */
+    public void resumeAcqData()
+    {
+        mIsPause = false;
+        if(mlstPauseTime!=null)
+        {
+            Date curDate = new Date();
+            long detPauseTime = curDate.getTime() - mPauseStartTime.getTime();
+            mlstPauseTime.add(detPauseTime);
+            mlstPauseTime = null;
+        }
     }
 
 
@@ -161,11 +190,16 @@ public class DataService extends Service {
         @Override
         public void run() {
             //Log.e("data Service gen", "--timer run");
-            BeanRTData testData = mDataReader.getData();
 
-            Message msg = new Message();
-            msg.obj = testData;
-            handlerRTData.sendMessage(msg);
+            if(!mIsPause)
+            {
+                BeanRTData testData = mDataReader.getData();
+
+                Message msg = new Message();
+                msg.obj = testData;
+                handlerRTData.sendMessage(msg);
+            }
+
         }
     };
     private Handler handlerRTData = new Handler(){
@@ -190,7 +224,7 @@ public class DataService extends Service {
                 Float[] calRes = DataCalculate.CalTestEvaRate(mMediumtype,mlsthisData,mLN2Param,mLNGParam,mValidV);
                 for (int i=0;i<mlstHandler.size();i++)
                 {
-                    mlstHandler.get(i).revCalResult(calRes[0],calRes[1]);
+                    mlstHandler.get(i).revCalResult(revData,calRes[0],calRes[1]);
                 }
                 mCountCal=0l;
             }
@@ -207,8 +241,14 @@ public class DataService extends Service {
             }
 
             //实验结束回调
+            long pauseTime=0l;
+            for(int i=0;i<mlstPauseTime.size();i++)
+            {
+                pauseTime+=mlstPauseTime.get(i);
+            }
+
             Date curDate = new Date();
-            long detTime = (curDate.getTime() - mStartTime.getTime())/1000;
+            long detTime = (curDate.getTime() - mStartTime.getTime()-pauseTime)/1000;
             if(detTime>=mExpperiod)
             {
                 mlsthisData.add(revData); //记录数据

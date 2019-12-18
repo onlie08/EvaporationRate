@@ -163,18 +163,35 @@ public abstract class BaseProcessFragment extends Fragment {
         initAllState();
     }
 
-    private void initAllState(){
+    public void initAllState(){
         btnStaticStart.setEnabled(true);
         btnStaticEnd.setEnabled(true);
         btnTestStart.setEnabled(true);
         btnTestEnd.setEnabled(true);
-        btnTestReport.setEnabled(false);
+        btnTestReport.setEnabled(true);
         tvStaticStartTime.setText("");
         tvStaticEndTime.setText("");
         tvStaticTotalTime.setText("");
         tvTestStartTime.setText("");
         tvTestEndTime.setText("");
         tvTestTotalTime.setText("");
+        tvPreResult.setSelected(false);
+        tvPreResult.setText("合格");
+        tvFlowRate.setText("---");
+        tvFlowTotal.setText("---");
+
+        tvWeightRate.setText("---");
+        tvWeightTotal.setText("---");
+
+        tvMonitorTemptrue.setText("---");
+        tvEnvirmontTemptrue.setText("---");
+        tvMonitorPressure.setText("---");
+
+        btnEntrancePressure.setText("入口压力: KPa");
+        btnEntranceTemperature.setText("入口温度: ℃");
+        btnFlowCounter.setText("流量计: L/min");
+
+        tvAlarm.setSelected(false);
     }
 
     private void initData() {
@@ -231,57 +248,57 @@ public abstract class BaseProcessFragment extends Fragment {
                 chooseIntervalTimeDialog();
                 break;
             case R.id.tv_static_start_time:
-                if(staticAuto){
-                    ToastHelper.showToast("自动计时中，无法选择时间");
-                    return;
-                }
-                if(testProgress>0){
-                    ToastHelper.showToast("试验过程中无法选择时间");
-                    return;
-                }
-                DateChooseController startDate = new DateChooseController(getActivity());
-                startDate.showChooseDateDialog();
-                startDate.setListener(new DateChooseController.DateChooseListener() {
-                    @Override
-                    public void dateResult(String date1) {
-                        tvStaticStartTime.setText(date1);
-                        startStaticTotalTime();
-                    }
-                });
+//                if(staticAuto){
+//                    ToastHelper.showToast("自动计时中，无法选择时间");
+//                    return;
+//                }
+//                if(testProgress>0){
+//                    ToastHelper.showToast("试验过程中无法选择时间");
+//                    return;
+//                }
+//                DateChooseController startDate = new DateChooseController(getActivity());
+//                startDate.showChooseDateDialog();
+//                startDate.setListener(new DateChooseController.DateChooseListener() {
+//                    @Override
+//                    public void dateResult(String date1) {
+//                        tvStaticStartTime.setText(date1);
+//                        startStaticTotalTime();
+//                    }
+//                });
                 break;
             case R.id.tv_static_end_time:
-                if(TextUtils.isEmpty(tvStaticStartTime.getText().toString())){
-                    ToastHelper.showToast("请先选择开始静置时间");
-                    return;
-                }
-                if(staticAuto){
-                    ToastHelper.showToast("自动计时中，无法选择时间");
-                    return;
-                }
-                if(testProgress>0){
-                    ToastHelper.showToast("试验过程中无法选择时间");
-                    return;
-                }
-                DateChooseController endDate = new DateChooseController(getActivity());
-                endDate.showChooseDateDialog();
-                endDate.setListener(new DateChooseController.DateChooseListener() {
-                    @Override
-                    public void dateResult(String date1) {
-                        try {
-                            String startTime = tvStaticStartTime.getText().toString();
-                            Date dateStart = DateUtil.StringToDate(startTime);
-                            Date dateEnd = DateUtil.StringToDate(date1);
-                            if(dateEnd.getTime()<dateStart.getTime()){
-                                ToastHelper.showToast("结束时间不能早于开始时间，请重新选择");
-                            }else {
-                                tvStaticEndTime.setText(date1);
-                                countStaticTotalTime();
-                            }
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+//                if(TextUtils.isEmpty(tvStaticStartTime.getText().toString())){
+//                    ToastHelper.showToast("请先选择开始静置时间");
+//                    return;
+//                }
+//                if(staticAuto){
+//                    ToastHelper.showToast("自动计时中，无法选择时间");
+//                    return;
+//                }
+//                if(testProgress>0){
+//                    ToastHelper.showToast("试验过程中无法选择时间");
+//                    return;
+//                }
+//                DateChooseController endDate = new DateChooseController(getActivity());
+//                endDate.showChooseDateDialog();
+//                endDate.setListener(new DateChooseController.DateChooseListener() {
+//                    @Override
+//                    public void dateResult(String date1) {
+//                        try {
+//                            String startTime = tvStaticStartTime.getText().toString();
+//                            Date dateStart = DateUtil.StringToDate(startTime);
+//                            Date dateEnd = DateUtil.StringToDate(date1);
+//                            if(dateEnd.getTime()<dateStart.getTime()){
+//                                ToastHelper.showToast("结束时间不能早于开始时间，请重新选择");
+//                            }else {
+//                                tvStaticEndTime.setText(date1);
+//                                countStaticTotalTime();
+//                            }
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
                 break;
             case R.id.tv_test_start_time:
                 break;
@@ -300,8 +317,8 @@ public abstract class BaseProcessFragment extends Fragment {
                 if (null == parameter) {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
                 }else {
-                    btnStaticStart.setEnabled(false);
-                    btnStaticEnd.setEnabled(true);
+//                    btnStaticStart.setEnabled(false);
+//                    btnStaticEnd.setEnabled(true);
                     tvStaticStartTime.setText(DateUtil.getSystemDate1());
                     startStaticTotalTime();
                     staticAuto = true;
@@ -314,10 +331,11 @@ public abstract class BaseProcessFragment extends Fragment {
                     return;
                 }
                 if(CheckTimeArrive()){
-                    btnStaticStart.setEnabled(false);
-                    btnStaticEnd.setEnabled(false);
-                    btnTestStart.setEnabled(true);
+//                    btnStaticStart.setEnabled(false);
+//                    btnStaticEnd.setEnabled(false);
+//                    btnTestStart.setEnabled(true);
                     tvStaticEndTime.setText(DateUtil.getSystemDate1());
+                    endStaticTotalTime();
                 }else {
                     final CommonDialog commonDialog = new CommonDialog(getActivity());
                     commonDialog.setMessage("静置时间未达标准，结束静置将无法进行试验，确定结束静置吗？");
@@ -344,14 +362,15 @@ public abstract class BaseProcessFragment extends Fragment {
                     if("开始试验".equals(btnTestStart.getText().toString())){
                         if(testProgress == 0){
                             tvTestStartTime.setText(DateUtil.getSystemDate1());
+                            startTestTotalTime();
+
                         }
-                        startTestTotalTime();
                         btnTestStart.setText("暂停试验");
                         testProgress = 1;
                         startTest();
                         suspend = false;
                     }else {
-                        endTestTotalTime();
+//                        endTestTotalTime();
                         btnTestStart.setText("开始试验");
                         stopTest();
                         suspend = true;
@@ -359,16 +378,19 @@ public abstract class BaseProcessFragment extends Fragment {
                 }
                 break;
             case R.id.btn_test_end:
-                if(CheckTimeArrive()){
-                    tvTestEndTime.setText(DateUtil.getSystemDate1());
-                }else {
+//                if(CheckTimeArrive()){
+//                    tvTestEndTime.setText(DateUtil.getSystemDate1());
+//                }else {
                     final CommonDialog commonDialog = new CommonDialog(getActivity());
                     commonDialog.setMessage("试验时间未达标准，结束试验会删除此次试验数据，确定结束试验吗？");
                     commonDialog.setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                         @Override
                         public void onPositiveClick() {
+                            stopTest();
                             initAllState();
+                            endStaticTotalTime();
                             commonDialog.dismiss();
+                            testProgress =0;
                         }
 
                         @Override
@@ -377,7 +399,7 @@ public abstract class BaseProcessFragment extends Fragment {
                         }
                     });
                     commonDialog.show();
-                }
+//                }
                 break;
             case R.id.btn_auto_heat:
                 break;

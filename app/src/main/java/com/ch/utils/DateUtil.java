@@ -131,6 +131,7 @@ public class DateUtil {
 
         long sec = diff % nd % nh % nm / ns;
 
-        return day + "天" + hour + "小时" + min + "分钟" + sec + "秒";
+        return day + "天" + hour + "小时" + min + "分钟";
+//        return day + "天" + hour + "小时" + min + "分钟" + sec + "秒";
     }
 }

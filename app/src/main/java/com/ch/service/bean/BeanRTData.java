@@ -5,11 +5,12 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.util.Date;
+
 @Entity
 public class BeanRTData {
     @Id(autoincrement = true)
     private Long id;
-    @Unique
     private String deviceId;
     public Float concentration;//浓度（报警用）
     public Float instantFlow;//瞬时流量
@@ -23,12 +24,13 @@ public class BeanRTData {
     public Float accFlow;//累计流量
     public Float instantQuality;//瞬时质量
     public Float accQuality;    //累计质量
-    @Generated(hash = 1336201911)
+    public Date acqTime;    //采集时间
+    @Generated(hash = 524962449)
     public BeanRTData(Long id, String deviceId, Float concentration,
             Float instantFlow, Float entertemperature, Float enterpressure,
             Float surroundtemperature, Float surroundhumidity,
             Float surroundpressure, Float accFlow, Float instantQuality,
-            Float accQuality) {
+            Float accQuality, Date acqTime) {
         this.id = id;
         this.deviceId = deviceId;
         this.concentration = concentration;
@@ -41,6 +43,7 @@ public class BeanRTData {
         this.accFlow = accFlow;
         this.instantQuality = instantQuality;
         this.accQuality = accQuality;
+        this.acqTime = acqTime;
     }
     @Generated(hash = 1912097834)
     public BeanRTData() {
@@ -117,6 +120,11 @@ public class BeanRTData {
     public void setAccQuality(Float accQuality) {
         this.accQuality = accQuality;
     }
-
-
+    public Date getAcqTime() {
+        return this.acqTime;
+    }
+    public void setAcqTime(Date acqTime) {
+        this.acqTime = acqTime;
+    }
+    
 }
