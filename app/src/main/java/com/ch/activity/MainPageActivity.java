@@ -10,14 +10,11 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.ch.evaporationrate.R;
-import com.ch.fragment.AlarmFragment;
 import com.ch.fragment.ChartFragment;
 import com.ch.fragment.DateFragment;
 import com.ch.fragment.DeviceFragment;
 import com.ch.fragment.ParameterFragment;
 import com.ch.fragment.ProcessFragment;
-import com.ch.fragment.MonitorFragment;
-import com.ch.fragment.PersonFragment;
 import com.ch.view.CommonBottomView;
 import com.ch.view.CommonTitleView;
 import com.gyf.barlibrary.ImmersionBar;

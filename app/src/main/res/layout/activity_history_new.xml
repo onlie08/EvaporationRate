@@ -46,7 +46,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <com.deadline.statebutton.StateButton
-        android:id="@+id/button4"
+        android:id="@+id/tv_export"
         android:layout_width="80dp"
         android:layout_height="40dp"
 
@@ -80,7 +80,7 @@
         android:textSize="@dimen/text_size_thire"
         app:animationDuration="200"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/tv_export"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"

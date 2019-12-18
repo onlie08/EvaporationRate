@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:gravity="center"
-        android:text="检测单位: "
+        android:text="检验单位: "
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
@@ -22,11 +22,11 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
 
     <TextView
-        android:id="@+id/tv_flow_rate2"
+        android:id="@+id/tv_checkout_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="220.68"
+        android:text="---"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintBottom_toBottomOf="@+id/textView1"
@@ -42,15 +42,15 @@
         android:text="容器编号: "
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintStart_toEndOf="@+id/tv_flow_rate2"
+        app:layout_constraintStart_toEndOf="@+id/tv_checkout_company"
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <TextView
-        android:id="@+id/tv_flow_rate3"
+        android:id="@+id/tv_device_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="CAQ132424"
+        android:text="---"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintBottom_toBottomOf="@+id/textView1"
@@ -63,18 +63,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:gravity="center"
-        android:text="容器编号: "
+        android:text="报告时间: "
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintStart_toEndOf="@+id/tv_flow_rate3"
+        app:layout_constraintStart_toEndOf="@+id/tv_device_id"
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <TextView
-        android:id="@+id/tv_flow_rate4"
+        android:id="@+id/tv_report_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="CAQ132424"
+        android:text="---"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintBottom_toBottomOf="@+id/textView1"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <com.deadline.statebutton.StateButton
-        android:id="@+id/button4"
+        android:id="@+id/btn_export"
         android:layout_width="80dp"
         android:layout_height="40dp"
 
@@ -107,7 +107,7 @@
         app:unableTextColor="@android:color/darker_gray" />
 
     <com.deadline.statebutton.StateButton
-        android:id="@+id/button5"
+        android:id="@+id/btn_printing"
         android:layout_width="80dp"
         android:layout_height="40dp"
 
@@ -120,7 +120,7 @@
         android:textSize="@dimen/text_size_thire"
         app:animationDuration="200"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/btn_export"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"
         app:normalBackgroundColor="@color/colorAccent"
         app:normalTextColor="@android:color/white"
@@ -293,11 +293,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_device_num"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -307,11 +309,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_test_device_num"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -391,11 +395,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_test_date"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -404,11 +410,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_use_device_company"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -490,11 +498,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_device_type"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -504,11 +514,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_device_name"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -590,11 +602,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_madein_date"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -603,11 +617,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_effective_volume"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -689,11 +705,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_mediu_type"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -703,11 +721,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_measurement_volume"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -788,11 +808,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_design_standard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -801,11 +823,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_license_no"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -909,11 +933,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_evaporationrate_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -923,11 +949,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_flowmeter_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1009,11 +1037,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_temperature_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1022,11 +1052,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_pressure_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1108,11 +1140,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_humidity_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1122,11 +1156,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_air_pressure_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1160,6 +1196,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_sensor_state"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -1207,11 +1244,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_laser_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1225,6 +1264,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1328,11 +1368,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_test_method"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1342,11 +1384,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_test_type1"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1427,11 +1471,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_static_time_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1440,11 +1486,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_full_rate"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1526,11 +1574,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_liquidfilling_date_info"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1540,11 +1590,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_test_start_time"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1625,11 +1677,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_after_test_device_state"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1638,11 +1692,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_test_end_time"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1724,11 +1780,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_average_pressure"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1738,11 +1796,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_average_tempture"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1824,11 +1884,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_average_evaporation"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1837,11 +1899,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_evaporationrate_final"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1924,11 +1988,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_evaporationrate_one"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1938,11 +2004,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_evaporationrate_two"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2025,11 +2093,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_two_erro"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2038,11 +2108,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_evaporationrate_thire"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2123,11 +2195,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_ner"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2188,11 +2262,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_test_standard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2239,11 +2315,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_test_requirement"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2312,11 +2390,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_conclusion"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2400,11 +2480,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_test_date1"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2414,11 +2496,13 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
+                    android:id="@+id/tv_next_test_date"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2482,11 +2566,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_test_person"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2536,11 +2622,13 @@
 
 
                 <TextView
+                    android:id="@+id/tv_verify_person"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
+                    android:text="---"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2595,6 +2683,7 @@
                     android:gravity="center"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
+                    android:text="---"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view64"
@@ -2605,38 +2694,38 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view61"
-            app:layout_constraintTop_toBottomOf="@+id/constraint_date22"
-            >
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/tv_chapter"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view61"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date22">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="检验机构核准编号: "
-                android:textColor="@color/textcolorAccent"
-                android:textSize="@dimen/text_size_thire"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="检验机构核准编号: "
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="(检验机构检验专用章)"
-                android:textColor="@color/textcolorAccent"
-                android:textSize="@dimen/text_size_thire"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="(检验机构检验专用章)"
+                    android:textColor="@color/textcolorAccent"
+                    android:textSize="@dimen/text_size_thire"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

@@ -85,28 +85,7 @@ public class DateChooseController {
             mYear = year;
             mMonth = monthOfYear + 1;
             mDay = dayOfMonth;
-//            String days;
-//            if (mMonth + 1 < 10) {
-//                if (mDay < 10) {
-//                    days = new StringBuffer().append(mYear).append("年").append("0").
-//                            append(mMonth + 1).append("月").append("0").append(mDay).append("日").toString();
-//                } else {
-//                    days = new StringBuffer().append(mYear).append("年").append("0").
-//                            append(mMonth + 1).append("月").append(mDay).append("日").toString();
-//                }
-//
-//            } else {
-//                if (mDay < 10) {
-//                    days = new StringBuffer().append(mYear).append("年").
-//                            append(mMonth + 1).append("月").append("0").append(mDay).append("日").toString();
-//                } else {
-//                    days = new StringBuffer().append(mYear).append("年").
-//                            append(mMonth + 1).append("月").append(mDay).append("日").toString();
-//                }
-//
-//            }
             showTimeChooseDialog();
-//            listener.dateResult(days);
         }
     };
 
@@ -115,7 +94,34 @@ public class DateChooseController {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             mHour = hourOfDay;
             mMinute = minute;
-            listener.dateResult(mYear+"/"+mMonth+"/"+mDay+"  "+mHour+":"+mMinute);
+            String month;
+            String day;
+            String hour;
+            String min;
+
+            if (mMonth<10){
+                month = "0"+mHour;
+            }else {
+                month = ""+mHour;
+            }
+
+            if (mDay<10){
+                day = "0"+mHour;
+            }else {
+                day = ""+mHour;
+            }
+
+            if(mHour < 10){
+                hour = "0"+mHour;
+            }else {
+                hour = ""+mHour;
+            }
+            if(mMinute < 10){
+                min = "0"+mMinute;
+            }else {
+                min = ""+mMinute;
+            }
+            listener.dateResult(mYear+"/"+month+"/"+day+"  "+hour+":"+min);
         }
     };
 

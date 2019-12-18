@@ -7,6 +7,8 @@ import com.ch.bean.Sensor;
 import com.ch.bean.SensorDao;
 import com.ch.bean.User;
 import com.ch.bean.UserDao;
+import com.ch.service.bean.BeanRTData;
+import com.ch.service.bean.BeanRTDataDao;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class DbManage {
     ParameterDao parameterDao;
     UserDao userDao;
     SensorDao sensorDao;
+    BeanRTDataDao beanRTDataDao;
 
     private static DbManage singleton = null;
 
@@ -22,6 +25,7 @@ public class DbManage {
         userDao = BaseApplication.getDaoInstant().getUserDao();
         parameterDao = BaseApplication.getDaoInstant().getParameterDao();
         sensorDao = BaseApplication.getDaoInstant().getSensorDao();
+        beanRTDataDao = BaseApplication.getDaoInstant().getBeanRTDataDao();
     }
 
     public static DbManage getInstance() {
@@ -63,4 +67,7 @@ public class DbManage {
         return sensors.get(0);
     }
 
+    public void saveBeanRTData(BeanRTData beanRTData){
+        beanRTDataDao.insert(beanRTData);
+    }
 }
