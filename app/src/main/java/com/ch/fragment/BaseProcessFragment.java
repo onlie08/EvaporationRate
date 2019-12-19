@@ -248,57 +248,57 @@ public abstract class BaseProcessFragment extends Fragment {
                 chooseIntervalTimeDialog();
                 break;
             case R.id.tv_static_start_time:
-//                if(staticAuto){
-//                    ToastHelper.showToast("自动计时中，无法选择时间");
-//                    return;
-//                }
-//                if(testProgress>0){
-//                    ToastHelper.showToast("试验过程中无法选择时间");
-//                    return;
-//                }
-//                DateChooseController startDate = new DateChooseController(getActivity());
-//                startDate.showChooseDateDialog();
-//                startDate.setListener(new DateChooseController.DateChooseListener() {
-//                    @Override
-//                    public void dateResult(String date1) {
-//                        tvStaticStartTime.setText(date1);
-//                        startStaticTotalTime();
-//                    }
-//                });
+                if(staticAuto){
+                    ToastHelper.showToast("自动计时中，无法选择时间");
+                    return;
+                }
+                if(testProgress>0){
+                    ToastHelper.showToast("试验过程中无法选择时间");
+                    return;
+                }
+                DateChooseController startDate = new DateChooseController(getActivity());
+                startDate.showChooseDateDialog();
+                startDate.setListener(new DateChooseController.DateChooseListener() {
+                    @Override
+                    public void dateResult(String date1) {
+                        tvStaticStartTime.setText(date1);
+                        startStaticTotalTime();
+                    }
+                });
                 break;
             case R.id.tv_static_end_time:
-//                if(TextUtils.isEmpty(tvStaticStartTime.getText().toString())){
-//                    ToastHelper.showToast("请先选择开始静置时间");
-//                    return;
-//                }
-//                if(staticAuto){
-//                    ToastHelper.showToast("自动计时中，无法选择时间");
-//                    return;
-//                }
-//                if(testProgress>0){
-//                    ToastHelper.showToast("试验过程中无法选择时间");
-//                    return;
-//                }
-//                DateChooseController endDate = new DateChooseController(getActivity());
-//                endDate.showChooseDateDialog();
-//                endDate.setListener(new DateChooseController.DateChooseListener() {
-//                    @Override
-//                    public void dateResult(String date1) {
-//                        try {
-//                            String startTime = tvStaticStartTime.getText().toString();
-//                            Date dateStart = DateUtil.StringToDate(startTime);
-//                            Date dateEnd = DateUtil.StringToDate(date1);
-//                            if(dateEnd.getTime()<dateStart.getTime()){
-//                                ToastHelper.showToast("结束时间不能早于开始时间，请重新选择");
-//                            }else {
-//                                tvStaticEndTime.setText(date1);
-//                                countStaticTotalTime();
-//                            }
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
+                if(TextUtils.isEmpty(tvStaticStartTime.getText().toString())){
+                    ToastHelper.showToast("请先选择开始静置时间");
+                    return;
+                }
+                if(staticAuto){
+                    ToastHelper.showToast("自动计时中，无法选择时间");
+                    return;
+                }
+                if(testProgress>0){
+                    ToastHelper.showToast("试验过程中无法选择时间");
+                    return;
+                }
+                DateChooseController endDate = new DateChooseController(getActivity());
+                endDate.showChooseDateDialog();
+                endDate.setListener(new DateChooseController.DateChooseListener() {
+                    @Override
+                    public void dateResult(String date1) {
+                        try {
+                            String startTime = tvStaticStartTime.getText().toString();
+                            Date dateStart = DateUtil.StringToDate(startTime);
+                            Date dateEnd = DateUtil.StringToDate(date1);
+                            if(dateEnd.getTime()<dateStart.getTime()){
+                                ToastHelper.showToast("结束时间不能早于开始时间，请重新选择");
+                            }else {
+                                tvStaticEndTime.setText(date1);
+                                countStaticTotalTime();
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 break;
             case R.id.tv_test_start_time:
                 break;

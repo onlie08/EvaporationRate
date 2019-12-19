@@ -5,6 +5,8 @@ import com.ch.bean.Parameter;
 import com.ch.bean.ParameterDao;
 import com.ch.bean.Sensor;
 import com.ch.bean.SensorDao;
+import com.ch.bean.TestProcess;
+import com.ch.bean.TestProcessDao;
 import com.ch.bean.User;
 import com.ch.bean.UserDao;
 import com.ch.service.bean.BeanRTData;
@@ -18,6 +20,7 @@ public class DbManage {
     UserDao userDao;
     SensorDao sensorDao;
     BeanRTDataDao beanRTDataDao;
+    TestProcessDao testProcessDao;
 
     private static DbManage singleton = null;
 
@@ -26,6 +29,7 @@ public class DbManage {
         parameterDao = BaseApplication.getDaoInstant().getParameterDao();
         sensorDao = BaseApplication.getDaoInstant().getSensorDao();
         beanRTDataDao = BaseApplication.getDaoInstant().getBeanRTDataDao();
+        testProcessDao = BaseApplication.getDaoInstant().getTestProcessDao();
     }
 
     public static DbManage getInstance() {
@@ -69,5 +73,9 @@ public class DbManage {
 
     public void saveBeanRTData(BeanRTData beanRTData){
         beanRTDataDao.insert(beanRTData);
+    }
+
+    public void saveTestProcess(TestProcess testProcess){
+        testProcessDao.insert(testProcess);
     }
 }
