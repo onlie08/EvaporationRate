@@ -67,6 +67,7 @@ public class ParameterFragment extends Fragment {
     TextView tvMadeinDate;
     @BindView(R.id.tv_liquid_filling_end_date)
     TextView tvLiquidFillingEndDate;
+
     @BindView(R.id.edit_design_standard)
     EditText editDesignStandard;
     @BindView(R.id.edit_device_madein_company)
@@ -295,6 +296,10 @@ public class ParameterFragment extends Fragment {
         }
         if(TextUtils.isEmpty(editEffectiveVolume.getText().toString().trim())){
             ToastHelper.showToast("有效容积不能为空");
+            return false;
+        }
+        if(TextUtils.isEmpty(editDeviceId.getText().toString().trim())){
+            ToastHelper.showToast("容器编号不能为空");
             return false;
         }
 //        if(TextUtils.isEmpty(editCheckoutCompany.getText().toString().trim()) || TextUtils.isEmpty(editUseDeviceCompany.getText().toString().trim()) ||TextUtils.isEmpty(editTestAddress.getText().toString().trim()) ||TextUtils.isEmpty(editDeviceMadeinCompany.getText().toString().trim()) ||

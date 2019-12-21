@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center_horizontal"
@@ -28,116 +28,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/common_chart_line">
 
-        <android.support.constraint.ConstraintLayout
+        <TextView
+            android:id="@+id/tv_chart_type1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp">
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/button_blue"
+            android:drawablePadding="5dp"
+            android:text="流量计(L/Min)"
+            android:textSize="12sp"
+        />
 
-            <View
-                android:id="@+id/view_mine"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/shape_round_blue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_chart_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:textSize="12sp"
-                android:text="入口温度"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view_mine"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/cl_shanghai"
+        <TextView
+            android:id="@+id/tv_chart_type2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:visibility="visible">
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/button_seagreen"
+            android:drawablePadding="5dp"
+            android:text="入口温度(℃)"
+            android:textSize="12sp"
+            />
 
-            <TextView
-                android:id="@+id/view_shanghai"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/shape_round_orange"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="流量计"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view_shanghai"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/cl_shenzhen"
+        <TextView
+            android:id="@+id/tv_chart_type3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:visibility="visible">
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/button_purple"
+            android:drawablePadding="5dp"
+            android:text="入口压力(KPa)"
+            android:textSize="12sp"
+            />
 
-            <View
-                android:id="@+id/view_shenzhen"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/shape_round_gray"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="入口压力"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view_shenzhen"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/cl_gem"
+        <TextView
+            android:id="@+id/tv_chart_type4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:visibility="visible">
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/button_green"
+            android:drawablePadding="5dp"
+            android:text="环境温度(℃)"
+            android:textSize="12sp"
+            />
 
-            <View
-                android:id="@+id/view_gem"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/shape_round_gray"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="环境温度"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view_gem"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_chart_type5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/circle_yellow"
+            android:drawablePadding="5dp"
+            android:text="大气压(KPa)"
+            android:textSize="12sp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_chart_type6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/circle_blue"
+            android:drawablePadding="5dp"
+            android:text="湿度(%)"
+            android:textSize="12sp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_chart_type7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableLeft="@mipmap/button_red"
+            android:drawablePadding="5dp"
+            android:text="累计流量(L)"
+            android:textSize="12sp"
+            />
+
 
     </LinearLayout>
 

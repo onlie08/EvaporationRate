@@ -613,7 +613,7 @@
             android:id="@+id/textView132"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="环境温度传感器"
+            android:text="环境温湿度传感器"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_humidity_type"

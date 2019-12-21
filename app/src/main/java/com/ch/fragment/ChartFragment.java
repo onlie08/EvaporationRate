@@ -1,6 +1,7 @@
 package com.ch.fragment;
 
 import android.os.Bundle;
+import android.os.DropBoxManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,12 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ch.bean.ChartBean;
+import com.ch.bean.Parameter;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.service.bean.BeanRTData;
+import com.ch.utils.DateUtil;
 import com.ch.view.CommonChartLineViewController;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,10 +36,26 @@ public class ChartFragment extends Fragment {
     CommonChartLineViewController commonChartLineViewController;
     @BindView(R.id.ln_chart)
     LinearLayout lnChart;
+    @BindView(R.id.tv_test_medium)
+    TextView tvTestMedium;
+    @BindView(R.id.tv_flow_total5)
+    TextView tvFlowTotal5;
+    @BindView(R.id.tv_weight_total)
+    TextView tvWeightTotal;
+    @BindView(R.id.tv_flow_total4)
+    TextView tvFlowTotal4;
+    @BindView(R.id.tv_flow_total3)
+    TextView tvFlowTotal3;
+    @BindView(R.id.tv_device_id)
+    TextView tvDeviceId;
+
+    private Parameter parameter;
+    private List<BeanRTData> beanRTDataList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     @Nullable
@@ -46,21 +73,82 @@ public class ChartFragment extends Fragment {
         commonChartLineViewController.attachRoot(lnChart);
     }
 
-    private void initData() {
-        List<ChartBean> chartBeans = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+    @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
+    public void Event(BeanRTData beanRTData) {
+        refreshRtData(beanRTData);
+        beanRTDataList.add(beanRTData);
+        refreshChart();
+    }
+
+    private void refreshChart() {
+        List<ChartBean> chartBeans1 = new ArrayList<>();
+        List<ChartBean> chartBeans2 = new ArrayList<>();
+        List<ChartBean> chartBeans3 = new ArrayList<>();
+        List<ChartBean> chartBeans4 = new ArrayList<>();
+        List<ChartBean> chartBeans5 = new ArrayList<>();
+        List<ChartBean> chartBeans6 = new ArrayList<>();
+        List<ChartBean> chartBeans7 = new ArrayList<>();
+        for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate("20192019110" + i);
-            chartBean.setValue(10 + Math.random() * 10);
-            chartBeans.add(chartBean);
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getInstantFlow());
+            chartBeans1.add(chartBean);
+        }
+        for (int i = 0; i < beanRTDataList.size(); i++) {
+            ChartBean chartBean = new ChartBean();
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getEntertemperature());
+            chartBeans2.add(chartBean);
+        }
+        for (int i = 0; i < beanRTDataList.size(); i++) {
+            ChartBean chartBean = new ChartBean();
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getEnterpressure());
+            chartBeans3.add(chartBean);
+        }
+        for (int i = 0; i < beanRTDataList.size(); i++) {
+            ChartBean chartBean = new ChartBean();
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getSurroundtemperature());
+            chartBeans4.add(chartBean);
+        }
+        for (int i = 0; i < beanRTDataList.size(); i++) {
+            ChartBean chartBean = new ChartBean();
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getSurroundpressure());
+            chartBeans5.add(chartBean);
+        }
+        for (int i = 0; i < beanRTDataList.size(); i++) {
+            ChartBean chartBean = new ChartBean();
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getSurroundhumidity());
+            chartBeans6.add(chartBean);
+        }
+        for (int i = 0; i < beanRTDataList.size(); i++) {
+            ChartBean chartBean = new ChartBean();
+            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setValue(beanRTDataList.get(i).getAccFlow());
+            chartBeans7.add(chartBean);
         }
 
-        List<String> strings = new ArrayList<>();
-        strings.add("最近7天  ");
-        strings.add("最近一个月");
-        strings.add("最近三个月");
+        commonChartLineViewController.fillData(chartBeans1);
+        commonChartLineViewController.loadData(chartBeans1,chartBeans2,chartBeans3,chartBeans4,chartBeans5,chartBeans6,chartBeans7);
+    }
 
-        commonChartLineViewController.fillData(chartBeans);
+    private void refreshRtData(BeanRTData beanRTData) {
+        tvFlowTotal5.setText(beanRTData.getInstantFlow()+"");
+        tvFlowTotal4.setText(beanRTData.getAccFlow()+"");
+        tvFlowTotal3.setText(beanRTData.getInstantQuality()+"");
+        tvWeightTotal.setText(beanRTData.getAccQuality()+"");
+    }
+
+    private void initData() {
+        parameter = DbManage.getInstance().getParamter();
+        if(null != parameter){
+            tvDeviceId.setText(parameter.getDeviceId());
+            tvTestMedium.setText(parameter.getMediumType());
+        }
+
     }
 
     @Override
@@ -88,6 +176,9 @@ public class ChartFragment extends Fragment {
         super.onDestroyView();
         commonChartLineViewController.detachedRoot();
         unbinder.unbind();
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override

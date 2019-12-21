@@ -33,6 +33,8 @@ import com.ch.view.DateChooseController;
 import com.ch.view.SpinnerController;
 import com.deadline.statebutton.StateButton;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -168,7 +170,7 @@ public abstract class BaseProcessFragment extends Fragment {
         btnStaticEnd.setEnabled(true);
         btnTestStart.setEnabled(true);
         btnTestEnd.setEnabled(true);
-        btnTestReport.setEnabled(true);
+        btnTestReport.setEnabled(false);
         tvStaticStartTime.setText("");
         tvStaticEndTime.setText("");
         tvStaticTotalTime.setText("");
@@ -241,11 +243,24 @@ public abstract class BaseProcessFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.tv_time_interval, R.id.tv_static_start_time, R.id.tv_static_end_time, R.id.tv_test_start_time, R.id.tv_test_end_time, R.id.btn_static_end, R.id.btn_test_report, R.id.btn_test_start, R.id.btn_test_end, R.id.btn_static_start, R.id.btn_auto_heat, R.id.btn_entrance_temperature, R.id.btn_entrance_pressure, R.id.btn_flow_counter})
+    @OnClick({R.id.tv_time_interval, R.id.tv_static_start_time,R.id.tv_test_medium, R.id.tv_static_end_time, R.id.tv_test_start_time, R.id.tv_test_end_time, R.id.btn_static_end, R.id.btn_test_report, R.id.btn_test_start, R.id.btn_test_end, R.id.btn_static_start, R.id.btn_auto_heat, R.id.btn_entrance_temperature, R.id.btn_entrance_pressure, R.id.btn_flow_counter})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_time_interval:
                 chooseIntervalTimeDialog();
+                break;
+            case R.id.tv_test_medium:
+                List<String> mediumType = new ArrayList<>();
+                mediumType.add("LN2");
+                mediumType.add("LNG");
+                SpinnerController spinnerMedium = new SpinnerController(getActivity());
+                spinnerMedium.showSpinnerDialog(mediumType);
+                spinnerMedium.setListener(new SpinnerController.SpinnerListener() {
+                    @Override
+                    public void selectResult(String date) {
+                        tvTestMedium.setText(date);
+                    }
+                });
                 break;
             case R.id.tv_static_start_time:
                 if(staticAuto){
@@ -262,7 +277,7 @@ public abstract class BaseProcessFragment extends Fragment {
                     @Override
                     public void dateResult(String date1) {
                         tvStaticStartTime.setText(date1);
-                        startStaticTotalTime();
+//                        startStaticTotalTime();
                     }
                 });
                 break;
@@ -358,35 +373,52 @@ public abstract class BaseProcessFragment extends Fragment {
             case R.id.btn_test_start:
                 if (null == parameter) {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
-                }else {
-                    if("开始试验".equals(btnTestStart.getText().toString())){
-                        if(testProgress == 0){
-                            tvTestStartTime.setText(DateUtil.getSystemDate1());
-                            startTestTotalTime();
+                    return;
+                }
+//                String totalTime = tvStaticTotalTime.getText().toString();
+//                if(!totalTime.contains("天")){
+//                    ToastHelper.showToast("累计静置时间未达24小时，无法开始试验");
+//                    return;
+//                }
+//
+//                String days = totalTime.substring(0,totalTime.indexOf("天"));
+//                if(Integer.parseInt(days)<2){
+//                    ToastHelper.showToast("累计静置时间未达24小时，无法开始试验");
+//                    return;
+//                }
+                if("开始试验".equals(btnTestStart.getText().toString())){
+                    if(testProgress == 0){
+                        tvTestStartTime.setText(DateUtil.getSystemDate1());
+                        btnStaticStart.setEnabled(false);
+                        btnStaticEnd.setEnabled(false);
+                        startTestTotalTime();
 
-                        }
-                        btnTestStart.setText("暂停试验");
-                        testProgress = 1;
-                        startTest();
-                        suspend = false;
-                    }else {
-//                        endTestTotalTime();
-                        btnTestStart.setText("开始试验");
-                        stopTest();
-                        suspend = true;
                     }
+                    btnTestStart.setText("暂停试验");
+                    testProgress = 1;
+                    startTest();
+                    suspend = false;
+                }else {
+//                        endTestTotalTime();
+                    btnTestStart.setText("开始试验");
+//                    stopTest();
+                    suspend = true;
                 }
                 break;
             case R.id.btn_test_end:
 //                if(CheckTimeArrive()){
 //                    tvTestEndTime.setText(DateUtil.getSystemDate1());
 //                }else {
+                if(TextUtils.isEmpty(tvTestStartTime.getText().toString())){
+                    ToastHelper.showToast("没有进行中的试验");
+                    return;
+                }
                     final CommonDialog commonDialog = new CommonDialog(getActivity());
                     commonDialog.setMessage("试验时间未达标准，结束试验会删除此次试验数据，确定结束试验吗？");
                     commonDialog.setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                         @Override
                         public void onPositiveClick() {
-                            stopTest();
+//                            stopTest();
                             initAllState();
                             endStaticTotalTime();
                             commonDialog.dismiss();

@@ -5,10 +5,11 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class BeanRTData {
+public class BeanRTData  {
     @Id(autoincrement = true)
     private Long id;
     private String deviceId;

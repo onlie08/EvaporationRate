@@ -153,6 +153,7 @@ public class ReportActivity extends AppCompatActivity {
             case R.id.btn_printing:
                 break;
             case R.id.img_back:
+                finish();
                 break;
         }
     }

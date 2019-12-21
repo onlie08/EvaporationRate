@@ -3,7 +3,7 @@
     <color name="colorPrimary">#0f9982</color>
     <color name="colorPrimaryDark">#3D9080</color>
     <color name="colorAccent">#3fdec3</color>
-    <color name="colorAccentPrimary">#103fdec3</color>
+    <color name="colorAccentPrimary">#203fdec3</color>
     <color name="colorAccentGreen">#00cc44</color>
     <color name="colorAccentYellow">#ff9900</color>
     <color name="titleBackgroundAccent">#def8f3</color>
@@ -29,6 +29,8 @@
     <color name="gray_white">#e8e8e8</color>
     <color name="colorBlack">#000000</color>
     <color name="nred_sf">#FF6461</color>
+    <color name="red">#FF0000</color>
+    <color name="red_press">#DC143C</color>
     <!-- 灰 筛选btn背景色 -->
     <color name="gary_frame">#eff1f3</color>
     <color name="gary_background">#ededed</color>

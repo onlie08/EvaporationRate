@@ -24,8 +24,14 @@ import android.widget.Toast;
 import com.ch.bean.User;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.service.bean.BeanRTData;
 import com.ch.utils.AppPreferences;
 import com.ch.utils.ToastHelper;
+import com.eftimoff.androipathview.PathView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText editName;
     @BindView(R.id.edit_pwd)
     EditText editPwd;
+    @BindView(R.id.pathview)
+    PathView pathView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +66,11 @@ public class LoginActivity extends AppCompatActivity {
         initData();
     }
 
+
     private void initView() {
+        pathView.setFillAfter(true);
+        pathView.useNaturalColors();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -71,6 +83,13 @@ public class LoginActivity extends AppCompatActivity {
                 fadeIn(cardLoginView);
             }
         }, 1500);
+        pathView.getPathAnimator().delay(100).duration(0).listenerEnd(new PathView.AnimatorBuilder.ListenerEnd() {
+            @Override
+            public void onAnimationEnd() {
+//                jump();
+            }
+        }).start();
+
     }
 
     private void initData() {

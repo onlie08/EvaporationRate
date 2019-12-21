@@ -539,7 +539,7 @@
             android:id="@+id/textView49"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:text="蒸发率预判值: "
@@ -565,7 +565,7 @@
             android:id="@+id/tv_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="64dp"
             android:drawableBottom="@drawable/select_alarm_status"
             android:drawablePadding="24dp"
             android:text="泄露报警"
@@ -582,7 +582,7 @@
             android:layout_marginStart="8dp"
             android:text="0.00"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_one"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView49"
             app:layout_constraintStart_toEndOf="@+id/textView49"
             app:layout_constraintTop_toTopOf="@+id/textView49" />
@@ -842,9 +842,9 @@
         app:round="true"
         app:unableBackgroundColor="@color/gary_background"
 
-        app:unableStrokeColor="@color/textcolorAccent"
+        app:unableStrokeColor="@color/textcolorTip"
         app:unableStrokeWidth="1dp"
-        app:unableTextColor="@color/textcolorAccent" />
+        app:unableTextColor="@color/textcolorTip" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_test_report"
@@ -868,9 +868,9 @@
         app:round="true"
         app:unableBackgroundColor="@color/gary_background"
 
-        app:unableStrokeColor="@color/textcolorAccent"
+        app:unableStrokeColor="@color/textcolorTip"
         app:unableStrokeWidth="1dp"
-        app:unableTextColor="@color/textcolorAccent"
+        app:unableTextColor="@color/textcolorTip"
 
         />
 
@@ -896,9 +896,9 @@
         app:round="true"
         app:unableBackgroundColor="@color/gary_background"
 
-        app:unableStrokeColor="@color/textcolorAccent"
+        app:unableStrokeColor="@color/textcolorTip"
         app:unableStrokeWidth="1dp"
-        app:unableTextColor="@color/textcolorAccent" />
+        app:unableTextColor="@color/textcolorTip" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_test_end"
@@ -922,9 +922,9 @@
         app:round="true"
         app:unableBackgroundColor="@color/gary_background"
 
-        app:unableStrokeColor="@color/textcolorAccent"
+        app:unableStrokeColor="@color/textcolorTip"
         app:unableStrokeWidth="1dp"
-        app:unableTextColor="@color/textcolorAccent" />
+        app:unableTextColor="@color/textcolorTip" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_static_start"
@@ -948,9 +948,9 @@
         app:round="true"
         app:unableBackgroundColor="@color/gary_background"
 
-        app:unableStrokeColor="@color/textcolorAccent"
+        app:unableStrokeColor="@color/textcolorTip"
         app:unableStrokeWidth="1dp"
-        app:unableTextColor="@color/textcolorAccent" />
+        app:unableTextColor="@color/textcolorTip" />
 
     <View
         android:id="@+id/view4"
@@ -998,7 +998,7 @@
         android:layout_height="90dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:background="@mipmap/progress"
+        android:background="@mipmap/process_bac"
         app:layout_constraintStart_toEndOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/btn_static_start" />
 
@@ -1168,7 +1168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="xxxx"
-                android:textColor="@color/textcolorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_thire"
                 app:layout_constraintEnd_toEndOf="@+id/imageView3"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -1180,7 +1180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="xxxx"
-                android:textColor="@color/textcolorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_thire"
                 app:layout_constraintEnd_toEndOf="@+id/imageView4"
                 app:layout_constraintStart_toStartOf="@+id/imageView4"
@@ -1192,7 +1192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="xxxx"
-                android:textColor="@color/textcolorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_thire"
                 app:layout_constraintEnd_toEndOf="@+id/imageView5"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
@@ -1203,7 +1203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="湿度℃"
+                android:text="湿度%"
                 android:textColor="@color/textcolorAccent"
                 android:textSize="@dimen/text_size_thire"
                 app:layout_constraintEnd_toEndOf="@+id/imageView3"
