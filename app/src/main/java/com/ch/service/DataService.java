@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
+//import com.ch.service.bean.BeanDataRange;
 import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
 import com.ch.service.dataacq.DataCalculate;
@@ -107,6 +108,23 @@ public class DataService extends Service {
         mlstHandler.add(cb);
     }
     //-----end 回调接口-----------
+
+    /**
+     * 设置介质类型接口
+     */
+    public void setmMediumtype(Integer type)
+    {
+        mMediumtype = type;
+    }
+    /**
+     * 获取采集数据量程
+     * @return
+     */
+//    public BeanDataRange getDataRange()
+//    {
+//        BeanDataRange bdR = new BeanDataRange();
+//        return bdR;
+//    }
 
     /**
      * 开始进行数据采集（实时显示）
@@ -278,12 +296,12 @@ public class DataService extends Service {
                 {
                     mlsthisData.add(revData); //记录数据
                     Float[] calRes = DataCalculate.CalTestEvaRate(mMediumtype,mlsthisData,mLN2Param,mLNGParam,mValidV);
-                    stopTest();
+
                     for (int i=0;i<mlstHandler.size();i++)
                     {
                         mlstHandler.get(i).experimentOver(revData,calRes[0],calRes[1]);
                     }
-
+                    stopTest();
                 }
             }
 
