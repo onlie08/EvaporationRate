@@ -51,6 +51,10 @@ public class DbManage {
         parameterDao.insertOrReplace(parameter);
     }
 
+    public void updateParamter(Parameter parameter){
+        parameterDao.update(parameter);
+    }
+
     public Parameter getParamter(){
         List<Parameter> parameters = parameterDao.loadAll();
         if(parameters.isEmpty()){

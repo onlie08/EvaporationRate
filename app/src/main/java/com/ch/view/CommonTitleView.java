@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.ch.activity.LoginActivity;
 import com.ch.base.base.ViewController;
 import com.ch.evaporationrate.R;
+import com.ch.utils.AppPreferences;
 import com.ch.utils.DateUtil;
 import com.ch.utils.RxTimerUtil;
 import com.deadline.statebutton.StateButton;
@@ -336,13 +337,16 @@ public class CommonTitleView extends ViewController<String> {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
         builder.setView(layout);
+        builder.setCancelable(false);
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
         dialog.getWindow().setLayout(DensityUtil.dp2px(600f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        final EditText edit_alarm_num = layout.findViewById(R.id.edit_alarm_num);
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppPreferences.instance().put("alarmValue",edit_alarm_num.getText().toString());
                 dialog.dismiss();
             }
         });

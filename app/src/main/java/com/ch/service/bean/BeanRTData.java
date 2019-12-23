@@ -26,12 +26,12 @@ public class BeanRTData {
     public Float accQuality;    //累计质量
     public Date acqTime;    //采集时间
     public Integer iswarm;  //是否再加热 0-未加热，1-加热中
-    @Generated(hash = 524962449)
+    @Generated(hash = 789226590)
     public BeanRTData(Long id, String deviceId, Float concentration,
-                      Float instantFlow, Float entertemperature, Float enterpressure,
-                      Float surroundtemperature, Float surroundhumidity,
-                      Float surroundpressure, Float accFlow, Float instantQuality,
-                      Float accQuality, Integer iswarm,Date acqTime) {
+            Float instantFlow, Float entertemperature, Float enterpressure,
+            Float surroundtemperature, Float surroundhumidity,
+            Float surroundpressure, Float accFlow, Float instantQuality,
+            Float accQuality, Date acqTime, Integer iswarm) {
         this.id = id;
         this.deviceId = deviceId;
         this.concentration = concentration;
@@ -44,21 +44,12 @@ public class BeanRTData {
         this.accFlow = accFlow;
         this.instantQuality = instantQuality;
         this.accQuality = accQuality;
-        this.iswarm = iswarm;
         this.acqTime = acqTime;
+        this.iswarm = iswarm;
     }
     @Generated(hash = 1912097834)
     public BeanRTData() {
     }
-
-    public Integer getIswarm() {
-        return iswarm;
-    }
-
-    public void setIswarm(Integer iswarm) {
-        this.iswarm = iswarm;
-    }
-
     public Long getId() {
         return this.id;
     }
@@ -136,6 +127,12 @@ public class BeanRTData {
     }
     public void setAcqTime(Date acqTime) {
         this.acqTime = acqTime;
+    }
+    public Integer getIswarm() {
+        return this.iswarm;
+    }
+    public void setIswarm(Integer iswarm) {
+        this.iswarm = iswarm;
     }
 
 }

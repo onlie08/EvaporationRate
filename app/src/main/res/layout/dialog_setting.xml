@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/tv_time_interval2"
+        android:id="@+id/edit_alarm_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_background"
@@ -93,9 +93,9 @@
         android:text="%"
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_time_interval2"
-        app:layout_constraintStart_toEndOf="@+id/tv_time_interval2"
-        app:layout_constraintTop_toTopOf="@+id/tv_time_interval2" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_alarm_num"
+        app:layout_constraintStart_toEndOf="@+id/edit_alarm_num"
+        app:layout_constraintTop_toTopOf="@+id/edit_alarm_num" />
 
     <TextView
         android:id="@+id/tv_standard3"

@@ -132,5 +132,5 @@ public class TestProcess {
     public void setTestProcess(int testProcess) {
         this.testProcess = testProcess;
     }
-    
+
 }

@@ -6,29 +6,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import com.ch.bean.Sensor;
+import com.ch.bean.TestProcess;
 import com.ch.db.DbManage;
 import com.ch.service.DataService;
 import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
+import com.ch.utils.AppPreferences;
 import com.ch.utils.DateUtil;
 import com.ch.utils.RxStaticTotalTime;
 import com.ch.utils.RxTestTotalTime;
-import com.ch.utils.RxTimerUtil;
 import com.ch.utils.ToastHelper;
 import com.ch.view.SpinnerController;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -48,9 +44,9 @@ public class ProcessFragment extends BaseProcessFragment{
             mDataService.addOnDataCallback(new DataService.OnDataCallback() {
                 @Override
                 public void revRealTimeData(BeanRTData data) {
-                    if(suspend){
-                        return;
-                    }
+//                    if(suspend){
+//                        return;
+//                    }
                     setBeanRTDataDate(data);
                     EventBus.getDefault().postSticky(data);
                     Log.d("Data service", "---activity get data:" + new Gson().toJson(data));
@@ -58,18 +54,18 @@ public class ProcessFragment extends BaseProcessFragment{
 
                 @Override
                 public void revCalResult(BeanRTData data,Float testEvaR, Float staticEvaR) {
-                    if(suspend){
-                        return;
-                    }
-//                    setEvaRDate(testEvaR,staticEvaR);
+//                    if(suspend){
+//                        return;
+//                    }
+                    setEvaRDate(staticEvaR);
                     Log.d("Data service", "---calculate data:" + testEvaR + "--" + staticEvaR);
                 }
 
                 @Override
                 public void revAcqTimeData(BeanRTData data) {
-                    if(suspend){
-                        return;
-                    }
+//                    if(suspend){
+//                        return;
+//                    }
                     saveDateToDB(data);
                     Log.d("Data service", "---revAcqTimeData data:" + new Gson().toJson(data));
                 }
@@ -91,6 +87,23 @@ public class ProcessFragment extends BaseProcessFragment{
     private void saveDateToDB(BeanRTData data) {
         data.setDeviceId(parameter.getDeviceId());
         DbManage.getInstance().saveBeanRTData(data);
+    }
+
+    private void saveTestProcessToDB(){
+        TestProcess testProcess = new TestProcess();
+        testProcess.setDeviceId(parameter.getDeviceId());
+        testProcess.setStaticStartTime(tvStaticStartTime.getText().toString());
+        testProcess.setStaticEndTime(tvStaticEndTime.getText().toString());
+        testProcess.setStaticTotalTime(tvStaticTotalTime.getText().toString());
+        testProcess.setTestStartTime(tvTestStartTime.getText().toString());
+        testProcess.setTestEndTime(tvTestEndTime.getText().toString());
+        testProcess.setTestTotalTime(tvTestTotalTime.getText().toString());
+        testProcess.setEvaporationRateOne(tvTestOneCount.getText().toString());
+        testProcess.setEvaporationRateTwo(tvTestTwoCount.getText().toString());
+        testProcess.setEvaporationRateThire(tvTestThireCount.getText().toString());
+        testProcess.setAcquisitionError(tvCollectError.getText().toString());
+        testProcess.setEvaporationRateFinal(tvPrejudge.getText().toString());
+        testProcess.setTestProcess(testProgress);
     }
 
     @Override
@@ -150,10 +163,14 @@ public class ProcessFragment extends BaseProcessFragment{
         endTest();
         ToastHelper.showToast("试验成功完成");
         btnTestReport.setEnabled(true);
-        btnTestStart.setEnabled(false);
-        btnTestEnd.setEnabled(false);
+        btnTestStart.setEnabled(true);
+        btnTestEnd.setEnabled(true);
+        btnStaticStart.setEnabled(true);
+        btnStaticEnd.setEnabled(true);
         tvTestEndTime.setText(DateUtil.getSystemDate1());
         RxTestTotalTime.cancel();
+        testProgress = 0;
+        saveTestProcessToDB();
     }
 
     @Override
@@ -168,6 +185,7 @@ public class ProcessFragment extends BaseProcessFragment{
             @Override
             public void selectResult(String date) {
                 tvTimeInterval.setText(date);
+                AppPreferences.instance().put("timeInterval",date);
             }
         });
     }
@@ -235,10 +253,11 @@ public class ProcessFragment extends BaseProcessFragment{
     }
 
     private void testControll(Float staticEvaR){
+        String alarmVaule = (String) AppPreferences.instance().get("alarmValue","5");
         if(testProgress == 1){
             staticEvaR1 = staticEvaR;
             tvTestOneCount.setText(""+staticEvaR);
-            if(staticEvaR1 > 50){
+            if(staticEvaR1 > Integer.parseInt(alarmVaule)){
 //                initAllState();
                 ToastHelper.showToast("第一次试验不合格");
                 tvTestOneResult.setText("不合格");
@@ -263,7 +282,6 @@ public class ProcessFragment extends BaseProcessFragment{
             Log.d("Data service", "---service testControll"+diff);
             if(diff > 5){
                 testProgress = 3;
-//                stopTest();
                 startTest();
 
                 ToastHelper.showToast("第二次试验不合格");
@@ -282,7 +300,7 @@ public class ProcessFragment extends BaseProcessFragment{
         }else if(testProgress == 3){
             staticEvaR3 = staticEvaR;
             tvTestThireCount.setText(""+staticEvaR);
-            if(staticEvaR1 > 50){
+            if(staticEvaR1 > Integer.parseInt(alarmVaule)){
                 ToastHelper.showToast("第三次试验不合格");
                 tvTestThireResult.setText("不合格");
                 tvTestThireResult.setSelected(true);
