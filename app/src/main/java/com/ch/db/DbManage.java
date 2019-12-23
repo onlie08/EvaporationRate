@@ -80,7 +80,7 @@ public class DbManage {
     }
 
     public void saveTestProcess(TestProcess testProcess){
-        testProcessDao.insert(testProcess);
+        testProcessDao.insertOrReplace(testProcess);
     }
 
     public TestProcess getTestProcess(){

@@ -1,12 +1,15 @@
 package com.ch.activity;
 
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ch.bean.Parameter;
@@ -14,7 +17,14 @@ import com.ch.bean.Sensor;
 import com.ch.bean.TestProcess;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.utils.DateUtil;
 import com.deadline.statebutton.StateButton;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -124,6 +134,8 @@ public class ReportActivity extends AppCompatActivity {
     TextView tvVerifyPerson;
     @BindView(R.id.tv_chapter)
     ConstraintLayout tvChapter;
+    @BindView(R.id.scrollView2)
+    ScrollView scrollView2;
 
     public Parameter parameter;
     public Sensor sensor;
@@ -160,13 +172,14 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void setTestProcess(TestProcess testProcess) {
-        tvTestDeviceNum.setText(isNotNull(testProcess.getDeviceId()) ? testProcess.getDeviceId():"---");
+//        tvTestDeviceNum.setText(isNotNull(testProcess.getDeviceId()) ? testProcess.getDeviceId():"---");
         tvEvaporationrateOne.setText(isNotNull(testProcess.getEvaporationRateOne()) ? testProcess.getEvaporationRateOne():"---");
         tvEvaporationrateTwo.setText(isNotNull(testProcess.getEvaporationRateTwo()) ? testProcess.getEvaporationRateTwo():"---");
         tvEvaporationrateThire.setText(isNotNull(testProcess.getEvaporationRateThire()) ? testProcess.getEvaporationRateThire():"---");
         tvTwoErro.setText(isNotNull(testProcess.getAcquisitionError()) ? testProcess.getAcquisitionError():"---");
         tvEvaporationrateFinal.setText(isNotNull(testProcess.getEvaporationRateFinal()) ? testProcess.getEvaporationRateFinal():"---");
-        tvStaticTimeInfo.setText(testProcess.getStaticStartTime() + "至" + testProcess.getStaticEndTime());
+        tvStaticTimeInfo.setText(testProcess.getStaticStartTime() + " 至 " + testProcess.getStaticEndTime());
+        tvTestDate.setText(testProcess.getTestStartTime() + " 至 " + testProcess.getTestEndTime());
         tvTestStartTime.setText(testProcess.getTestStartTime());
         tvTestEndTime.setText(isNotNull(testProcess.getTestEndTime()) ? testProcess.getTestEndTime():"---");
 
@@ -179,7 +192,22 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void setParameterDate(Parameter parameter) {
-
+        tvCheckoutCompany.setText(isNotNull(parameter.getCheckoutCompany()) ? parameter.getCheckoutCompany():"---");
+        tvDeviceId.setText(isNotNull(parameter.getDeviceId()) ? parameter.getDeviceId():"---");
+        tvReportTime.setText(DateUtil.getSystemDate());
+        tvDeviceNum.setText(isNotNull(parameter.getDeviceId()) ? parameter.getDeviceId():"---");
+        tvTestDeviceNum.setText("---");
+        tvUseDeviceCompany.setText(isNotNull(parameter.getUseDeviceCompany()) ? parameter.getUseDeviceCompany():"---");
+        tvDeviceType.setText(isNotNull(parameter.getDeviceType()) ? parameter.getDeviceType():"---");
+        tvDeviceName.setText(isNotNull(parameter.getDeviceName()) ? parameter.getDeviceName():"---");
+        tvMadeinDate.setText(isNotNull(parameter.getMadeinDate()) ? parameter.getMadeinDate():"---");
+        tvEffectiveVolume.setText(isNotNull(parameter.getEffectiveVolume()) ? parameter.getEffectiveVolume():"---");
+        tvMediuType.setText(isNotNull(parameter.getMediumType()) ? parameter.getMediumType():"---");
+        tvTestType1.setText(isNotNull(parameter.getMediumType()) ? parameter.getMediumType():"---");
+        tvMeasurementVolume.setText(isNotNull(parameter.getMeasurementVolume()) ? parameter.getMeasurementVolume():"---");
+        tvDesignStandard.setText(isNotNull(parameter.getDesignStandard()) ? parameter.getDesignStandard():"---");
+        tvLicenseNo.setText(isNotNull(parameter.getLicenseNo()) ? parameter.getLicenseNo():"---");
+        tvFullRate.setText(isNotNull(parameter.getFullnessRate()) ? parameter.getFullnessRate():"---");
     }
 
     @Override
@@ -192,6 +220,7 @@ public class ReportActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_export:
+                pdfModel();
                 break;
             case R.id.btn_printing:
                 break;
@@ -206,5 +235,53 @@ public class ReportActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private void saveReport(){
+        PdfDocument document = new PdfDocument();//1, 建立PdfDocument
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(
+                scrollView2.getMeasuredWidth(), scrollView2.getMeasuredHeight(), 1).create();//2
+        PdfDocument.Page page = document.startPage(pageInfo);
+        scrollView2.draw(page.getCanvas());//3
+        document.finishPage(page);//4
+        document.close();//5
+        try {
+            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+"table.pdf";
+            File e = new File(path);
+            if (e.exists()) {
+                e.delete();
+            }else {
+            }
+            document.writeTo(new FileOutputStream(e));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void pdfModel(){
+        PdfDocument document = new PdfDocument();
+        // ll_model是一个LinearLayout
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(scrollView2.getWidth(),scrollView2.getHeight(),1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+        scrollView2.draw(page.getCanvas());
+        document.finishPage(page);
+
+        try {
+            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+"table.pdf";
+            File file = new File(path);
+            if (file.exists()) {
+                file.delete();
+            }else {
+                file.createNewFile();//创建文件
+            }
+            FileOutputStream outputStream = null;
+            outputStream = new FileOutputStream(file);
+            document.writeTo(outputStream);
+            document.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

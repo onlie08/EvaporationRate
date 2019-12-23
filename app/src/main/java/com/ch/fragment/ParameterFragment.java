@@ -21,6 +21,8 @@ import com.ch.view.DateChooseController;
 import com.ch.view.SpinnerController;
 import com.deadline.statebutton.StateButton;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -302,13 +304,21 @@ public class ParameterFragment extends Fragment {
             ToastHelper.showToast("容器编号不能为空");
             return false;
         }
-//        if(TextUtils.isEmpty(editCheckoutCompany.getText().toString().trim()) || TextUtils.isEmpty(editUseDeviceCompany.getText().toString().trim()) ||TextUtils.isEmpty(editTestAddress.getText().toString().trim()) ||TextUtils.isEmpty(editDeviceMadeinCompany.getText().toString().trim()) ||
-//                TextUtils.isEmpty(editDeviceId.getText().toString().trim()) ||TextUtils.isEmpty(tvMediumType.getText().toString().trim()) ||TextUtils.isEmpty(tvTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editDeviceName.getText().toString().trim()) ||
-//                TextUtils.isEmpty(tvTestEndDate.getText().toString().trim()) ||TextUtils.isEmpty(tvDeviceType.getText().toString().trim()) ||TextUtils.isEmpty(editQualificationRate.getText().toString().trim()) ||TextUtils.isEmpty(editFullnessRate.getText().toString().trim()) ||
-//                TextUtils.isEmpty(tvMadeinDate.getText().toString().trim()) ||TextUtils.isEmpty(editMeasurementVolume.getText().toString().trim()) ||TextUtils.isEmpty(tvLiquidFillingEndDate.getText().toString().trim()) ||TextUtils.isEmpty(editEffectiveVolume.getText().toString().trim()) ||
-//                TextUtils.isEmpty(editDesignStandard.getText().toString().trim()) ||TextUtils.isEmpty(editLicenseNo.getText().toString().trim())){
-//            return false;
-//        }
         return true;
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端显示 相当于调用了onPause();
+//            if(checkInputLegal()){
+//                saveDateToDb();
+//            }
+            return;
+        }else{  // 在最前端显示 相当于调用了onResume();
+            initData();
+        }
+
+    }
+
 }

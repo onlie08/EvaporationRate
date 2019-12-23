@@ -104,6 +104,7 @@ public class ProcessFragment extends BaseProcessFragment{
         testProcess.setAcquisitionError(tvCollectError.getText().toString());
         testProcess.setEvaporationRateFinal(tvPrejudge.getText().toString());
         testProcess.setTestProcess(testProgress);
+        DbManage.getInstance().saveTestProcess(testProcess);
     }
 
     @Override
@@ -164,6 +165,7 @@ public class ProcessFragment extends BaseProcessFragment{
         ToastHelper.showToast("试验成功完成");
         btnTestReport.setEnabled(true);
         btnTestStart.setEnabled(true);
+        btnTestStart.setText("开始试验");
         btnTestEnd.setEnabled(true);
         btnStaticStart.setEnabled(true);
         btnStaticEnd.setEnabled(true);

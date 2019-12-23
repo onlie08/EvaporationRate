@@ -27,6 +27,10 @@ import com.ch.view.SpinnerController;
 import com.cunoraz.gifview.library.GifView;
 import com.deadline.statebutton.StateButton;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -166,7 +170,7 @@ public abstract class BaseProcessFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_process, container, false);
         unbinder = ButterKnife.bind(this, root);
         initView();
-        initData();
+//        initData();
         return root;
     }
 
@@ -179,6 +183,7 @@ public abstract class BaseProcessFragment extends Fragment {
         btnStaticStart.setEnabled(true);
         btnStaticEnd.setEnabled(true);
         btnTestStart.setEnabled(true);
+        btnTestStart.setText("开始试验");
         btnTestEnd.setEnabled(true);
         btnTestReport.setEnabled(false);
         tvStaticStartTime.setText("");
@@ -230,6 +235,7 @@ public abstract class BaseProcessFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+//        initData();
     }
 
     @Override
@@ -270,10 +276,8 @@ public abstract class BaseProcessFragment extends Fragment {
                     @Override
                     public void selectResult(String date) {
                         tvTestMedium.setText(date);
-                        Parameter tmp = new Parameter();
-                        tmp.setDeviceId(parameter.getDeviceId());
-                        tmp.setMediumType(date);
-                        DbManage.getInstance().updateParamter(tmp);
+                        parameter.setMediumType(date);
+                        DbManage.getInstance().saveParamter(parameter);
                     }
                 });
                 break;
@@ -383,6 +387,10 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
                     return;
                 }
+                if(TextUtils.isEmpty(tvStaticTotalTime.getText().toString())){
+                    ToastHelper.showToast("请先选择静置时间");
+                    return;
+                }
                 if ("开始试验".equals(btnTestStart.getText().toString())) {
                     if (testProgress == 0) {
                         tvTestStartTime.setText(DateUtil.getSystemDate1());
@@ -470,8 +478,10 @@ public abstract class BaseProcessFragment extends Fragment {
         switch (beanRTData.getIswarm()){
             case 0:
                 btnAutoHeat.setEnabled(false);
-                stopGif1();
-                stopGif2();
+//                stopGif1();
+//                stopGif2();
+                playGif1();
+                playGif2();
                 break;
             case 1:
                 btnAutoHeat.setEnabled(true);
@@ -495,18 +505,25 @@ public abstract class BaseProcessFragment extends Fragment {
 
     public void playGif1(){
         gif1.setVisibility(View.VISIBLE);
-        gif1.play();
     }
     public void stopGif1(){
-        gif1.pause();
         gif1.setVisibility(View.GONE);
     }
     public void playGif2(){
         gif2.setVisibility(View.VISIBLE);
-        gif2.play();
     }
     public void stopGif2(){
-        gif2.pause();
         gif2.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端显示 相当于调用了onPause();
+            return;
+        }else{  // 在最前端显示 相当于调用了onResume();
+            initData();
+        }
+
     }
 }

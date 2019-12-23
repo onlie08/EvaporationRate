@@ -296,12 +296,12 @@ public class DataService extends Service {
                 {
                     mlsthisData.add(revData); //记录数据
                     Float[] calRes = DataCalculate.CalTestEvaRate(mMediumtype,mlsthisData,mLN2Param,mLNGParam,mValidV);
-
+                    stopTest();
                     for (int i=0;i<mlstHandler.size();i++)
                     {
                         mlstHandler.get(i).experimentOver(revData,calRes[0],calRes[1]);
                     }
-                    stopTest();
+
                 }
             }
 
