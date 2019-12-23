@@ -319,7 +319,7 @@ public abstract class BaseProcessFragment extends Fragment {
                 }else {
 //                    btnStaticStart.setEnabled(false);
 //                    btnStaticEnd.setEnabled(true);
-                    tvStaticStartTime.setText(DateUtil.getSystemDate1());
+                    tvStaticStartTime.setText(DateUtil.getSystemDate());
                     startStaticTotalTime();
                     staticAuto = true;
 
@@ -334,7 +334,7 @@ public abstract class BaseProcessFragment extends Fragment {
 //                    btnStaticStart.setEnabled(false);
 //                    btnStaticEnd.setEnabled(false);
 //                    btnTestStart.setEnabled(true);
-                    tvStaticEndTime.setText(DateUtil.getSystemDate1());
+                    tvStaticEndTime.setText(DateUtil.getSystemDate());
                     endStaticTotalTime();
                 }else {
                     final CommonDialog commonDialog = new CommonDialog(getActivity());
@@ -361,7 +361,7 @@ public abstract class BaseProcessFragment extends Fragment {
                 }else {
                     if("开始试验".equals(btnTestStart.getText().toString())){
                         if(testProgress == 0){
-                            tvTestStartTime.setText(DateUtil.getSystemDate1());
+                            tvTestStartTime.setText(DateUtil.getSystemDate());
                             startTestTotalTime();
 
                         }

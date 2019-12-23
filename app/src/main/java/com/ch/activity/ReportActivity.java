@@ -3,11 +3,16 @@ package com.ch.activity;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ch.bean.Parameter;
+import com.ch.bean.Sensor;
+import com.ch.bean.TestProcess;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.deadline.statebutton.StateButton;
 
@@ -120,6 +125,10 @@ public class ReportActivity extends AppCompatActivity {
     @BindView(R.id.tv_chapter)
     ConstraintLayout tvChapter;
 
+    public Parameter parameter;
+    public Sensor sensor;
+    public TestProcess testProcess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -136,6 +145,40 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        parameter = DbManage.getInstance().getParamter();
+        if (null != parameter) {
+            setParameterDate(parameter);
+        }
+        sensor = DbManage.getInstance().getSensor();
+        if (null != sensor) {
+            setSensor(sensor);
+        }
+        testProcess = DbManage.getInstance().getTestProcess();
+        if (null != testProcess) {
+            setTestProcess(testProcess);
+        }
+    }
+
+    private void setTestProcess(TestProcess testProcess) {
+        tvTestDeviceNum.setText(isNotNull(testProcess.getDeviceId()) ? testProcess.getDeviceId():"---");
+        tvEvaporationrateOne.setText(isNotNull(testProcess.getEvaporationRateOne()) ? testProcess.getEvaporationRateOne():"---");
+        tvEvaporationrateTwo.setText(isNotNull(testProcess.getEvaporationRateTwo()) ? testProcess.getEvaporationRateTwo():"---");
+        tvEvaporationrateThire.setText(isNotNull(testProcess.getEvaporationRateThire()) ? testProcess.getEvaporationRateThire():"---");
+        tvTwoErro.setText(isNotNull(testProcess.getAcquisitionError()) ? testProcess.getAcquisitionError():"---");
+        tvEvaporationrateFinal.setText(isNotNull(testProcess.getEvaporationRateFinal()) ? testProcess.getEvaporationRateFinal():"---");
+        tvStaticTimeInfo.setText(testProcess.getStaticStartTime() + "至" + testProcess.getStaticEndTime());
+        tvTestStartTime.setText(testProcess.getTestStartTime());
+        tvTestEndTime.setText(isNotNull(testProcess.getTestEndTime()) ? testProcess.getTestEndTime():"---");
+
+        tvEvaporationrateFinal.setText(isNotNull(testProcess.getEvaporationRateFinal()) ? testProcess.getEvaporationRateFinal():"---");
+        tvEvaporationrateFinal.setText(isNotNull(testProcess.getEvaporationRateFinal()) ? testProcess.getEvaporationRateFinal():"---");
+    }
+
+    private void setSensor(Sensor sensor) {
+
+    }
+
+    private void setParameterDate(Parameter parameter) {
 
     }
 
@@ -155,5 +198,12 @@ public class ReportActivity extends AppCompatActivity {
             case R.id.img_back:
                 break;
         }
+    }
+
+    private boolean isNotNull(String text){
+        if(TextUtils.isEmpty(text)){
+            return false;
+        }
+        return true;
     }
 }

@@ -78,4 +78,12 @@ public class DbManage {
     public void saveTestProcess(TestProcess testProcess){
         testProcessDao.insert(testProcess);
     }
+
+    public TestProcess getTestProcess(){
+        List<TestProcess> testProcesses = testProcessDao.loadAll();
+        if(testProcesses.isEmpty()){
+            return null;
+        }
+        return testProcesses.get(0);
+    }
 }

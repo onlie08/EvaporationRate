@@ -121,7 +121,7 @@ public class DateChooseController {
             }else {
                 min = ""+mMinute;
             }
-            listener.dateResult(mYear+"/"+month+"/"+day+"  "+hour+":"+min);
+            listener.dateResult(mYear+"/"+month+"/"+day+"  "+hour+":"+min+":00");
         }
     };
 
