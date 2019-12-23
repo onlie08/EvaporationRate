@@ -51,6 +51,12 @@ public class DateUtil {
         return formatStr;
     }
 
+    public static String getSystemDate1(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");// HH:mm:ss
+        Date date = new Date(System.currentTimeMillis());
+        return simpleDateFormat.format(date);
+    }
+
     public static String getSystemDate(){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");// HH:mm:ss
         Date date = new Date(System.currentTimeMillis());
@@ -125,8 +131,32 @@ public class DateUtil {
 
         long sec = diff % nd % nh % nm / ns;
 
-//        return day + "天" + hour + "小时" + min + "分钟";  0:0:0:23
-//        return day + "-" + hour + ":" + min + ":" + sec;
-        return hour + ":" + min + ":" + sec;
+        String sDay;
+        String sHour ;
+        String sMin ;
+        String sSec ;
+        if(day>0){
+            sDay = day+"天";
+        }else {
+            sDay = "";
+        }
+        if(hour<10){
+            sHour = "0" + hour;
+        }else {
+            sHour = "" + hour;
+        }
+        if(min<10){
+            sMin = "0" + min;
+        }else {
+            sMin = "" + min;
+        }
+        if(sec<10){
+            sSec = "0" + sec;
+        }else {
+            sSec = "" + sec;
+        }
+        return  sDay+ sHour + ":" + sMin + ":" + sSec;
+//        return day + "天" + hour + "小时" + min + "分钟";
+//        return day + "天" + hour + "小时" + min + "分钟" + sec + "秒";
     }
 }

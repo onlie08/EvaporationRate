@@ -19,20 +19,22 @@
             android:id="@+id/view28"
             android:layout_width="wrap_content"
             android:layout_height="12dp"
-            android:background="@color/colorAccent"
+            android:background="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:id="@+id/image_logo"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
             android:layout_marginTop="32dp"
-            android:src="@mipmap/login_logo"
+            android:background="@mipmap/crrc_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view28" />
+            app:layout_constraintTop_toBottomOf="@+id/view28"
+
+            />
 
         <CheckBox
             android:id="@+id/cb_rember"
@@ -63,10 +65,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb_rember"
 
-            app:normalBackgroundColor="@color/colorAccent"
+            app:normalBackgroundColor="@color/red"
             app:normalTextColor="@android:color/white"
 
-            app:pressedBackgroundColor="@color/colorPrimary"
+            app:pressedBackgroundColor="@color/red_press"
             app:pressedTextColor="@android:color/white"
 
             app:round="true"
@@ -78,13 +80,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/edit_background_focused"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7">
+            app:layout_constraintTop_toBottomOf="@+id/image_logo">
 
             <EditText
                 android:id="@+id/edit_name"

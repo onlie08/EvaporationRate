@@ -47,22 +47,22 @@ public class DateChooseController {
                 mMonth = monthOfYear + 1;
                 mDay = dayOfMonth;
                 String days;
-                if (mMonth + 1 < 10) {
+                if (mMonth  < 10) {
                     if (mDay < 10) {
                         days = new StringBuffer().append(mYear).append("/").append("0").
-                                append(mMonth + 1).append("/").append("0").append(mDay).append("").toString();
+                                append(mMonth ).append("/").append("0").append(mDay).append("").toString();
                     } else {
                         days = new StringBuffer().append(mYear).append("/").append("0").
-                                append(mMonth + 1).append("/").append(mDay).append("").toString();
+                                append(mMonth ).append("/").append(mDay).append("").toString();
                     }
 
                 } else {
                     if (mDay < 10) {
                         days = new StringBuffer().append(mYear).append("/").
-                                append(mMonth + 1).append("/").append("0").append(mDay).append("").toString();
+                                append(mMonth ).append("/").append("0").append(mDay).append("").toString();
                     } else {
                         days = new StringBuffer().append(mYear).append("/").
-                                append(mMonth + 1).append("/").append(mDay).append("").toString();
+                                append(mMonth ).append("/").append(mDay).append("").toString();
                     }
 
                 }
@@ -100,15 +100,15 @@ public class DateChooseController {
             String min;
 
             if (mMonth<10){
-                month = "0"+mHour;
+                month = "0"+mMonth;
             }else {
-                month = ""+mHour;
+                month = ""+mMonth;
             }
 
             if (mDay<10){
-                day = "0"+mHour;
+                day = "0"+mDay;
             }else {
-                day = ""+mHour;
+                day = ""+mDay;
             }
 
             if(mHour < 10){

@@ -72,14 +72,14 @@ public class DataCalConstant {
         int findIndex = -1;
         for(int i=0;i<liquidLN2Param.length;i++)
         {
-           Float enviStandPress = liquidLN2Param[i][3];
-           Float detPress = Math.abs(enviStandPress-envipress);
+            Float enviStandPress = liquidLN2Param[i][3];
+            Float detPress = Math.abs(enviStandPress-envipress);
 
-           if(detPress < maxmax)
-           {
-               maxmax = detPress;
-               findIndex = i;
-           }
+            if(detPress < maxmax)
+            {
+                maxmax = detPress;
+                findIndex = i;
+            }
         }
 
         Float resKjkg = envipress * (liquidLN2Param[findIndex][4]/liquidLN2Param[findIndex][3]);
@@ -112,7 +112,7 @@ public class DataCalConstant {
         return resKjkg;
     }
 
-    public static final int standardPressIndex_ln2 = 14; //LN2 标准气压对应的索引
+    public static final int standardPressIndex_ln2 = 15; //LN2 标准气压对应的索引
 
     // 绝对温度k  摄氏度℃  密度KG/M3  压力MPA 汽化潜热 KJ/KG
     public static final Float[][] liquidLN2Param = new Float[][]{

@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ch.bean.Sensor;
 import com.ch.db.DbManage;
 import com.ch.service.DataService;
 import com.ch.service.bean.BeanOperaParam;
@@ -23,6 +25,10 @@ import com.ch.utils.RxTimerUtil;
 import com.ch.utils.ToastHelper;
 import com.ch.view.SpinnerController;
 import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -38,7 +44,7 @@ public class ProcessFragment extends BaseProcessFragment{
             Log.d("Data service", "---service connected");
 
             mDataService = ((DataService.LocalBinder) iBinder).getService();
-
+            mDataService.startAcqData();
             mDataService.addOnDataCallback(new DataService.OnDataCallback() {
                 @Override
                 public void revRealTimeData(BeanRTData data) {
@@ -46,6 +52,7 @@ public class ProcessFragment extends BaseProcessFragment{
                         return;
                     }
                     setBeanRTDataDate(data);
+                    EventBus.getDefault().postSticky(data);
                     Log.d("Data service", "---activity get data:" + new Gson().toJson(data));
                 }
 
@@ -54,7 +61,7 @@ public class ProcessFragment extends BaseProcessFragment{
                     if(suspend){
                         return;
                     }
-                    setEvaRDate(testEvaR,staticEvaR);
+//                    setEvaRDate(testEvaR,staticEvaR);
                     Log.d("Data service", "---calculate data:" + testEvaR + "--" + staticEvaR);
                 }
 
@@ -112,10 +119,15 @@ public class ProcessFragment extends BaseProcessFragment{
             BeanOperaParam lng = new BeanOperaParam(0.676f, 422.53f, 1f, 1f);
             float validV = 40.5f;
 
-            mDataService.startAcqData(recPeroid, mediumtype, expperiod, lng, ln2, validV);
+            mDataService.startTest(recPeroid, mediumtype, expperiod, lng, ln2, validV);
         }
 
         Toast.makeText(mCtx, "开始第"+testProgress+"次试验", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -133,6 +145,10 @@ public class ProcessFragment extends BaseProcessFragment{
         endTest();
         ToastHelper.showToast("试验成功完成");
         btnTestReport.setEnabled(true);
+        btnTestStart.setEnabled(false);
+        btnTestEnd.setEnabled(false);
+        tvTestEndTime.setText(DateUtil.getSystemDate1());
+        RxTestTotalTime.cancel();
     }
 
     @Override
@@ -212,16 +228,18 @@ public class ProcessFragment extends BaseProcessFragment{
     private void testControll(Float staticEvaR){
         if(testProgress == 1){
             staticEvaR1 = staticEvaR;
-            if(staticEvaR1 > 5){
-                initAllState();
+            tvTestOneCount.setText(""+staticEvaR);
+            if(staticEvaR1 > 50){
+//                initAllState();
                 ToastHelper.showToast("第一次试验不合格");
                 tvTestOneResult.setText("不合格");
                 tvTestOneResult.setSelected(true);
-                tvTestOneCount.setText(""+staticEvaR);
             }else {
                 testProgress = 2;
-                stopTest();
+//                stopTest();
                 startTest();
+                tvTestOneResult.setText("合格");
+                tvTestOneResult.setSelected(false);
             }
         }else if(testProgress == 2){
             float diff;
@@ -232,17 +250,37 @@ public class ProcessFragment extends BaseProcessFragment{
             }else {
                 diff = (staticEvaR1 - staticEvaR2)/staticEvaR1;
             }
+            tvCollectError.setText(diff+"");
             Log.d("Data service", "---service testControll"+diff);
             if(diff > 5){
                 testProgress = 3;
-                stopTest();
+//                stopTest();
                 startTest();
+
+                ToastHelper.showToast("第二次试验不合格");
+                tvTestTwoResult.setText("不合格");
+                tvTestTwoResult.setSelected(true);
+                tvCollectResult.setText("不合格");
+                tvCollectResult.setSelected(true);
+
             }else {
                 testSuccess();
+                tvTestTwoResult.setText("合格");
+                tvTestTwoResult.setSelected(false);
+                tvCollectResult.setText("合格");
+                tvCollectResult.setSelected(false);
             }
         }else if(testProgress == 3){
             staticEvaR3 = staticEvaR;
             tvTestThireCount.setText(""+staticEvaR);
+            if(staticEvaR1 > 50){
+                ToastHelper.showToast("第三次试验不合格");
+                tvTestThireResult.setText("不合格");
+                tvTestThireResult.setSelected(true);
+            }else {
+                tvTestThireResult.setText("合格");
+                tvTestThireResult.setSelected(false);
+            }
             testSuccess();
         }
     }

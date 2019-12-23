@@ -20,8 +20,8 @@
             android:id="@+id/btn_cancel"
             android:layout_width="120dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
 
             android:text="取消"
             android:textSize="@dimen/text_size_thire"
@@ -75,10 +75,10 @@
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
             android:layout_marginTop="32dp"
-            android:src="@mipmap/login_logo"
+            android:src="@mipmap/crrc_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view28" />
@@ -87,9 +87,9 @@
             android:id="@+id/constraint_login_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="64dp"
             android:background="@drawable/edit_background_focused"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,9 +126,9 @@
             android:id="@+id/constraintLayout9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="64dp"
             android:background="@drawable/edit_background_focused"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -165,15 +165,14 @@
             android:id="@+id/constraintLayout10"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
             android:background="@drawable/edit_background_focused"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
 
             <EditText
                 android:id="@+id/edit_new_pwd_again"

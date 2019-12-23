@@ -793,11 +793,6 @@ public class LineChartManager {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             ChartBean data = dataList.get(i);
-            /**
-             * 在此可查看 Entry构造
-             * 方法，可发现 可传入数值 Entry(float x, float y)
-             * 也可传入Drawable， Entry(float x, float y, Drawable icon) 可在XY轴交点 设置Drawable图像展示
-             */
             Entry entry = new Entry(i, (float) data.getValue());
             entries.add(entry);
         }
@@ -847,5 +842,187 @@ public class LineChartManager {
 
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
+    }
+
+    /**
+     * 展示一条曲线 默认x轴
+     *
+     * @param yData1    y轴的数据
+     * @param lineName 曲线名称
+     * @param color    曲线颜色
+     */
+    public void showOneLineChart(List<Float> yData1,List<Float> yData2,List<Float> yData3,List<Float> yData4,List<Float> yData5,List<Float> yData6,List<Float> yData7, String lineName, int color) {
+        ArrayList<Entry> entries1 = new ArrayList<>();
+        ArrayList<Entry> entries2 = new ArrayList<>();
+        ArrayList<Entry> entries3 = new ArrayList<>();
+        ArrayList<Entry> entries4 = new ArrayList<>();
+        ArrayList<Entry> entries5 = new ArrayList<>();
+        ArrayList<Entry> entries6 = new ArrayList<>();
+        ArrayList<Entry> entries7 = new ArrayList<>();
+
+        for (int i = 0; i < yData1.size(); i++) {
+            entries1.add(new Entry(yData1.get(i), yData1.get(i)));
+        }
+
+        for (int i = 0; i < yData2.size(); i++) {
+            entries2.add(new Entry(yData2.get(i), yData2.get(i)));
+        }
+
+        for (int i = 0; i < yData3.size(); i++) {
+            entries3.add(new Entry(yData3.get(i), yData3.get(i)));
+        }
+
+        for (int i = 0; i < yData4.size(); i++) {
+            entries4.add(new Entry(yData4.get(i), yData4.get(i)));
+        }
+
+        for (int i = 0; i < yData5.size(); i++) {
+            entries5.add(new Entry(yData5.get(i), yData5.get(i)));
+        }
+
+        for (int i = 0; i < yData6.size(); i++) {
+            entries6.add(new Entry(yData6.get(i), yData6.get(i)));
+        }
+
+        for (int i = 0; i < yData7.size(); i++) {
+            entries7.add(new Entry(yData7.get(i), yData7.get(i)));
+        }
+
+        // 每一个LineDataSet代表一条线
+        LineDataSet lineDataSet1 = new LineDataSet(entries1, lineName);
+        LineDataSet lineDataSet2 = new LineDataSet(entries1, lineName);
+        LineDataSet lineDataSet3 = new LineDataSet(entries1, lineName);
+        LineDataSet lineDataSet4 = new LineDataSet(entries1, lineName);
+        LineDataSet lineDataSet5 = new LineDataSet(entries1, lineName);
+        LineDataSet lineDataSet6 = new LineDataSet(entries1, lineName);
+        LineDataSet lineDataSet7 = new LineDataSet(entries1, lineName);
+        // CUBIC_BEZIER 圆滑曲线
+        initLineDataSet(lineDataSet1, color, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet2, color, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet3, color, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet4, color, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet5, color, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet6, color, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet7, color, LineDataSet.Mode.CUBIC_BEZIER);
+
+        LineData data = new LineData();
+        data.addDataSet(lineDataSet1);
+        data.addDataSet(lineDataSet2);
+        data.addDataSet(lineDataSet3);
+        data.addDataSet(lineDataSet4);
+        data.addDataSet(lineDataSet5);
+        data.addDataSet(lineDataSet6);
+        data.addDataSet(lineDataSet7);
+        lineChart.setData(data);
+    }
+
+    public void showLineChart0(final List<ChartBean> yData1,List<ChartBean> yData2,List<ChartBean> yData3,List<ChartBean> yData4,List<ChartBean> yData5,List<ChartBean> yData6,List<ChartBean> yData7,String lineName, int color) {
+        ArrayList<Entry> entries1 = new ArrayList<>();
+        ArrayList<Entry> entries2 = new ArrayList<>();
+        ArrayList<Entry> entries3 = new ArrayList<>();
+        ArrayList<Entry> entries4 = new ArrayList<>();
+        ArrayList<Entry> entries5 = new ArrayList<>();
+        ArrayList<Entry> entries6 = new ArrayList<>();
+        ArrayList<Entry> entries7 = new ArrayList<>();
+        for (int i = 0; i < yData1.size(); i++) {
+            ChartBean data = yData1.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries1.add(entry);
+        }
+        for (int i = 0; i < yData2.size(); i++) {
+            ChartBean data = yData2.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries2.add(entry);
+        }
+        for (int i = 0; i < yData3.size(); i++) {
+            ChartBean data = yData3.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries3.add(entry);
+        }
+        for (int i = 0; i < yData4.size(); i++) {
+            ChartBean data = yData4.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries4.add(entry);
+        }
+        for (int i = 0; i < yData5.size(); i++) {
+            ChartBean data = yData5.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries5.add(entry);
+        }
+        for (int i = 0; i < yData6.size(); i++) {
+            ChartBean data = yData6.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries6.add(entry);
+        }
+        for (int i = 0; i < yData7.size(); i++) {
+            ChartBean data = yData7.get(i);
+            Entry entry = new Entry(i, (float) data.getValue());
+            entries7.add(entry);
+        }
+
+        /******根据需求的不同 在此在次设置X Y轴的显示内容******/
+        xAxis.setLabelCount(4, false);
+        //设置是否绘制刻度
+        xAxis.setDrawScale(false);
+        //是否绘制X轴线
+        xAxis.setDrawAxisLine(false);
+
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                String tradeDate = yData1.get((int) value % yData1.size()).getDate();
+//                return DateUtil.formatDateToMD(tradeDate);
+                return tradeDate.substring(5,tradeDate.length());
+            }
+        });
+
+        leftYAxis.setLabelCount(8);
+        leftYAxis.setDrawScale(true);
+        leftYAxis.setDrawZeroLine(true); // draw a zero line
+        leftYAxis.setZeroLineColor(Color.GRAY);
+        leftYAxis.setZeroLineWidth(1f);
+        leftYAxis.setAxisLineWidth(1f);
+        leftYAxis.setAxisLineColor(Color.GRAY);
+        leftYAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return value  + "℃ ";
+            }
+        });
+
+        LineDataSet lineDataSet1 = new LineDataSet(entries1, "流量计");
+        LineDataSet lineDataSet2 = new LineDataSet(entries2, "入口温度");
+        LineDataSet lineDataSet3 = new LineDataSet(entries3, "入口压力");
+        LineDataSet lineDataSet4 = new LineDataSet(entries4, "环境温度");
+        LineDataSet lineDataSet5 = new LineDataSet(entries5, "大气压");
+        LineDataSet lineDataSet6 = new LineDataSet(entries6, "湿度");
+        LineDataSet lineDataSet7 = new LineDataSet(entries7, "累计流量");
+        // CUBIC_BEZIER 圆滑曲线
+        initLineDataSet(lineDataSet1, Color.BLUE, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet2, Color.CYAN, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet3, Color.MAGENTA, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet4, Color.GREEN, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet5, Color.YELLOW, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet6, Color.GRAY, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet7, Color.RED, LineDataSet.Mode.CUBIC_BEZIER);
+
+        //线条自定义内容 放在这里
+        lineDataSet1.setValueFormatter(new IValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                DecimalFormat df = new DecimalFormat(".00");
+                return value + "℃";
+            }
+        });
+
+        LineData data = new LineData();
+        data.addDataSet(lineDataSet1);
+        data.addDataSet(lineDataSet2);
+        data.addDataSet(lineDataSet3);
+        data.addDataSet(lineDataSet4);
+        data.addDataSet(lineDataSet5);
+        data.addDataSet(lineDataSet6);
+        data.addDataSet(lineDataSet7);
+        lineChart.setData(data);
     }
 }

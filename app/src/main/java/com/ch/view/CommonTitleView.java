@@ -3,6 +3,7 @@ package com.ch.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.InputType;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.ch.activity.LoginActivity;
 import com.ch.base.base.ViewController;
 import com.ch.evaporationrate.R;
 import com.ch.utils.DateUtil;
@@ -84,6 +86,7 @@ public class CommonTitleView extends ViewController<String> {
     private void showPersonDialog() {
         View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.dialog_person_layout, null);
         TextView tv_change_pwd = layout.findViewById(R.id.tv_change_pwd);
+        TextView tv_logout = layout.findViewById(R.id.tv_logout);
         final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(300f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
 //        popupWindow.setOnDismissListener(this);
@@ -97,6 +100,13 @@ public class CommonTitleView extends ViewController<String> {
             public void onClick(View v) {
                 popupWindow.dismiss();
                 showChangePwdDialog();
+            }
+        });
+        tv_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getContext().startActivity(new Intent(getContext(),LoginActivity.class));
+                ((Activity) getContext()).finish();
             }
         });
     }

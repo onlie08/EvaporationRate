@@ -86,5 +86,7 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.0'
     implementation 'com.orhanobut:dialogplus:1.11@aar'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.eftimoff:android-pathview:1.0.8@aar'
 
 }

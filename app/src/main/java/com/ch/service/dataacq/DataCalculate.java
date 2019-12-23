@@ -39,14 +39,14 @@ public class DataCalculate {
             avgEnviPress = accEnviPress/lstData.size();
             avgEnviTemp = accEnviTemp/lstData.size() + 273.15f;
 
-            qm = avgFlow * lstData.size()  * ln2.getGasDensity();
+            qm = (avgFlow/1000) * lstData.size()  * ln2.getGasDensity();
             Float cf = ln2.getCorrecFactor();
 
             Float[] liquidParam = DataCalConstant.getStardardPressInfoLn2();
             Float p1 = liquidParam[2];
 
-            a0 = (qm * cf)/(p1 * validV);   //测试蒸发率
-
+            a0 = (qm * cf)/(p1 * validV) ;   //测试蒸发率
+            a0 *= 100;
             float a20 = 0.0f; //静态蒸发率
 
 
@@ -81,19 +81,19 @@ public class DataCalculate {
                 accEnviTemp += lstData.get(i).getSurroundtemperature();
                 accAcqPress += lstData.get(i).getEnterpressure();
             }
-            avgAcqPress = accAcqPress/lstData.size() + 0.101325f; //日平均压力=平均入口压力+ 0.101325
+            avgAcqPress = accAcqPress/lstData.size() + 0.101325f*1000; //日平均压力=平均入口压力+ 0.101325
             avgFlow = accFlow/lstData.size();
             avgEnviPress = accEnviPress/lstData.size();
             avgEnviTemp = accEnviTemp/lstData.size() + 273.15f;
 
-            qm = avgFlow * lstData.size() * 1000 * lng.getGasDensity();
+            qm = (avgFlow/1000) * lstData.size()  * lng.getGasDensity();
             Float cf = lng.getCorrecFactor();
 
             Float[] liquidParam = DataCalConstant.getStardardPressInfoLNG();
             Float p1 = liquidParam[2];
 
-            a0 = (qm * cf)/(p1 * validV);   //测试蒸发率
-
+            a0 =  (qm * cf)/(p1 * validV);   //测试蒸发率
+            a0 *= 100;
             float a20 = 0.0f; //静态蒸发率
             Float h = DataCalConstant.getParamInfoLngByEnviPress(avgEnviPress);   //实验环境压力下液体汽化潜热
             Float hfg = liquidParam[4]; //标准气压汽化潜热
