@@ -1,30 +1,22 @@
 package com.ch.fragment;
 
-import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ch.activity.ReportActivity;
 import com.ch.bean.Parameter;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
-import com.ch.service.DataService;
-import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.DateUtil;
 import com.ch.utils.ToastHelper;
@@ -32,8 +24,6 @@ import com.ch.view.CommonDialog;
 import com.ch.view.DateChooseController;
 import com.ch.view.SpinnerController;
 import com.deadline.statebutton.StateButton;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -120,6 +110,7 @@ public abstract class BaseProcessFragment extends Fragment {
     @BindView(R.id.switch2)
     SwitchCompat switch2;
 
+    public String TAG = BaseProcessFragment.class.getSimpleName();
     public Context mCtx; //xxg
     public Parameter parameter;
     private boolean staticAuto = false;
@@ -136,6 +127,7 @@ public abstract class BaseProcessFragment extends Fragment {
 
     abstract void startTest();
     abstract void stopTest();
+    abstract void resumeTest();
     abstract void endTest();
     abstract void chooseIntervalTimeDialog();
     abstract void countStaticTotalTime();
@@ -194,6 +186,7 @@ public abstract class BaseProcessFragment extends Fragment {
         btnFlowCounter.setText("流量计: L/min");
 
         tvAlarm.setSelected(false);
+        testProgress =0;
     }
 
     private void initData() {
@@ -277,7 +270,6 @@ public abstract class BaseProcessFragment extends Fragment {
                     @Override
                     public void dateResult(String date1) {
                         tvStaticStartTime.setText(date1);
-//                        startStaticTotalTime();
                     }
                 });
                 break;
@@ -332,12 +324,9 @@ public abstract class BaseProcessFragment extends Fragment {
                 if (null == parameter) {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
                 }else {
-//                    btnStaticStart.setEnabled(false);
-//                    btnStaticEnd.setEnabled(true);
                     tvStaticStartTime.setText(DateUtil.getSystemDate1());
                     startStaticTotalTime();
                     staticAuto = true;
-
                 }
                 break;
             case R.id.btn_static_end:
@@ -346,9 +335,6 @@ public abstract class BaseProcessFragment extends Fragment {
                     return;
                 }
                 if(CheckTimeArrive()){
-//                    btnStaticStart.setEnabled(false);
-//                    btnStaticEnd.setEnabled(false);
-//                    btnTestStart.setEnabled(true);
                     tvStaticEndTime.setText(DateUtil.getSystemDate1());
                     endStaticTotalTime();
                 }else {
@@ -375,63 +361,51 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
                     return;
                 }
-//                String totalTime = tvStaticTotalTime.getText().toString();
-//                if(!totalTime.contains("天")){
-//                    ToastHelper.showToast("累计静置时间未达24小时，无法开始试验");
-//                    return;
-//                }
-//
-//                String days = totalTime.substring(0,totalTime.indexOf("天"));
-//                if(Integer.parseInt(days)<2){
-//                    ToastHelper.showToast("累计静置时间未达24小时，无法开始试验");
-//                    return;
-//                }
                 if("开始试验".equals(btnTestStart.getText().toString())){
                     if(testProgress == 0){
                         tvTestStartTime.setText(DateUtil.getSystemDate1());
                         btnStaticStart.setEnabled(false);
                         btnStaticEnd.setEnabled(false);
                         startTestTotalTime();
-
+                        testProgress = 1;
+                        startTest();
+                        btnStaticStart.setEnabled(false);
+                        btnStaticEnd.setEnabled(false);
+                    }else {
+                        suspend = false;
+                        resumeTest();
                     }
                     btnTestStart.setText("暂停试验");
-                    testProgress = 1;
-                    startTest();
-                    suspend = false;
                 }else {
-//                        endTestTotalTime();
                     btnTestStart.setText("开始试验");
-//                    stopTest();
+                    stopTest();
                     suspend = true;
                 }
                 break;
             case R.id.btn_test_end:
-//                if(CheckTimeArrive()){
-//                    tvTestEndTime.setText(DateUtil.getSystemDate1());
-//                }else {
                 if(TextUtils.isEmpty(tvTestStartTime.getText().toString())){
                     ToastHelper.showToast("没有进行中的试验");
                     return;
                 }
-                    final CommonDialog commonDialog = new CommonDialog(getActivity());
-                    commonDialog.setMessage("试验时间未达标准，结束试验会删除此次试验数据，确定结束试验吗？");
-                    commonDialog.setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
-                        @Override
-                        public void onPositiveClick() {
-//                            stopTest();
-                            initAllState();
-                            endStaticTotalTime();
-                            commonDialog.dismiss();
-                            testProgress =0;
-                        }
+                final CommonDialog commonDialog = new CommonDialog(getActivity());
+                commonDialog.setTitle("警告")
+                        .setMessage("结束试验会删除此次试验数据，确定结束试验吗？")
+                        .setSingle(true).setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                @Override
+                public void onPositiveClick() {
+                    endTest();
+                    initAllState();
+                    endStaticTotalTime();
+                    endTestTotalTime();
+                    commonDialog.dismiss();
 
-                        @Override
-                        public void onNegtiveClick() {
-                            commonDialog.dismiss();
-                        }
-                    });
-                    commonDialog.show();
-//                }
+                }
+
+                @Override
+                public void onNegtiveClick() {
+                    commonDialog.dismiss();
+                }
+            }).show();
                 break;
             case R.id.btn_auto_heat:
                 break;

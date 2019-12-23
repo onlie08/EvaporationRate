@@ -136,8 +136,13 @@ public class ProcessFragment extends BaseProcessFragment{
     }
 
     @Override
-    void endTest() {
+    void resumeTest() {
+        mDataService.resumeAcqData();
+    }
 
+    @Override
+    void endTest() {
+        mDataService.stopTest();
     }
 
     @Override
@@ -186,10 +191,12 @@ public class ProcessFragment extends BaseProcessFragment{
             @Override
             public void doNext(long number) {
                 try {
-                    Log.i("caohai","startStaticTotalTime number:"+number);
-                    String startTime = tvStaticStartTime.getText().toString();
-                    Date date = DateUtil.StringToDate(startTime);
-                    tvStaticTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
+                    if(!suspend){
+                        Log.i(TAG,"startStaticTotalTime number:"+number);
+                        String startTime = tvStaticStartTime.getText().toString();
+                        Date date = DateUtil.StringToDate(startTime);
+                        tvStaticTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
+                    }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -209,10 +216,12 @@ public class ProcessFragment extends BaseProcessFragment{
             @Override
             public void doNext(long number) {
                 try {
-                    Log.i("caohai","startTestTotalTime number:"+number);
-                    String startTime = tvTestStartTime.getText().toString();
-                    Date date = DateUtil.StringToDate(startTime);
-                    tvTestTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
+                    if(!suspend){
+                        Log.i("caohai","startTestTotalTime number:"+number);
+                        String startTime = tvTestStartTime.getText().toString();
+                        Date date = DateUtil.StringToDate(startTime);
+                        tvTestTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
+                    }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
