@@ -5,20 +5,21 @@ import android.view.View;
 
 import com.ch.activity.HistoryActivity;
 import com.ch.activity.ReportActivity;
+import com.ch.bean.TestProcess;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 import com.ch.evaporationrate.R;
 
-public class FragmentDateListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class FragmentDateListAdapter extends BaseQuickAdapter<TestProcess, BaseViewHolder> {
 
-    public FragmentDateListAdapter(List<String> data) {
+    public FragmentDateListAdapter(List<TestProcess> data) {
         super(R.layout.fragment_date_list_item, data);
     }
     @Override
-    protected void convert(BaseViewHolder helper, String item) {
-        if(helper.getLayoutPosition() == 1 || helper.getLayoutPosition() == 3 || helper.getLayoutPosition() == 5|| helper.getLayoutPosition() == 7|| helper.getLayoutPosition() == 9){
+    protected void convert(BaseViewHolder helper, final TestProcess item) {
+        if(helper.getLayoutPosition()%2 != 0){
             helper.getView(R.id.constraint_item).setBackgroundResource(R.color.colorAccentPrimary);
         }else {
             helper.getView(R.id.constraint_item).setBackgroundResource(R.color.colorWhite);
@@ -32,10 +33,16 @@ public class FragmentDateListAdapter extends BaseQuickAdapter<String, BaseViewHo
         helper.getView(R.id.tv_report).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext,ReportActivity.class));
+                Intent intent = new Intent();
+                intent.setClass(mContext,ReportActivity.class);
+                intent.putExtra("deviceId",item.getDeviceId());
+                mContext.startActivity(intent);
             }
         });
-//        helper.setText(R.id.fragment_date_list_item,item);
+        helper.setText(R.id.tv_device_num,item.getDeviceId());
+        helper.setText(R.id.tv_time,item.getTestEndTime());
+        helper.setText(R.id.tv_result,"合格");
+//        helper.setText(R.id.tv_result,item.getEvaporationRateFinal());
     }
 
 }

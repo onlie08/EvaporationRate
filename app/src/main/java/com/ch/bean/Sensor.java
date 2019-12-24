@@ -9,6 +9,8 @@ public class Sensor {
     @Id(autoincrement = true)
     private long id;
 
+    private String deviceId;
+
     private String evaporationRateType;
     private String evaporationRateNum;
 
@@ -54,25 +56,26 @@ public class Sensor {
     private String humidityPassedDate;
     private String humidityTestState;
     private String humidityDeviceState;
-    @Generated(hash = 866264695)
-    public Sensor(long id, String evaporationRateType, String evaporationRateNum,
-            String laserType, String laserNum, String laserTestDate,
-            String laserPassedDate, String laserTestState, String laserDeviceState,
-            String flowmeterType, String flowmeterNum, String flowmeterTestDate,
-            String flowmeterPassedDate, String flowmeterTestState,
-            String flowmeterDeviceState, String temperatureType,
-            String temperatureNum, String temperatureTestDate,
-            String temperaturePassedDate, String temperatureTestState,
-            String temperatureDeviceState, String airPressureType,
-            String airPressureNum, String airPressureTestDate,
-            String airPressurePassedDate, String airPressureTestState,
-            String airPressureDeviceState, String pressureType, String pressureNum,
-            String pressureTestDate, String pressurePassedDate,
-            String pressureTestState, String pressureDeviceState,
-            String humidityType, String humidityNum, String humidityTestDate,
-            String humidityPassedDate, String humidityTestState,
-            String humidityDeviceState) {
+    @Generated(hash = 1127665594)
+    public Sensor(long id, String deviceId, String evaporationRateType,
+            String evaporationRateNum, String laserType, String laserNum,
+            String laserTestDate, String laserPassedDate, String laserTestState,
+            String laserDeviceState, String flowmeterType, String flowmeterNum,
+            String flowmeterTestDate, String flowmeterPassedDate,
+            String flowmeterTestState, String flowmeterDeviceState,
+            String temperatureType, String temperatureNum,
+            String temperatureTestDate, String temperaturePassedDate,
+            String temperatureTestState, String temperatureDeviceState,
+            String airPressureType, String airPressureNum,
+            String airPressureTestDate, String airPressurePassedDate,
+            String airPressureTestState, String airPressureDeviceState,
+            String pressureType, String pressureNum, String pressureTestDate,
+            String pressurePassedDate, String pressureTestState,
+            String pressureDeviceState, String humidityType, String humidityNum,
+            String humidityTestDate, String humidityPassedDate,
+            String humidityTestState, String humidityDeviceState) {
         this.id = id;
+        this.deviceId = deviceId;
         this.evaporationRateType = evaporationRateType;
         this.evaporationRateNum = evaporationRateNum;
         this.laserType = laserType;
@@ -348,6 +351,12 @@ public class Sensor {
     }
     public void setHumidityDeviceState(String humidityDeviceState) {
         this.humidityDeviceState = humidityDeviceState;
+    }
+    public String getDeviceId() {
+        return this.deviceId;
+    }
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
 }

@@ -882,9 +882,8 @@
             android:text="已检验"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_pressure_passed_date"
-            app:layout_constraintStart_toStartOf="@+id/tv_laser_test_state"
-            app:layout_constraintTop_toTopOf="@+id/edit_pressure_passed_date" />
+            tools:layout_editor_absoluteX="930dp"
+            tools:layout_editor_absoluteY="294dp" />
 
         <TextView
             android:id="@+id/textView103"

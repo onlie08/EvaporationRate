@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ch.adapter.FragmentDateListAdapter;
+import com.ch.bean.TestProcess;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.deadline.statebutton.StateButton;
+import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 public class DateFragment extends Fragment {
     @BindView(R.id.btn_search)
@@ -50,7 +60,8 @@ public class DateFragment extends Fragment {
     TextView tvPageCount;
 
     Unbinder unbinder;
-    FragmentDateListAdapter fragmentDateListAdapter;
+    private FragmentDateListAdapter fragmentDateListAdapter;
+    private List<TestProcess> allTestProcess = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,15 +80,42 @@ public class DateFragment extends Fragment {
 
     private void initView() {
         recyclerDateList.setLayoutManager(new LinearLayoutManager(getContext()));
+        RxTextView.textChanges(editDeviceNum)
+                .skip(0)
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .map(new Function<CharSequence, String>() {
+                    @Override
+                    public String apply(CharSequence charSequence) throws Exception {
+                        return new StringBuilder(charSequence).reverse().toString();
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        if(TextUtils.isEmpty(s)){
+                            initData();
+                        }else {
+                            queryDevice(s);
+                        }
+                    }
+                });
+
+
+    }
+
+    private void queryDevice(String s) {
+        allTestProcess = DbManage.getInstance().queryLikeTestProcess(s);
+        fragmentDateListAdapter.notifyDataSetChanged();
+    }
+
+    private void loadListDate(){
+        fragmentDateListAdapter = new FragmentDateListAdapter(allTestProcess);
+        recyclerDateList.setAdapter(fragmentDateListAdapter);
     }
 
     private void initData() {
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            strings.add("CYZU155612" + i);
-        }
-        fragmentDateListAdapter = new FragmentDateListAdapter(strings);
-        recyclerDateList.setAdapter(fragmentDateListAdapter);
+        allTestProcess = DbManage.getInstance().queryAllTestProcess();
+        loadListDate();
     }
 
     @Override

@@ -90,4 +90,24 @@ public class DbManage {
         }
         return testProcesses.get(0);
     }
+
+    public Parameter queryParamter(String s) {
+        return parameterDao.queryBuilder().where(ParameterDao.Properties.DeviceId.eq(s)).unique();
+    }
+
+    public Sensor querySensor(String s) {
+        return sensorDao.queryBuilder().where(SensorDao.Properties.DeviceId.eq(s)).unique();
+    }
+
+    public TestProcess queryTestProcess(String s) {
+        return testProcessDao.queryBuilder().where(TestProcessDao.Properties.DeviceId.eq(s)).unique();
+    }
+
+    public List<TestProcess> queryLikeTestProcess(String s) {
+        return testProcessDao.queryBuilder().where(TestProcessDao.Properties.DeviceId.like(s)).list();
+    }
+
+    public List<TestProcess> queryAllTestProcess() {
+        return testProcessDao.queryBuilder().list();
+    }
 }

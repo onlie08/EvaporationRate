@@ -14,9 +14,14 @@ import android.widget.TextView;
 import com.ch.bean.Sensor;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.service.bean.BeanRTData;
 import com.ch.utils.ToastHelper;
 import com.ch.view.DateChooseController;
 import com.deadline.statebutton.StateButton;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -121,6 +126,7 @@ public class DeviceFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     @Nullable
@@ -174,6 +180,21 @@ public class DeviceFragment extends Fragment {
 
     }
 
+    @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
+    public void Event(BeanRTData beanRTData) {
+        refreshRtData(beanRTData);
+    }
+
+    private void refreshRtData(BeanRTData beanRTData) {
+        tvLaserValue.setText(beanRTData.getInstantFlow()+"");
+        tvFlowmeterValue.setText(beanRTData.getInstantFlow()+"");
+        tvTemperatureValue.setText(beanRTData.getEntertemperature()+"");
+        tvAirPressureValue.setText(beanRTData.getSurroundpressure()+"");
+        tvPressureValue.setText(beanRTData.getEnterpressure()+"");
+        tvPressureValue.setText(beanRTData.getEnterpressure()+"");
+        tvHumidityValue.setText(beanRTData.getSurroundhumidity()+"");
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -198,6 +219,9 @@ public class DeviceFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override

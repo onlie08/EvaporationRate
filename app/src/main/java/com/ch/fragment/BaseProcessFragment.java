@@ -339,6 +339,7 @@ public abstract class BaseProcessFragment extends Fragment {
                 break;
             case R.id.btn_test_report:
                 Intent intent = new Intent();
+                intent.putExtra("deviceId",parameter.getDeviceId());
                 intent.setClass(getActivity(), ReportActivity.class);
                 startActivity(intent);
                 break;

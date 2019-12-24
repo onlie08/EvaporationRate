@@ -140,6 +140,7 @@ public class ReportActivity extends AppCompatActivity {
     public Parameter parameter;
     public Sensor sensor;
     public TestProcess testProcess;
+    public String deviceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +149,7 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_new);
         ButterKnife.bind(this);
+        deviceId = getIntent().getStringExtra("deviceId");
         initView();
         initData();
     }
@@ -157,15 +159,18 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        parameter = DbManage.getInstance().getParamter();
+        if(TextUtils.isEmpty(deviceId)){
+            return;
+        }
+        parameter = DbManage.getInstance().queryParamter(deviceId);
         if (null != parameter) {
             setParameterDate(parameter);
         }
-        sensor = DbManage.getInstance().getSensor();
+        sensor = DbManage.getInstance().querySensor(deviceId);
         if (null != sensor) {
             setSensor(sensor);
         }
-        testProcess = DbManage.getInstance().getTestProcess();
+        testProcess = DbManage.getInstance().queryTestProcess(deviceId);
         if (null != testProcess) {
             setTestProcess(testProcess);
         }
@@ -188,6 +193,34 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void setSensor(Sensor sensor) {
+        String evaporationrateInfo = sensor.getEvaporationRateType()+sensor.getEvaporationRateNum();
+        if(!TextUtils.isEmpty(evaporationrateInfo)){
+            tvEvaporationrateInfo.setText(evaporationrateInfo);
+        }
+        String flowmeterInfo = sensor.getFlowmeterType()+sensor.getFlowmeterNum();
+        if(!TextUtils.isEmpty(flowmeterInfo)){
+            tvFlowmeterInfo.setText(flowmeterInfo);
+        }
+        String temperatureInfo = sensor.getTemperatureType() + sensor.getTemperatureNum();
+        if(!TextUtils.isEmpty(temperatureInfo)){
+            tvTemperatureInfo.setText(temperatureInfo);
+        }
+        String pressureInfo = sensor.getPressureType() + sensor.getPressureNum();
+        if(!TextUtils.isEmpty(pressureInfo)){
+            tvPressureInfo.setText(pressureInfo);
+        }
+        String humidityInfo = sensor.getHumidityType() + sensor.getHumidityNum();
+        if(!TextUtils.isEmpty(humidityInfo)){
+            tvHumidityInfo.setText(humidityInfo);
+        }
+        String airPressureInfo = sensor.getAirPressureType() + sensor.getAirPressureNum();
+        if(!TextUtils.isEmpty(airPressureInfo)){
+            tvAirPressureInfo.setText(airPressureInfo);
+        }
+        String laserInfo = sensor.getLaserType() + sensor.getLaserNum();
+        if(!TextUtils.isEmpty(laserInfo)){
+            tvLaserInfo.setText(laserInfo);
+        }
 
     }
 
@@ -220,7 +253,12 @@ public class ReportActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_export:
-                pdfModel();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pdfModel();
+                    }
+                }).start();
                 break;
             case R.id.btn_printing:
                 break;
@@ -237,27 +275,6 @@ public class ReportActivity extends AppCompatActivity {
         return true;
     }
 
-    private void saveReport(){
-        PdfDocument document = new PdfDocument();//1, 建立PdfDocument
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(
-                scrollView2.getMeasuredWidth(), scrollView2.getMeasuredHeight(), 1).create();//2
-        PdfDocument.Page page = document.startPage(pageInfo);
-        scrollView2.draw(page.getCanvas());//3
-        document.finishPage(page);//4
-        document.close();//5
-        try {
-            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+"table.pdf";
-            File e = new File(path);
-            if (e.exists()) {
-                e.delete();
-            }else {
-            }
-            document.writeTo(new FileOutputStream(e));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void pdfModel(){
         PdfDocument document = new PdfDocument();
         // ll_model是一个LinearLayout
@@ -267,7 +284,7 @@ public class ReportActivity extends AppCompatActivity {
         document.finishPage(page);
 
         try {
-            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+"table.pdf";
+            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+parameter.getDeviceId()+"_report.pdf";
             File file = new File(path);
             if (file.exists()) {
                 file.delete();
