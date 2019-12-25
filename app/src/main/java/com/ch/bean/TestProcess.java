@@ -23,13 +23,19 @@ public class TestProcess {
     private String evaporationRateThire;//试验3蒸发率
     private String evaporationRateFinal;//最终蒸发率结果
     private int testProcess; //试验进度
-    @Generated(hash = 989472994)
+    private boolean isPass; //是否合格
+    private float surroundtemperature;//环境温度
+    private float surroundhumidity;//环境湿度
+    private float surroundpressure;//环境压力
+
+    @Generated(hash = 1960513136)
     public TestProcess(Long id, String deviceId, String staticStartTime,
             String staticEndTime, String staticTotalTime, String testStartTime,
             String testEndTime, String testTotalTime, String acquisitionError,
             String evaporationRateOne, String evaporationRateTwo,
             String evaporationRateThire, String evaporationRateFinal,
-            int testProcess) {
+            int testProcess, boolean isPass, float surroundtemperature,
+            float surroundhumidity, float surroundpressure) {
         this.id = id;
         this.deviceId = deviceId;
         this.staticStartTime = staticStartTime;
@@ -44,6 +50,10 @@ public class TestProcess {
         this.evaporationRateThire = evaporationRateThire;
         this.evaporationRateFinal = evaporationRateFinal;
         this.testProcess = testProcess;
+        this.isPass = isPass;
+        this.surroundtemperature = surroundtemperature;
+        this.surroundhumidity = surroundhumidity;
+        this.surroundpressure = surroundpressure;
     }
     @Generated(hash = 1871413968)
     public TestProcess() {
@@ -131,6 +141,30 @@ public class TestProcess {
     }
     public void setTestProcess(int testProcess) {
         this.testProcess = testProcess;
+    }
+    public boolean getIsPass() {
+        return this.isPass;
+    }
+    public void setIsPass(boolean isPass) {
+        this.isPass = isPass;
+    }
+    public float getSurroundtemperature() {
+        return this.surroundtemperature;
+    }
+    public void setSurroundtemperature(float surroundtemperature) {
+        this.surroundtemperature = surroundtemperature;
+    }
+    public float getSurroundhumidity() {
+        return this.surroundhumidity;
+    }
+    public void setSurroundhumidity(float surroundhumidity) {
+        this.surroundhumidity = surroundhumidity;
+    }
+    public float getSurroundpressure() {
+        return this.surroundpressure;
+    }
+    public void setSurroundpressure(float surroundpressure) {
+        this.surroundpressure = surroundpressure;
     }
 
 }

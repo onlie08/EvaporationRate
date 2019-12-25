@@ -38,7 +38,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/alie_padding_two"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:hint="请输入试验标准"
         android:inputType="text"
@@ -49,7 +49,7 @@
         android:text="453254325"
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
+        app:layout_constraintBottom_toTopOf="@+id/btn_sure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
@@ -62,21 +62,22 @@
         android:layout_marginBottom="24dp"
         android:text="取消"
         android:textSize="@dimen/text_size_thire"
+        android:visibility="visible"
         app:animationDuration="200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_sure"
+
         app:layout_constraintStart_toStartOf="parent"
-
         app:normalBackgroundColor="@color/gary_background"
+
         app:normalStrokeColor="@color/textcolorAccent"
-
         app:normalStrokeWidth="1dp"
-        app:normalTextColor="@color/textcolorAccent"
 
+        app:normalTextColor="@color/textcolorAccent"
         app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@android:color/white"
-        app:round="true"
 
+        app:round="true"
         app:unableBackgroundColor="@android:color/darker_gray"
         app:unableTextColor="@android:color/darker_gray" />
 
@@ -84,18 +85,19 @@
         android:id="@+id/btn_sure"
         android:layout_width="120dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
         android:text="确定"
         android:textSize="@dimen/text_size_thire"
         app:animationDuration="200"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_cancel"
 
-        app:layout_constraintTop_toTopOf="@+id/btn_cancel"
         app:normalBackgroundColor="@color/colorAccent"
 
         app:normalTextColor="@android:color/white"
         app:pressedBackgroundColor="@color/colorAccent"
-
         app:pressedTextColor="@android:color/white"
         app:round="true"
         app:unableBackgroundColor="@android:color/darker_gray"

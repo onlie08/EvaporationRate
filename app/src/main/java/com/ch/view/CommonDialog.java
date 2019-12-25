@@ -127,7 +127,11 @@ public class CommonDialog extends Dialog {
         }else {
             negtiveBn.setText("取消");
         }
-
+        if(isSingle()){
+            negtiveBn.setVisibility(View.GONE);
+        }else {
+            negtiveBn.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

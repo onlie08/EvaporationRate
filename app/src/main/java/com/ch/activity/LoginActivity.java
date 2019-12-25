@@ -100,8 +100,8 @@ public class LoginActivity extends AppCompatActivity {
         editPwd.setText(pwd);
         cbRember.setChecked(rember);
 
-        boolean dbinit = (boolean) AppPreferences.instance().get("dbInit", false);
-//        boolean dbinit = false;
+//        boolean dbinit = (boolean) AppPreferences.instance().get("dbInit", false);
+        boolean dbinit = false;
         if(!dbinit){
             AppPreferences.instance().put("dbInit", true);
             User user = new User();

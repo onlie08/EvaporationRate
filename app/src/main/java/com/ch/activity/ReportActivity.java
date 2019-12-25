@@ -1,14 +1,19 @@
 package com.ch.activity;
 
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -18,6 +23,7 @@ import com.ch.bean.TestProcess;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.utils.DateUtil;
+import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
 
 import java.io.File;
@@ -136,6 +142,10 @@ public class ReportActivity extends AppCompatActivity {
     ConstraintLayout tvChapter;
     @BindView(R.id.scrollView2)
     ScrollView scrollView2;
+    @BindView(R.id.progressBar2)
+    ProgressBar progressBar2;
+    @BindView(R.id.tv_tip)
+    TextView tvTip;
 
     public Parameter parameter;
     public Sensor sensor;
@@ -190,6 +200,9 @@ public class ReportActivity extends AppCompatActivity {
 
         tvEvaporationrateFinal.setText(isNotNull(testProcess.getEvaporationRateFinal()) ? testProcess.getEvaporationRateFinal():"---");
         tvEvaporationrateFinal.setText(isNotNull(testProcess.getEvaporationRateFinal()) ? testProcess.getEvaporationRateFinal():"---");
+        tvAveragePressure.setText(testProcess.getSurroundpressure()+"");
+        tvAverageTempture.setText(testProcess.getSurroundtemperature()+"");
+        tvAverageEvaporation.setText(testProcess.getSurroundhumidity()+"");
     }
 
     private void setSensor(Sensor sensor) {
@@ -241,6 +254,8 @@ public class ReportActivity extends AppCompatActivity {
         tvDesignStandard.setText(isNotNull(parameter.getDesignStandard()) ? parameter.getDesignStandard():"---");
         tvLicenseNo.setText(isNotNull(parameter.getLicenseNo()) ? parameter.getLicenseNo():"---");
         tvFullRate.setText(isNotNull(parameter.getFullnessRate()) ? parameter.getFullnessRate():"---");
+        tvNer.setText(isNotNull(parameter.getQualificationRate()) ? parameter.getQualificationRate():"---");
+        tvTestStandard.setText(isNotNull(parameter.getDesignStandard()) ? parameter.getDesignStandard():"---");
     }
 
     @Override
@@ -253,6 +268,8 @@ public class ReportActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_export:
+                progressBar2.setVisibility(View.VISIBLE);
+                tvTip.setVisibility(View.VISIBLE);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -275,12 +292,25 @@ public class ReportActivity extends AppCompatActivity {
         return true;
     }
 
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message message) {
+            progressBar2.setVisibility(View.GONE);
+            tvTip.setVisibility(View.GONE);
+            ToastHelper.showLongToast("Pdf报告成功生成，已保存到本地");
+            return false;
+        }
+    });
+
     private void pdfModel(){
         PdfDocument document = new PdfDocument();
         // ll_model是一个LinearLayout
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(scrollView2.getWidth(),scrollView2.getHeight(),1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(scrollView2.getWidth(),scrollView2.getChildAt(0).getHeight(),2).create();
         PdfDocument.Page page = document.startPage(pageInfo);
         scrollView2.draw(page.getCanvas());
+//        Canvas canvas = page.getCanvas();
+//        canvas.translate(0, -scrollView2.getHeight());
+//        scrollView2.draw(canvas);
         document.finishPage(page);
 
         try {
@@ -295,10 +325,40 @@ public class ReportActivity extends AppCompatActivity {
             outputStream = new FileOutputStream(file);
             document.writeTo(outputStream);
             document.close();
+            handler.sendEmptyMessage(0);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+//    private void pdfInterviewContent(PdfDocument document) {
+////        // 一页pdf的高度
+////        int onePageHeight = tv_content.getLineHeight() * 30;
+//        int onePageHeight = scrollView2.getChildAt(0).getHeight() * 30;
+//        // TextView中总共有多少行
+//        int lineCount = tv_content.getLineCount();
+//        // 计算这个TextView需要分成多少页
+//        int pdfCount = 3;
+//        for (int i = 0; i < pdfCount; i++) {
+//            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(tv_content.getWidth(), onePageHeight + 120, 1)
+//                    .setContentRect(new Rect(0, 60, tv_content.getWidth(), onePageHeight + 60))
+//                    .create();
+//            PdfDocument.Page page = document.startPage(pageInfo);
+//            Canvas canvas = page.getCanvas();
+//            canvas.translate(0, -onePageHeight * i);
+//            tv_content.draw(canvas);
+//            document.finishPage(page);
+//        }
+//        File file = new File(getPdfFilePath(pdfName));
+//        FileOutputStream outputStream = new FileOutputStream(file);
+//        try {
+//            document.writeTo(outputStream);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        document.close();
+//    }
 }

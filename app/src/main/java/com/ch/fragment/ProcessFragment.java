@@ -21,6 +21,7 @@ import com.ch.utils.DateUtil;
 import com.ch.utils.RxStaticTotalTime;
 import com.ch.utils.RxTestTotalTime;
 import com.ch.utils.ToastHelper;
+import com.ch.view.CommonDialog;
 import com.ch.view.SpinnerController;
 import com.google.gson.Gson;
 
@@ -33,6 +34,7 @@ import java.util.List;
 
 
 public class ProcessFragment extends BaseProcessFragment{
+    private BeanRTData finalResult;
     private DataService mDataService;//xxg
     private ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -73,6 +75,7 @@ public class ProcessFragment extends BaseProcessFragment{
                 @Override
                 public void experimentOver(BeanRTData data, Float testEvaR, Float staticEvaR) {
                     Log.d("Data service", "---experimentOver data:" + new Gson().toJson(data) + "testEvaR:"+testEvaR+" staticEvaR:"+staticEvaR);
+                    finalResult = data;
                     testControll(staticEvaR);
                 }
             });
@@ -104,6 +107,14 @@ public class ProcessFragment extends BaseProcessFragment{
         testProcess.setAcquisitionError(tvCollectError.getText().toString());
         testProcess.setEvaporationRateFinal(tvPrejudge.getText().toString());
         testProcess.setTestProcess(testProgress);
+        testProcess.setSurroundhumidity(finalResult.getSurroundhumidity());
+        testProcess.setSurroundpressure(finalResult.getSurroundpressure());
+        testProcess.setSurroundtemperature(finalResult.getSurroundtemperature());
+        if(testState == 1){
+            testProcess.setIsPass(true);
+        }else if(testState == 2){
+            testProcess.setIsPass(false);
+        }
         DbManage.getInstance().saveTestProcess(testProcess);
     }
 
@@ -161,6 +172,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void testSuccess() {
+
         endTest();
         ToastHelper.showToast("试验成功完成");
         btnTestReport.setEnabled(true);
@@ -173,6 +185,10 @@ public class ProcessFragment extends BaseProcessFragment{
         RxTestTotalTime.cancel();
         testProgress = 0;
         saveTestProcessToDB();
+    }
+
+    void testFail() {
+//        saveTestProcessToDB();
     }
 
     @Override
@@ -255,18 +271,36 @@ public class ProcessFragment extends BaseProcessFragment{
     }
 
     private void testControll(Float staticEvaR){
-        String alarmVaule = (String) AppPreferences.instance().get("alarmValue","5");
+        double qualificate = Double.parseDouble(parameter.getQualificationRate());
+
         if(testProgress == 1){
             staticEvaR1 = staticEvaR;
             tvTestOneCount.setText(""+staticEvaR);
-            if(staticEvaR1 > Integer.parseInt(alarmVaule)){
+            if(staticEvaR1 > qualificate){
 //                initAllState();
+                testState = 2;
                 ToastHelper.showToast("第一次试验不合格");
+                final CommonDialog commonDialog = new CommonDialog(getActivity());
+                commonDialog.setTitle("提示")
+                            .setMessage("试验不合格！请检查设备后重新开始试验").setSingle(true)
+                            .setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                                @Override
+                                public void onPositiveClick() {
+                                    initAllState();
+                                    testFail();
+                                    commonDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onNegtiveClick() {
+                                    commonDialog.dismiss();
+                                }
+                            }).show();
+
                 tvTestOneResult.setText("不合格");
                 tvTestOneResult.setSelected(true);
             }else {
                 testProgress = 2;
-//                stopTest();
                 startTest();
                 tvTestOneResult.setText("合格");
                 tvTestOneResult.setSelected(false);
@@ -285,7 +319,6 @@ public class ProcessFragment extends BaseProcessFragment{
             if(diff > 5){
                 testProgress = 3;
                 startTest();
-
                 ToastHelper.showToast("第二次试验不合格");
                 tvTestTwoResult.setText("不合格");
                 tvTestTwoResult.setSelected(true);
@@ -293,6 +326,7 @@ public class ProcessFragment extends BaseProcessFragment{
                 tvCollectResult.setSelected(true);
 
             }else {
+                testState = 1;
                 testSuccess();
                 tvTestTwoResult.setText("合格");
                 tvTestTwoResult.setSelected(false);
@@ -302,11 +336,14 @@ public class ProcessFragment extends BaseProcessFragment{
         }else if(testProgress == 3){
             staticEvaR3 = staticEvaR;
             tvTestThireCount.setText(""+staticEvaR);
-            if(staticEvaR1 > Integer.parseInt(alarmVaule)){
+            if(staticEvaR1 > qualificate){
+                testState = 2;
+                testProgress = 2;
                 ToastHelper.showToast("第三次试验不合格");
                 tvTestThireResult.setText("不合格");
                 tvTestThireResult.setSelected(true);
             }else {
+                testState = 1;
                 tvTestThireResult.setText("合格");
                 tvTestThireResult.setSelected(false);
             }

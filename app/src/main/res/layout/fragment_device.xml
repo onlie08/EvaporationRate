@@ -786,7 +786,7 @@
             android:text="正常"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintEnd_toStartOf="@+id/tv_laser_value"
+            app:layout_constraintEnd_toStartOf="@+id/textView127"
             app:layout_constraintStart_toEndOf="@+id/tv_laser_test_state"
             app:layout_constraintTop_toTopOf="@+id/tv_laser_test_state" />
 
@@ -867,7 +867,7 @@
         <TextView
             android:id="@+id/tv_air_pressure_test_state"
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:text="已检验"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -882,8 +882,9 @@
             android:text="已检验"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            tools:layout_editor_absoluteX="930dp"
-            tools:layout_editor_absoluteY="294dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/edit_pressure_passed_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_laser_test_state"
+            app:layout_constraintTop_toTopOf="@+id/edit_pressure_passed_date" />
 
         <TextView
             android:id="@+id/textView103"

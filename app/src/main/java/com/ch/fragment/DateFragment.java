@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ch.adapter.FragmentDateListAdapter;
@@ -34,6 +35,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class DateFragment extends Fragment {
     @BindView(R.id.btn_search)
@@ -78,6 +80,18 @@ public class DateFragment extends Fragment {
         return root;
     }
 
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端显示 相当于调用了onPause();
+            return;
+        }else{  // 在最前端显示 相当于调用了onResume();
+            initData();
+        }
+
+    }
+
     private void initView() {
         recyclerDateList.setLayoutManager(new LinearLayoutManager(getContext()));
         RxTextView.textChanges(editDeviceNum)
@@ -89,11 +103,12 @@ public class DateFragment extends Fragment {
                         return new StringBuilder(charSequence).reverse().toString();
                     }
                 })
+                .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
                         if(TextUtils.isEmpty(s)){
-                            initData();
+//                            initData();
                         }else {
                             queryDevice(s);
                         }
@@ -105,7 +120,7 @@ public class DateFragment extends Fragment {
 
     private void queryDevice(String s) {
         allTestProcess = DbManage.getInstance().queryLikeTestProcess(s);
-        fragmentDateListAdapter.notifyDataSetChanged();
+//        fragmentDateListAdapter.notifyDataSetChanged();
     }
 
     private void loadListDate(){
@@ -165,4 +180,5 @@ public class DateFragment extends Fragment {
                 break;
         }
     }
+
 }

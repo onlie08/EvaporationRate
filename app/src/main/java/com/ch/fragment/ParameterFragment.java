@@ -197,14 +197,7 @@ public class ParameterFragment extends Fragment {
                 startDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        DateChooseController endDate = new DateChooseController(getActivity());
-                        endDate.showChooseDateDialog();
-                        endDate.setListener(new DateChooseController.DateChooseListener() {
-                            @Override
-                            public void dateResult(String date2) {
-                                tvTestDate.setText(date1 + "——" + date2);
-                            }
-                        });
+                        tvTestDate.setText(date1);
                     }
                 });
                 break;
@@ -214,31 +207,17 @@ public class ParameterFragment extends Fragment {
                 testEndDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        DateChooseController endDate = new DateChooseController(getActivity());
-                        endDate.showChooseDateDialog();
-                        endDate.setListener(new DateChooseController.DateChooseListener() {
-                            @Override
-                            public void dateResult(String date2) {
-                                tvTestEndDate.setText(date1 + "——" + date2);
-                            }
-                        });
+                        tvTestEndDate.setText(date1);
                     }
                 });
                 break;
             case R.id.tv_madein_date:
                 DateChooseController madeinDate = new DateChooseController(getActivity());
-                madeinDate.showChooseDateDialog();
+                madeinDate.chooseSingleDateDialog();
                 madeinDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        DateChooseController endDate = new DateChooseController(getActivity());
-                        endDate.showChooseDateDialog();
-                        endDate.setListener(new DateChooseController.DateChooseListener() {
-                            @Override
-                            public void dateResult(String date2) {
-                                tvMadeinDate.setText(date1 + "——" + date2);
-                            }
-                        });
+                        tvMadeinDate.setText(date1);
                     }
                 });
                 break;
@@ -248,14 +227,7 @@ public class ParameterFragment extends Fragment {
                 fillingDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        DateChooseController endDate = new DateChooseController(getActivity());
-                        endDate.showChooseDateDialog();
-                        endDate.setListener(new DateChooseController.DateChooseListener() {
-                            @Override
-                            public void dateResult(String date2) {
-                                tvLiquidFillingEndDate.setText(date1 + "——" + date2);
-                            }
-                        });
+                        tvLiquidFillingEndDate.setText(date1);
                     }
                 });
                 break;
@@ -311,9 +283,9 @@ public class ParameterFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {// 不在最前端显示 相当于调用了onPause();
-//            if(checkInputLegal()){
-//                saveDateToDb();
-//            }
+            if(checkInputLegal()){
+                saveDateToDb();
+            }
             return;
         }else{  // 在最前端显示 相当于调用了onResume();
             initData();

@@ -60,7 +60,7 @@ public class DbManage {
         if(parameters.isEmpty()){
             return null;
         }
-        return parameters.get(0);
+        return parameters.get(parameters.size()-1);
     }
 
     public void saveSensor(Sensor sensor){
@@ -72,7 +72,7 @@ public class DbManage {
         if(sensors.isEmpty()){
             return null;
         }
-        return sensors.get(0);
+        return sensors.get(sensors.size()-1);
     }
 
     public void saveBeanRTData(BeanRTData beanRTData){

@@ -130,6 +130,11 @@ public abstract class BaseProcessFragment extends Fragment {
     public float staticEvaR3;
     public boolean suspend = false;
     /**
+     * 1:试验合格
+     * 2:试验不合格
+     */
+    public int testState = 0;
+    /**
      * 1:试验1
      * 2:试验2
      * 3:试验3
@@ -170,7 +175,7 @@ public abstract class BaseProcessFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_process, container, false);
         unbinder = ButterKnife.bind(this, root);
         initView();
-//        initData();
+        initData();
         return root;
     }
 
@@ -209,7 +214,26 @@ public abstract class BaseProcessFragment extends Fragment {
         btnFlowCounter.setText("流量计: L/min");
 
         tvAlarm.setSelected(false);
+
+        tvTestOneResult.setText("合格");
+        tvTestOneResult.setSelected(false);
+
+        tvTestTwoResult.setText("合格");
+        tvTestTwoResult.setSelected(false);
+
+        tvTestThireResult.setText("合格");
+        tvTestThireResult.setSelected(false);
+
+        tvCollectResult.setText("合格");
+        tvCollectResult.setSelected(false);
+
+        tvTestOneCount.setText("");
+        tvTestTwoCount.setText("");
+        tvTestThireCount.setText("");
+        tvCollectError.setText("");
+
         testProgress = 0;
+        testState = 0;
     }
 
     private void initData() {
@@ -471,7 +495,8 @@ public abstract class BaseProcessFragment extends Fragment {
         btnEntranceTemperature.setText("入口温度: " + String.valueOf(beanRTData.getEntertemperature()) + "℃");
         btnFlowCounter.setText("流量计: " + String.valueOf(beanRTData.getInstantFlow()) + "L/min");
         String alarmVaule = (String) AppPreferences.instance().get("alarmValue", "5");
-        if (beanRTData.getConcentration() > Integer.parseInt(alarmVaule)) {
+        double alarm = Double.parseDouble(alarmVaule)/100;
+        if (beanRTData.getConcentration() > alarm) {
             tvAlarm.setSelected(true);
         } else {
             tvAlarm.setSelected(false);
@@ -494,8 +519,9 @@ public abstract class BaseProcessFragment extends Fragment {
     }
 
     public void setEvaRDate(float staticEvaR) {
+        double qualificate = Double.parseDouble(parameter.getQualificationRate());
         tvPrejudge.setText(String.valueOf(staticEvaR));
-        if (staticEvaR > 5) {//替换成NER值
+        if (staticEvaR > qualificate) {//替换成NER值
             tvPreResult.setSelected(true);
             tvPreResult.setText("不合格");
         } else {
