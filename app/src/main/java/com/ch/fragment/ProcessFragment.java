@@ -142,7 +142,7 @@ public class ProcessFragment extends BaseProcessFragment{
             long expperiod = 1 * 60l; //6分钟便于测试 ,应该一次实验室24小时
             BeanOperaParam ln2 = new BeanOperaParam(1.2555f, 808.61f, 1f, 1f);
             BeanOperaParam lng = new BeanOperaParam(0.676f, 422.53f, 1f, 1f);
-            float validV = 40.5f;
+            float validV = 40.5f*1000f;
 
             mDataService.startTest(recPeroid, mediumtype, expperiod, lng, ln2, validV);
         }
