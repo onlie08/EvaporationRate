@@ -1121,7 +1121,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:enabled="false"
-        android:text="流量计L/min"
+        android:text="流量计L/Min"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/btn_entrance_pressure"

@@ -3,12 +3,14 @@ package com.ch.bean;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 
 @Entity
 public class Sensor {
     @Id(autoincrement = true)
     private long id;
 
+    @Unique
     private String deviceId;
 
     private String evaporationRateType;

@@ -1,7 +1,6 @@
 package com.ch.fragment;
 
 import android.os.Bundle;
-import android.os.DropBoxManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +16,7 @@ import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.DateUtil;
+import com.ch.utils.RxChartTimerUtil;
 import com.ch.view.CommonChartLineViewController;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,7 +24,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,6 +50,7 @@ public class ChartFragment extends Fragment {
 
     private Parameter parameter;
     private List<BeanRTData> beanRTDataList = new ArrayList<>();
+    private BeanRTData curBeanRTData;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,8 +76,7 @@ public class ChartFragment extends Fragment {
     @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
     public void Event(BeanRTData beanRTData) {
         refreshRtData(beanRTData);
-        beanRTDataList.add(beanRTData);
-        refreshChart();
+        curBeanRTData = beanRTData;
     }
 
     private void refreshChart() {
@@ -90,44 +89,46 @@ public class ChartFragment extends Fragment {
         List<ChartBean> chartBeans7 = new ArrayList<>();
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
             chartBean.setValue(beanRTDataList.get(i).getInstantFlow());
             chartBeans1.add(chartBean);
         }
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
             chartBean.setValue(beanRTDataList.get(i).getEntertemperature());
             chartBeans2.add(chartBean);
         }
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
             chartBean.setValue(beanRTDataList.get(i).getEnterpressure());
             chartBeans3.add(chartBean);
         }
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
             chartBean.setValue(beanRTDataList.get(i).getSurroundtemperature());
             chartBeans4.add(chartBean);
         }
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
             chartBean.setValue(beanRTDataList.get(i).getSurroundpressure());
             chartBeans5.add(chartBean);
         }
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
-            chartBean.setValue(beanRTDataList.get(i).getSurroundhumidity());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
+            chartBean.setValue(beanRTDataList.get(i).getSurroundhumidity()*100);
             chartBeans6.add(chartBean);
+
         }
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
-            chartBean.setDate(DateUtil.getSystemDate());
-            chartBean.setValue(beanRTDataList.get(i).getAccFlow());
+            chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
+            chartBean.setValue(beanRTDataList.get(i).getSurroundpressure());
+//            chartBean.setValue(beanRTDataList.get(i).getAccFlow());
             chartBeans7.add(chartBean);
         }
 
@@ -149,6 +150,16 @@ public class ChartFragment extends Fragment {
             tvTestMedium.setText(parameter.getMediumType());
         }
 
+        RxChartTimerUtil.interval(60*1000, new RxChartTimerUtil.IRxNext() {
+            @Override
+            public void doNext(long number) {
+                if(beanRTDataList.size()>60){
+                    beanRTDataList.remove(0);
+                }
+                beanRTDataList.add(curBeanRTData);
+                refreshChart();
+            }
+        });
     }
 
     @Override
@@ -179,6 +190,7 @@ public class ChartFragment extends Fragment {
         if(EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
+        RxChartTimerUtil.cancel();
     }
 
     @Override

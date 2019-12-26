@@ -67,23 +67,11 @@ public class CommonChartLineViewController extends ViewController<List<ChartBean
     }
 
     private void initData(List<ChartBean> data1) {
-//        switch (getChartType()){
-//            case 0:
-//                tvChartType.setText("流量计");
-//                lineChartManager1.showLineChart0(data1,data2,data3,data4,data5,data6,data7, "流量计", getContext().getResources().getColor(R.color.blue));
-//                Log.i(TAG,"空气温度");
-//                break;
-//        }
-//
-//
-//        //设置曲线填充色 以及 MarkerView
-////        Drawable drawable = getContext().getResources().getDrawable(R.drawable.fade_blue);
-////        lineChartManager1.setChartFillDrawable(drawable);
-//        lineChartManager1.setMarkerView(getContext());
+
     }
 
     public void loadData(List<ChartBean> data1,List<ChartBean> data2,List<ChartBean> data3,List<ChartBean> data4,List<ChartBean> data5,List<ChartBean> data6,List<ChartBean> data7) {
-        lineChartManager1.showLineChart0(data1,data2,data3,data4,data5,data6,data7, "流量计", getContext().getResources().getColor(R.color.blue));
+        lineChartManager1.showLineChart0(data1,data2,data3,data4,data5,data6,data7, "大气压", getContext().getResources().getColor(R.color.blue));
         //设置曲线填充色 以及 MarkerView
 //        Drawable drawable = getContext().getResources().getDrawable(R.drawable.fade_blue);
 //        lineChartManager1.setChartFillDrawable(drawable);

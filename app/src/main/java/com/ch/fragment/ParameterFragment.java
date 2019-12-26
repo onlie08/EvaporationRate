@@ -161,6 +161,7 @@ public class ParameterFragment extends Fragment {
             case R.id.btn_save:
                 if(checkInputLegal()){
                     saveDateToDb();
+                    ToastHelper.showToast("保存成功");
                 }
                 break;
             case R.id.tv_medium_type:
@@ -256,7 +257,6 @@ public class ParameterFragment extends Fragment {
         parameter.setLicenseNo(editLicenseNo.getText().toString().trim());
 
         DbManage.getInstance().saveParamter(parameter);
-        ToastHelper.showToast("保存成功");
     }
 
     private boolean checkInputLegal(){

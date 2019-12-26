@@ -33,7 +33,7 @@ public class DataReader {
             retData.setIswarm(new Random().nextInt(1));
              /*
             //测试数据 结果 a0=0.000115  a20=0.0001177
-            Float curFlow = 52F; //30 L/min
+            Float curFlow = 52F; //30 L/Min
             retData.setInstantFlow(curFlow);
             retData.setEntertemperature(20f);
             retData.setEnterpressure(1f); //kpa

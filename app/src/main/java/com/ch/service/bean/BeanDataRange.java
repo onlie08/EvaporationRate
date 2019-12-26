@@ -2,7 +2,7 @@ package com.ch.service.bean;
 
 public class BeanDataRange {
 
-    public Float[] flowRang;    //流量计量程 L/min
+    public Float[] flowRang;    //流量计量程 L/Min
     public Float[] enterTemp;   //入口温度 ℃
     public Float[] enterPress;  //入口压力kpa
     public Float[] surroundTemp;    //环境温度

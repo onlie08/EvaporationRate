@@ -211,7 +211,7 @@ public abstract class BaseProcessFragment extends Fragment {
 
         btnEntrancePressure.setText("入口压力: KPa");
         btnEntranceTemperature.setText("入口温度: ℃");
-        btnFlowCounter.setText("流量计: L/min");
+        btnFlowCounter.setText("流量计: L/Min");
 
         tvAlarm.setSelected(false);
 
@@ -493,7 +493,7 @@ public abstract class BaseProcessFragment extends Fragment {
 
         btnEntrancePressure.setText("入口压力: " + String.valueOf(beanRTData.getEnterpressure()) + "KPa");
         btnEntranceTemperature.setText("入口温度: " + String.valueOf(beanRTData.getEntertemperature()) + "℃");
-        btnFlowCounter.setText("流量计: " + String.valueOf(beanRTData.getInstantFlow()) + "L/min");
+        btnFlowCounter.setText("流量计: " + String.valueOf(beanRTData.getInstantFlow()) + "L/Min");
         String alarmVaule = (String) AppPreferences.instance().get("alarmValue", "5");
         double alarm = Double.parseDouble(alarmVaule)/100;
         if (beanRTData.getConcentration() > alarm) {

@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 
 //import com.ch.service.bean.BeanDataRange;
+import com.ch.service.bean.BeanDataRange;
 import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
 import com.ch.service.dataacq.DataCalculate;
@@ -120,11 +121,11 @@ public class DataService extends Service {
      * 获取采集数据量程
      * @return
      */
-//    public BeanDataRange getDataRange()
-//    {
-//        BeanDataRange bdR = new BeanDataRange();
-//        return bdR;
-//    }
+    public BeanDataRange getDataRange()
+    {
+        BeanDataRange bdR = new BeanDataRange();
+        return bdR;
+    }
 
     /**
      * 开始进行数据采集（实时显示）

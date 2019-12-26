@@ -16,6 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/button_blue"
+        android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -23,6 +25,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/button_seagreen"
+        android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
 
+    <TextView
+        android:id="@+id/tv_value2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/button_purple"
+        android:drawablePadding="5dp"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/tv_value3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/button_green"
+        android:drawablePadding="5dp"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/tv_value4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/circle_yellow"
+        android:drawablePadding="5dp"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/tv_value5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/circle_blue"
+        android:drawablePadding="5dp"
+        android:textColor="@android:color/white" />
 </LinearLayout>

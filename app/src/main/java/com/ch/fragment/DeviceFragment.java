@@ -237,6 +237,7 @@ public class DeviceFragment extends Fragment {
             case R.id.btn_sure:
                 if(checkInputLegal()){
                     saveDateToDb();
+                    ToastHelper.showToast("保存成功");
                 }else {
                     ToastHelper.showToast("有未填写信息，请填写完整后提交");
                 }
@@ -305,19 +306,20 @@ public class DeviceFragment extends Fragment {
     }
 
     private boolean checkInputLegal(){
-        if(TextUtils.isEmpty(editLaserType.getText().toString().trim()) || TextUtils.isEmpty(editLaserNum.getText().toString().trim()) ||TextUtils.isEmpty(tvLaserTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editLaserPassedDate.getText().toString().trim()) ||
-                TextUtils.isEmpty(editFlowmeterType.getText().toString().trim()) ||TextUtils.isEmpty(editFlowmeterNum.getText().toString().trim()) ||TextUtils.isEmpty(tvFlowmeterTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editFlowmeterPassedDate.getText().toString().trim()) ||
-                TextUtils.isEmpty(editTemperatureType.getText().toString().trim()) ||TextUtils.isEmpty(editTemperatureNum.getText().toString().trim()) ||TextUtils.isEmpty(tvTemperatureTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editTemperaturePassedDate.getText().toString().trim()) ||
-                TextUtils.isEmpty(editAirPressureType.getText().toString().trim()) ||TextUtils.isEmpty(editAirPressureNum.getText().toString().trim()) ||TextUtils.isEmpty(tvAirPressureTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editAirPressurePassedDate.getText().toString().trim()) ||
-                TextUtils.isEmpty(editPressureType.getText().toString().trim()) ||TextUtils.isEmpty(editPressureNum.getText().toString().trim()) ||TextUtils.isEmpty(tvPressureTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editPressurePassedDate.getText().toString().trim()) ||
-                TextUtils.isEmpty(editHumidityType.getText().toString().trim()) ||TextUtils.isEmpty(editHumidityNum.getText().toString().trim()) ||TextUtils.isEmpty(tvHumidityTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editHumidityPassedDate.getText().toString().trim())){
-            return false;
-        }
+//        if(TextUtils.isEmpty(editLaserType.getText().toString().trim()) || TextUtils.isEmpty(editLaserNum.getText().toString().trim()) ||TextUtils.isEmpty(tvLaserTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editLaserPassedDate.getText().toString().trim()) ||
+//                TextUtils.isEmpty(editFlowmeterType.getText().toString().trim()) ||TextUtils.isEmpty(editFlowmeterNum.getText().toString().trim()) ||TextUtils.isEmpty(tvFlowmeterTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editFlowmeterPassedDate.getText().toString().trim()) ||
+//                TextUtils.isEmpty(editTemperatureType.getText().toString().trim()) ||TextUtils.isEmpty(editTemperatureNum.getText().toString().trim()) ||TextUtils.isEmpty(tvTemperatureTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editTemperaturePassedDate.getText().toString().trim()) ||
+//                TextUtils.isEmpty(editAirPressureType.getText().toString().trim()) ||TextUtils.isEmpty(editAirPressureNum.getText().toString().trim()) ||TextUtils.isEmpty(tvAirPressureTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editAirPressurePassedDate.getText().toString().trim()) ||
+//                TextUtils.isEmpty(editPressureType.getText().toString().trim()) ||TextUtils.isEmpty(editPressureNum.getText().toString().trim()) ||TextUtils.isEmpty(tvPressureTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editPressurePassedDate.getText().toString().trim()) ||
+//                TextUtils.isEmpty(editHumidityType.getText().toString().trim()) ||TextUtils.isEmpty(editHumidityNum.getText().toString().trim()) ||TextUtils.isEmpty(tvHumidityTestDate.getText().toString().trim()) ||TextUtils.isEmpty(editHumidityPassedDate.getText().toString().trim())){
+//            return false;
+//        }
         return true;
     }
 
     private void saveDateToDb() {
         Sensor sensor = new Sensor();
+        sensor.setDeviceId(DbManage.getInstance().getParamter().getDeviceId());
         sensor.setLaserType(editLaserType.getText().toString().trim());
         sensor.setLaserNum(editLaserNum.getText().toString().trim());
         sensor.setLaserTestDate(tvLaserTestDate.getText().toString().trim());
@@ -349,6 +351,20 @@ public class DeviceFragment extends Fragment {
         sensor.setHumidityPassedDate(editHumidityPassedDate.getText().toString().trim());
 
         DbManage.getInstance().saveSensor(sensor);
-        ToastHelper.showToast("保存成功");
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端显示 相当于调用了onPause();
+            if(checkInputLegal()){
+                saveDateToDb();
+            }
+            return;
+        }else{  // 在最前端显示 相当于调用了onResume();
+            initData();
+        }
+
     }
 }

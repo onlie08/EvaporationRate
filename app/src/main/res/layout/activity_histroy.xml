@@ -412,7 +412,7 @@
                     android:id="@+id/textView166"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="流量计读数(L/min)"
+                    android:text="流量计读数(L/Min)"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintEnd_toEndOf="@+id/view16"

@@ -973,11 +973,12 @@ public class LineChartManager {
                 String tradeDate = yData1.get((int) value % yData1.size()).getDate();
 //                return DateUtil.formatDateToMD(tradeDate);
                 return tradeDate.substring(5,tradeDate.length());
+//                return "";
             }
         });
 
         leftYAxis.setLabelCount(8);
-        leftYAxis.setDrawScale(true);
+        leftYAxis.setDrawScale(false);
         leftYAxis.setDrawZeroLine(true); // draw a zero line
         leftYAxis.setZeroLineColor(Color.GRAY);
         leftYAxis.setZeroLineWidth(1f);
@@ -986,7 +987,8 @@ public class LineChartManager {
         leftYAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return value  + "℃ ";
+//                return value  + " ";
+                return "";
             }
         });
 
@@ -1004,7 +1006,7 @@ public class LineChartManager {
         initLineDataSet(lineDataSet4, Color.GREEN, LineDataSet.Mode.CUBIC_BEZIER);
         initLineDataSet(lineDataSet5, Color.YELLOW, LineDataSet.Mode.CUBIC_BEZIER);
         initLineDataSet(lineDataSet6, Color.GRAY, LineDataSet.Mode.CUBIC_BEZIER);
-        initLineDataSet(lineDataSet7, Color.RED, LineDataSet.Mode.CUBIC_BEZIER);
+//        initLineDataSet(lineDataSet7, Color.RED, LineDataSet.Mode.CUBIC_BEZIER);
 
         //线条自定义内容 放在这里
         lineDataSet1.setValueFormatter(new IValueFormatter() {
@@ -1022,7 +1024,7 @@ public class LineChartManager {
         data.addDataSet(lineDataSet4);
         data.addDataSet(lineDataSet5);
         data.addDataSet(lineDataSet6);
-        data.addDataSet(lineDataSet7);
+//        data.addDataSet(lineDataSet7);
         lineChart.setData(data);
     }
 }
