@@ -82,20 +82,20 @@ public class BaseApplication extends Application {
      */
     private void setupDatabase() {
 
-        DatabaseContext databaseContext = new DatabaseContext(this);
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(databaseContext, "evaporation.db", null);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        DaoMaster daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-
-//        //创建数据库shop.db"
-//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "evaporation.db", null);
-//        //获取可写数据库
+//        DatabaseContext databaseContext = new DatabaseContext(this);
+//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(databaseContext, "evaporation.db", null);
 //        SQLiteDatabase db = helper.getWritableDatabase();
-//        //获取数据库对象
 //        DaoMaster daoMaster = new DaoMaster(db);
-//        //获取Dao对象管理者
 //        daoSession = daoMaster.newSession();
+
+        //创建数据库shop.db"
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "evaporation.db", null);
+        //获取可写数据库
+        SQLiteDatabase db = helper.getWritableDatabase();
+        //获取数据库对象
+        DaoMaster daoMaster = new DaoMaster(db);
+        //获取Dao对象管理者
+        daoSession = daoMaster.newSession();
 
     }
 

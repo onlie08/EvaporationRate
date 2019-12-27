@@ -318,6 +318,9 @@ public class DeviceFragment extends Fragment {
     }
 
     private void saveDateToDb() {
+        if(null == DbManage.getInstance().getParamter()){
+            return;
+        }
         Sensor sensor = new Sensor();
         sensor.setDeviceId(DbManage.getInstance().getParamter().getDeviceId());
         sensor.setLaserType(editLaserType.getText().toString().trim());
