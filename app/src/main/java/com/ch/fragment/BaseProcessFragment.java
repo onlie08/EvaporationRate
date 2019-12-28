@@ -129,6 +129,7 @@ public abstract class BaseProcessFragment extends Fragment {
     public float staticEvaR2;
     public float staticEvaR3;
     public boolean suspend = false;
+    public int mTimeInterval = 30;
     /**
      * 1:试验合格
      * 2:试验不合格
@@ -147,7 +148,7 @@ public abstract class BaseProcessFragment extends Fragment {
 
     abstract void resumeTest();
 
-    abstract void endTest();
+    abstract void pauseTest();
 
     abstract void chooseIntervalTimeDialog();
 
@@ -237,6 +238,10 @@ public abstract class BaseProcessFragment extends Fragment {
     }
 
     private void initData() {
+        String timeInterval = (String)AppPreferences.instance().get("timeInterval","30");
+        tvTimeInterval.setText(timeInterval);
+        mTimeInterval = Integer.parseInt(timeInterval);
+
         parameter = DbManage.getInstance().getParamter();
         if (null == parameter) {
             return;
@@ -416,6 +421,11 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("请先选择静置时间");
                     return;
                 }
+                if(!TextUtils.isEmpty(tvTestTotalTime.getText().toString())){
+                    initAllState();
+                    ToastHelper.showToast("已清除上次实验数据");
+                    return;
+                }
                 if ("开始试验".equals(btnTestStart.getText().toString())) {
                     if (testProgress == 0) {
                         tvTestStartTime.setText(DateUtil.getSystemDate1());
@@ -433,7 +443,7 @@ public abstract class BaseProcessFragment extends Fragment {
                     btnTestStart.setText("暂停试验");
                 } else {
                     btnTestStart.setText("开始试验");
-                    stopTest();
+                    pauseTest();
                     suspend = true;
                 }
                 break;
@@ -448,7 +458,7 @@ public abstract class BaseProcessFragment extends Fragment {
                         .setSingle(true).setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                     @Override
                     public void onPositiveClick() {
-                        endTest();
+                        stopTest();
                         initAllState();
                         endStaticTotalTime();
                         endTestTotalTime();

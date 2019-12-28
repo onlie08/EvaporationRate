@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="45dp">
 
     <TextView
         android:id="@+id/tv_id"
@@ -59,7 +59,7 @@
     <TextView
         android:id="@+id/tv_report"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
@@ -68,9 +68,9 @@
         android:drawablePadding="8dp"
         android:gravity="center"
         android:paddingLeft="16dp"
-        android:paddingTop="8dp"
+        android:paddingTop="4dp"
         android:paddingRight="16dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="4dp"
         android:text="报告"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
@@ -90,9 +90,9 @@
         android:drawablePadding="8dp"
         android:gravity="center"
         android:paddingLeft="16dp"
-        android:paddingTop="8dp"
+        android:paddingTop="4dp"
         android:paddingRight="16dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="4dp"
         android:text="数据"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"

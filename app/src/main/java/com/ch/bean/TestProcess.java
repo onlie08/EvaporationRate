@@ -2,6 +2,7 @@ package com.ch.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Transient;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
 
@@ -27,6 +28,17 @@ public class TestProcess {
     private float surroundtemperature;//环境温度
     private float surroundhumidity;//环境湿度
     private float surroundpressure;//环境压力
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    @Transient
+    private boolean checked;
 
     @Generated(hash = 1960513136)
     public TestProcess(Long id, String deviceId, String staticStartTime,

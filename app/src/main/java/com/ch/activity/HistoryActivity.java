@@ -1,18 +1,37 @@
 package com.ch.activity;
 
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.ch.adapter.HistroyListAdapter;
+import com.ch.bean.Parameter;
+import com.ch.bean.Sensor;
+import com.ch.bean.TestProcess;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.service.bean.BeanRTData;
+import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,6 +49,37 @@ public class HistoryActivity extends AppCompatActivity {
     @BindView(R.id.btn_printing)
     StateButton btnPrinting;
 
+    public Parameter parameter;
+    public Sensor sensor;
+    public TestProcess testProcess;
+    public List<BeanRTData> beanRTDatas;
+    public String deviceId;
+    @BindView(R.id.tv_equipment_num)
+    TextView tvEquipmentNum;
+    @BindView(R.id.tv_temperature_info)
+    TextView tvTemperatureInfo;
+    @BindView(R.id.tv_test_date)
+    TextView tvTestDate;
+    @BindView(R.id.tv_liquidfilling_date_info)
+    TextView tvLiquidfillingDateInfo;
+    @BindView(R.id.tv_flowmeter_info)
+    TextView tvFlowmeterInfo;
+    @BindView(R.id.tv_air_pressure_info)
+    TextView tvAirPressureInfo;
+    @BindView(R.id.tv_test_address)
+    TextView tvTestAddress;
+    @BindView(R.id.tv_recorder)
+    TextView tvRecorder;
+    @BindView(R.id.tv_checker)
+    TextView tvChecker;
+    @BindView(R.id.scroll)
+    ScrollView scroll;
+    @BindView(R.id.progressBar2)
+    ProgressBar progressBar2;
+    @BindView(R.id.tv_tip)
+    TextView tvTip;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -37,23 +87,78 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_new);
         ButterKnife.bind(this);
+        deviceId = getIntent().getStringExtra("deviceId");
         initView();
         initData();
     }
 
     private void initView() {
         recyclerHistory.setLayoutManager(new LinearLayoutManager(this));
+        tvRecorder.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        tvRecorder.getPaint().setAntiAlias(true);//抗锯齿
+        tvChecker.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        tvChecker.getPaint().setAntiAlias(true);//抗锯齿
+//        tvRecorder.setText(Html.fromHtml("<u>" + "      " + "</u>"));
+//        tvChecker.setText(Html.fromHtml("<u>" + "      " + "</u>"));
     }
 
     private void initData() {
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            strings.add("CYZU155612" + i);
+        if (TextUtils.isEmpty(deviceId)) {
+            return;
         }
-        histroyListAdapter = new HistroyListAdapter(strings);
-        recyclerHistory.setAdapter(histroyListAdapter);
+        parameter = DbManage.getInstance().queryParamter(deviceId);
+        if (null != parameter) {
+            setParameterDate(parameter);
+        }
+        sensor = DbManage.getInstance().querySensor(deviceId);
+        if (null != sensor) {
+            setSensor(sensor);
+        }
+        testProcess = DbManage.getInstance().queryTestProcess(deviceId);
+        if (null != testProcess) {
+            setTestProcess(testProcess);
+        }
+        beanRTDatas = DbManage.getInstance().queryBeanRTData(deviceId);
+        if (null != beanRTDatas) {
+            histroyListAdapter = new HistroyListAdapter(beanRTDatas);
+            recyclerHistory.setAdapter(histroyListAdapter);
+        }
     }
 
+    private void setParameterDate(Parameter parameter) {
+        if (!TextUtils.isEmpty(parameter.getTestAddress())) {
+            tvTestAddress.setText(parameter.getTestAddress());
+        }
+        if (!TextUtils.isEmpty(parameter.getLiquidFillingEndDate())) {
+            tvLiquidfillingDateInfo.setText(parameter.getLiquidFillingEndDate());
+        }
+        if (!TextUtils.isEmpty(parameter.getTestDate())) {
+            tvTestDate.setText(parameter.getTestDate());
+        }
+    }
+
+    private void setTestProcess(TestProcess testProcess) {
+
+    }
+
+    private void setSensor(Sensor sensor) {
+        String airPressureInfo = sensor.getAirPressureType() + sensor.getAirPressureNum();
+        if (!TextUtils.isEmpty(airPressureInfo)) {
+            tvAirPressureInfo.setText(airPressureInfo);
+        }
+        String flowmeterInfo = sensor.getFlowmeterType() + sensor.getFlowmeterNum();
+        if (!TextUtils.isEmpty(flowmeterInfo)) {
+            tvFlowmeterInfo.setText(flowmeterInfo);
+        }
+        String temperatureInfo = sensor.getTemperatureType() + sensor.getTemperatureNum();
+        if (!TextUtils.isEmpty(temperatureInfo)) {
+            tvTemperatureInfo.setText(temperatureInfo);
+        }
+        String evaporationrateInfo = sensor.getEvaporationRateType() + sensor.getEvaporationRateNum();
+        if (!TextUtils.isEmpty(evaporationrateInfo)) {
+            tvEquipmentNum.setText(evaporationrateInfo);
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -65,12 +170,61 @@ public class HistoryActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_export:
+                progressBar2.setVisibility(View.VISIBLE);
+                tvTip.setVisibility(View.VISIBLE);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pdfModel();
+                    }
+                }).start();
                 break;
             case R.id.btn_printing:
+                ToastHelper.showLongToast("未找到打印设备");
                 break;
             case R.id.img_back:
                 finish();
                 break;
         }
     }
+
+    private void pdfModel(){
+        PdfDocument document = new PdfDocument();
+        // ll_model是一个LinearLayout
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(scroll.getWidth(),scroll.getChildAt(0).getHeight(),1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+        scroll.draw(page.getCanvas());
+        document.finishPage(page);
+
+        try {
+            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+parameter.getDeviceId()+"_history.pdf";
+            File file = new File(path);
+            if (file.exists()) {
+                file.delete();
+            }else {
+                file.createNewFile();//创建文件
+            }
+            FileOutputStream outputStream = null;
+            outputStream = new FileOutputStream(file);
+            document.writeTo(outputStream);
+            document.close();
+            handler.sendEmptyMessage(0);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message message) {
+            progressBar2.setVisibility(View.GONE);
+            tvTip.setVisibility(View.GONE);
+            ToastHelper.showLongToast("Pdf报告成功生成，已保存到本地");
+            return false;
+        }
+    });
 }

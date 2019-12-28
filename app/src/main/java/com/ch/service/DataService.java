@@ -210,7 +210,7 @@ public class DataService extends Service {
             Date curDate = new Date();
             long detPauseTime = curDate.getTime() - mPauseStartTime.getTime();
             mlstPauseTime.add(detPauseTime);
-            mlstPauseTime = null;
+//            mlstPauseTime = null;
         }
     }
 

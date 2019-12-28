@@ -278,6 +278,7 @@ public class ReportActivity extends AppCompatActivity {
                 }).start();
                 break;
             case R.id.btn_printing:
+                ToastHelper.showLongToast("未找到打印设备");
                 break;
             case R.id.img_back:
                 finish();

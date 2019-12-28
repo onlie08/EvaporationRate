@@ -46,9 +46,6 @@ public class ProcessFragment extends BaseProcessFragment{
             mDataService.addOnDataCallback(new DataService.OnDataCallback() {
                 @Override
                 public void revRealTimeData(BeanRTData data) {
-//                    if(suspend){
-//                        return;
-//                    }
                     setBeanRTDataDate(data);
                     EventBus.getDefault().postSticky(data);
                     Log.d("Data service", "---activity get data:" + new Gson().toJson(data));
@@ -56,18 +53,12 @@ public class ProcessFragment extends BaseProcessFragment{
 
                 @Override
                 public void revCalResult(BeanRTData data,Float testEvaR, Float staticEvaR) {
-//                    if(suspend){
-//                        return;
-//                    }
                     setEvaRDate(staticEvaR);
                     Log.d("Data service", "---calculate data:" + testEvaR + "--" + staticEvaR);
                 }
 
                 @Override
                 public void revAcqTimeData(BeanRTData data) {
-//                    if(suspend){
-//                        return;
-//                    }
                     saveDateToDB(data);
                     Log.d("Data service", "---revAcqTimeData data:" + new Gson().toJson(data));
                 }
@@ -93,6 +84,9 @@ public class ProcessFragment extends BaseProcessFragment{
     }
 
     private void saveTestProcessToDB(){
+        if(null == parameter){
+            return;
+        }
         TestProcess testProcess = new TestProcess();
         testProcess.setDeviceId(parameter.getDeviceId());
         testProcess.setStaticStartTime(tvStaticStartTime.getText().toString());
@@ -137,9 +131,14 @@ public class ProcessFragment extends BaseProcessFragment{
              *      ln2         - LN2 计算参数
              *      validV      - 有效容积（来自试验参数）单位L
              */
-            long recPeroid = 3 * 60l;
+            long recPeroid = mTimeInterval * 60l;
             int mediumtype = 1;
-            long expperiod = 1 * 60l; //6分钟便于测试 ,应该一次实验室24小时
+            if("LN2".equals(parameter.getMediumType())){
+                mediumtype = 1;
+            }else if("LNG".equals(parameter.getMediumType())){
+                mediumtype = 2;
+            }
+            long expperiod = 2* 60 * 60l; //6分钟便于测试 ,应该一次实验室24小时
             BeanOperaParam ln2 = new BeanOperaParam(1.2555f, 808.61f, 1f, 1f);
             BeanOperaParam lng = new BeanOperaParam(0.676f, 422.53f, 1f, 1f);
             float validV = 40.5f*1000f;
@@ -157,7 +156,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void stopTest() {
-        mDataService.stopAcqData();
+        mDataService.stopTest();
     }
 
     @Override
@@ -166,14 +165,13 @@ public class ProcessFragment extends BaseProcessFragment{
     }
 
     @Override
-    void endTest() {
-        mDataService.stopTest();
+    void pauseTest() {
+        mDataService.pauseAcqData();
     }
 
     @Override
     void testSuccess() {
-
-        endTest();
+        stopTest();
         ToastHelper.showToast("试验成功完成");
         btnTestReport.setEnabled(true);
         btnTestStart.setEnabled(true);
@@ -203,6 +201,7 @@ public class ProcessFragment extends BaseProcessFragment{
             @Override
             public void selectResult(String date) {
                 tvTimeInterval.setText(date);
+                mTimeInterval = Integer.parseInt(date);
                 AppPreferences.instance().put("timeInterval",date);
             }
         });
@@ -327,12 +326,12 @@ public class ProcessFragment extends BaseProcessFragment{
 
             }else {
                 testState = 1;
-                testSuccess();
                 tvTestTwoResult.setText("合格");
                 tvTestTwoResult.setSelected(false);
                 tvCollectResult.setText("合格");
                 tvCollectResult.setSelected(false);
             }
+            testSuccess();
         }else if(testProgress == 3){
             staticEvaR3 = staticEvaR;
             tvTestThireCount.setText(""+staticEvaR);
