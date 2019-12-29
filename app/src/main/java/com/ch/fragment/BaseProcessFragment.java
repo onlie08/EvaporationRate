@@ -106,12 +106,6 @@ public abstract class BaseProcessFragment extends Fragment {
     StateButton btnStaticStart;
     @BindView(R.id.btn_auto_heat)
     StateButton btnAutoHeat;
-//    @BindView(R.id.btn_entrance_temperature)
-//    StateButton btnEntranceTemperature;
-//    @BindView(R.id.btn_entrance_pressure)
-//    StateButton btnEntrancePressure;
-//    @BindView(R.id.btn_flow_counter)
-//    StateButton btnFlowCounter;
     @BindView(R.id.tv_entrance_temperature)
     TextView tvEntranceTemperature;
     @BindView(R.id.tv_entrance_pressure)
@@ -140,7 +134,11 @@ public abstract class BaseProcessFragment extends Fragment {
     public float staticEvaR2;
     public float staticEvaR3;
     public boolean suspend = false;
+    public boolean staticPause = false;
     public int mTimeInterval = 30;
+
+    public int staticTotal = 0;
+    public int testTotal = 0;
     /**
      * 1:试验合格
      * 2:试验不合格
@@ -193,7 +191,6 @@ public abstract class BaseProcessFragment extends Fragment {
 
     private void initView() {
         initAllState();
-
     }
 
     public void initAllState() {
@@ -221,10 +218,6 @@ public abstract class BaseProcessFragment extends Fragment {
         tvEnvirmontTemptrue.setText("---");
         tvMonitorPressure.setText("---");
 
-//        btnEntrancePressure.setText("入口压力: KPa");
-//        btnEntranceTemperature.setText("入口温度: ℃");
-//        btnFlowCounter.setText("流量计: L/Min");
-
         tvAlarm.setSelected(false);
 
         tvTestOneResult.setText("合格");
@@ -246,6 +239,8 @@ public abstract class BaseProcessFragment extends Fragment {
 
         testProgress = 0;
         testState = 0;
+        staticTotal = 0;
+        testTotal = 0;
     }
 
     private void initData() {
@@ -388,17 +383,36 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("试验过程中无法开始静置");
                     return;
                 }
+                if(!TextUtils.isEmpty(tvTestEndTime.getText().toString())){
+                    initAllState();
+                    ToastHelper.showToast("已清除上次实验数据");
+                    return;
+                }
                 if (null == parameter) {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
                 } else {
-                    tvStaticStartTime.setText(DateUtil.getSystemDate1());
-                    startStaticTotalTime();
-                    staticAuto = true;
+                    if("开始静置".equals(btnStaticStart.getText().toString())){
+                        btnStaticStart.setText("暂停静置");
+                        staticAuto = true;
+                        if(TextUtils.isEmpty(tvStaticTotalTime.getText().toString())){
+                            tvStaticStartTime.setText(DateUtil.getSystemDate1());
+                            startStaticTotalTime();
+                        }
+                        staticPause = false;
+                    }else {
+                        btnStaticStart.setText("开始静置");
+                        staticPause = true;
+                    }
                 }
                 break;
             case R.id.btn_static_end:
                 if (testProgress > 0) {
                     ToastHelper.showToast("试验过程中无法结束静置");
+                    return;
+                }
+                if(!TextUtils.isEmpty(tvTestEndTime.getText().toString())){
+                    initAllState();
+                    ToastHelper.showToast("已清除上次实验数据");
                     return;
                 }
                 if (CheckTimeArrive()) {
@@ -432,7 +446,7 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("请先选择静置时间");
                     return;
                 }
-                if(!TextUtils.isEmpty(tvTestTotalTime.getText().toString())){
+                if(!TextUtils.isEmpty(tvTestEndTime.getText().toString())){
                     initAllState();
                     ToastHelper.showToast("已清除上次实验数据");
                     return;
@@ -516,10 +530,6 @@ public abstract class BaseProcessFragment extends Fragment {
         tvEntranceTemperature.setText(String.valueOf(beanRTData.getEntertemperature()));
         tvFlowCounter.setText(String.valueOf(beanRTData.getInstantFlow()));
 
-//        btnEntrancePressure.setText("入口压力: " + String.valueOf(beanRTData.getEnterpressure()) + "KPa");
-//        btnEntranceTemperature.setText("入口温度: " + String.valueOf(beanRTData.getEntertemperature()) + "℃");
-//        btnFlowCounter.setText("流量计: " + String.valueOf(beanRTData.getInstantFlow()) + "L/Min");
-
         String alarmVaule = (String) AppPreferences.instance().get("alarmValue", "5");
         double alarm = Double.parseDouble(alarmVaule)/100;
         if (beanRTData.getConcentration() > alarm) {
@@ -530,10 +540,10 @@ public abstract class BaseProcessFragment extends Fragment {
         switch (beanRTData.getIswarm()){
             case 0:
                 btnAutoHeat.setEnabled(false);
-//                stopGif1();
-//                stopGif2();
-                playGif1();
-                playGif2();
+                stopGif1();
+                stopGif2();
+//                playGif1();
+//                playGif2();
                 break;
             case 1:
                 btnAutoHeat.setEnabled(true);

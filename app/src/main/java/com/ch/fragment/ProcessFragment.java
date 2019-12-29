@@ -148,7 +148,7 @@ public class ProcessFragment extends BaseProcessFragment{
             }else if("LNG".equals(parameter.getMediumType())){
                 mediumtype = 2;
             }
-            long expperiod = 1 * 60l; //6分钟便于测试 ,应该一次实验室24小时
+            long expperiod = 30 * 60l; //6分钟便于测试 ,应该一次实验室24小时
             BeanOperaParam ln2 = new BeanOperaParam(n2Density, ln2Density, ln2HeatConstant, ln2CorrectConstant);
             BeanOperaParam lng = new BeanOperaParam(methaneDensity, lngDensity, lngHeatConstant, lngCorrectConstant);
             float validV = Float.parseFloat(parameter.getEffectiveVolume()) *1000f;
@@ -235,15 +235,9 @@ public class ProcessFragment extends BaseProcessFragment{
         RxStaticTotalTime.interval(1000, new RxStaticTotalTime.IRxNext() {
             @Override
             public void doNext(long number) {
-                try {
-                    if(!suspend){
-                        Log.i(TAG,"startStaticTotalTime number:"+number);
-                        String startTime = tvStaticStartTime.getText().toString();
-                        Date date = DateUtil.StringToDate(startTime);
-                        tvStaticTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                if(!staticPause){
+                    staticTotal++;
+                    tvStaticTotalTime.setText(DateUtil.countTime(1000l * staticTotal));
                 }
             }
         });
@@ -260,15 +254,9 @@ public class ProcessFragment extends BaseProcessFragment{
         RxTestTotalTime.interval(1000, new RxTestTotalTime.IRxNext() {
             @Override
             public void doNext(long number) {
-                try {
-                    if(!suspend){
-                        Log.i("caohai","startTestTotalTime number:"+number);
-                        String startTime = tvTestStartTime.getText().toString();
-                        Date date = DateUtil.StringToDate(startTime);
-                        tvTestTotalTime.setText(DateUtil.countTwoTime(date.getTime(),System.currentTimeMillis()));
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                if(!suspend){
+                    testTotal++;
+                    tvTestTotalTime.setText(DateUtil.countTime(1000l * testTotal));
                 }
             }
         });

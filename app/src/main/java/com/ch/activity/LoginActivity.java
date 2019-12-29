@@ -21,6 +21,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ch.base.base.BaseApplication;
 import com.ch.bean.User;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
@@ -91,8 +92,8 @@ public class LoginActivity extends AppCompatActivity {
         editPwd.setText(pwd);
         cbRember.setChecked(rember);
 
-//        boolean dbinit = (boolean) AppPreferences.instance().get("dbInit", false);
-        boolean dbinit = false;
+        boolean dbinit = (boolean) AppPreferences.instance().get("dbInit", false);
+//        boolean dbinit = false;
         if(!dbinit){
             AppPreferences.instance().put("dbInit", true);
             User user = new User();
@@ -136,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
         }else {
             if(user.getPassword().equals(pwd)){
                 AppPreferences.instance().put("username",username);
+                BaseApplication.pwd = pwd;
                 if(cbRember.isChecked()){
                     AppPreferences.instance().put("rember",true);
                     AppPreferences.instance().put("pwd",pwd);

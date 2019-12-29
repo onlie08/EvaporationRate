@@ -31,6 +31,7 @@ import com.squareup.leakcanary.LeakCanary;
 public class BaseApplication extends Application {
     private static DaoSession daoSession;
     public static SharedPreferences sharedPreferences;
+    public static String pwd;
 
     static {
         //设置全局的Header构建器

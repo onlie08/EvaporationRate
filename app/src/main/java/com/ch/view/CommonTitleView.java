@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +19,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.ch.activity.LoginActivity;
+import com.ch.base.base.BaseApplication;
 import com.ch.base.base.ViewController;
+import com.ch.bean.User;
+import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.utils.AppPreferences;
 import com.ch.utils.BrightnessTools;
 import com.ch.utils.DateUtil;
 import com.ch.utils.RxTimerUtil;
+import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 
@@ -118,10 +123,10 @@ public class CommonTitleView extends ViewController<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View layout = inflater.inflate(R.layout.dialog_change_pwd, null);
         StateButton btn_cancel = layout.findViewById(R.id.btn_cancel);
-        StateButton btn_sure = layout.findViewById(R.id.btn_sure);
-        EditText edit_old_pwd = layout.findViewById(R.id.edit_old_pwd);
-        EditText edit_new_pwd = layout.findViewById(R.id.edit_new_pwd);
-        EditText edit_new_pwd_again = layout.findViewById(R.id.edit_new_pwd_again);
+        final StateButton btn_sure = layout.findViewById(R.id.btn_sure);
+        final EditText edit_old_pwd = layout.findViewById(R.id.edit_old_pwd);
+        final EditText edit_new_pwd = layout.findViewById(R.id.edit_new_pwd);
+        final EditText edit_new_pwd_again = layout.findViewById(R.id.edit_new_pwd_again);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
@@ -140,6 +145,36 @@ public class CommonTitleView extends ViewController<String> {
         btn_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(TextUtils.isEmpty(edit_old_pwd.getText().toString())){
+                    ToastHelper.showLongToast("旧密码不能为空");
+                    return;
+                }
+                if(TextUtils.isEmpty(edit_new_pwd.getText().toString().trim())){
+                    ToastHelper.showLongToast("新密码不能为空");
+                    return;
+                }
+                if(!edit_new_pwd.getText().toString().trim().equals(edit_new_pwd_again.getText().toString().trim())){
+                    ToastHelper.showLongToast("两次密码不一致");
+                    return;
+                }
+                if(!BaseApplication.pwd.equals(edit_old_pwd.getText().toString().trim())){
+                    ToastHelper.showLongToast("旧密码不正确，请检查");
+                    return;
+                }
+                User user = new User();
+                String name = (String) AppPreferences.instance().get("username","");
+                if("superadmin".equals(name)){
+                    user.setRole(0);
+                }else if("admin".equals(name)){
+                    user.setRole(1);
+                }else if("root".equals(name)){
+                    user.setRole(2);
+                }
+                user.setName(name);
+                user.setPassword(edit_new_pwd.getText().toString().trim());
+                DbManage.getInstance().saveUser(user);
+                AppPreferences.instance().put("rember",false);
+                AppPreferences.instance().put("pwd","");
                 dialog.dismiss();
             }
         });

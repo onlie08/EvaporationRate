@@ -115,6 +115,54 @@ public class DateUtil {
         return new Date(str * 1000);
     }
 
+    public static String countTime(long diff){
+        long nd = 1000 * 24 * 60 * 60;
+        long nh = 1000 * 60 * 60;
+        long nm = 1000 * 60;
+        long ns = 1000;
+        // 计算差多少天
+
+        long day = diff / nd;
+
+        // 计算差多少小时
+
+        long hour = diff % nd / nh;
+
+        // 计算差多少分钟
+
+        long min = diff % nd % nh / nm;
+
+        // 计算差多少秒//输出结果
+
+        long sec = diff % nd % nh % nm / ns;
+
+        String sDay;
+        String sHour ;
+        String sMin ;
+        String sSec ;
+        if(day>0){
+            sDay = day+"天";
+        }else {
+            sDay = "";
+        }
+        if(hour<10){
+            sHour = "0" + hour;
+        }else {
+            sHour = "" + hour;
+        }
+        if(min<10){
+            sMin = "0" + min;
+        }else {
+            sMin = "" + min;
+        }
+        if(sec<10){
+            sSec = "0" + sec;
+        }else {
+            sSec = "" + sec;
+        }
+        return  sDay+ sHour + ":" + sMin + ":" + sSec;
+    }
+
     public static String countTwoTime(long startTime,long endTime){
         long nd = 1000 * 24 * 60 * 60;
         long nh = 1000 * 60 * 60;
