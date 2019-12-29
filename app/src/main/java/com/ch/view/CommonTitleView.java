@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.ch.activity.LoginActivity;
 import com.ch.base.base.ViewController;
 import com.ch.evaporationrate.R;
 import com.ch.utils.AppPreferences;
+import com.ch.utils.BrightnessTools;
 import com.ch.utils.DateUtil;
 import com.ch.utils.RxTimerUtil;
 import com.deadline.statebutton.StateButton;
@@ -219,10 +221,11 @@ public class CommonTitleView extends ViewController<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View layout = inflater.inflate(R.layout.dialog_edit_standard, null);
 
-        EditText edit_standard = layout.findViewById(R.id.edit_standard);
+        final EditText edit_standard = layout.findViewById(R.id.edit_standard);
         edit_standard.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 //        edit_standard.setGravity(Gravity.TOP);
-        edit_standard.setText("GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
+        String standard = (String)AppPreferences.instance().get("standard","GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
+        edit_standard.setText(standard);
         edit_standard.setSingleLine(false);
         edit_standard.setHorizontallyScrolling(false);
 
@@ -247,6 +250,7 @@ public class CommonTitleView extends ViewController<String> {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                AppPreferences.instance().put("standard",edit_standard.getText().toString().trim());
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -334,6 +338,27 @@ public class CommonTitleView extends ViewController<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View layout = inflater.inflate(R.layout.dialog_setting, null);
         ImageView img_close = layout.findViewById(R.id.img_close);
+        SeekBar progressBar = layout.findViewById(R.id.progressBar);
+        int bright = (int)AppPreferences.instance().get("bright",255);
+        progressBar.setProgress(bright);
+        progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                BrightnessTools.setBrightness((Activity) getContext(),i);
+                AppPreferences.instance().put("bright",i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
         builder.setView(layout);
@@ -356,6 +381,36 @@ public class CommonTitleView extends ViewController<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View layout = inflater.inflate(R.layout.dialog_param_setting, null);
         ImageView img_close = layout.findViewById(R.id.img_close);
+        final EditText edit_methane_density = layout.findViewById(R.id.edit_methane_density);
+        final EditText edit_lng_density = layout.findViewById(R.id.edit_lng_density);
+        final EditText edit_lng_heat_constant = layout.findViewById(R.id.edit_lng_heat_constant);
+        final EditText edit_n2_density = layout.findViewById(R.id.edit_n2_density);
+        final EditText edit_ln2_density = layout.findViewById(R.id.edit_ln2_density);
+        final EditText edit_ln2_heat_constant = layout.findViewById(R.id.edit_ln2_heat_constant);
+        final EditText edit_ln2_correct_constant = layout.findViewById(R.id.edit_ln2_correct_constant);
+        final EditText edit_lng_correct_constant = layout.findViewById(R.id.edit_lng_correct_constant);
+
+        float methaneDensity = (float)AppPreferences.instance().get("methaneDensity",0.676f);
+        float lngDensity = (float)AppPreferences.instance().get("lngDensity",422.53f);
+        float lngHeatConstant = (float)AppPreferences.instance().get("lngHeatConstant",1f);
+        float lngCorrectConstant = (float)AppPreferences.instance().get("lngCorrectConstant",1f);
+
+        float n2Density = (float)AppPreferences.instance().get("n2Density",1.2555f);
+        float ln2Density = (float)AppPreferences.instance().get("ln2Density",808.61f);
+        float ln2HeatConstant = (float)AppPreferences.instance().get("ln2HeatConstant",1f);
+        float ln2CorrectConstant = (float)AppPreferences.instance().get("ln2CorrectConstant",1f);
+
+        edit_methane_density.setText(methaneDensity+"");
+        edit_lng_density.setText(lngDensity+"");
+        edit_lng_heat_constant.setText(lngHeatConstant+"");
+        edit_lng_correct_constant.setText(lngCorrectConstant+"");
+
+        edit_n2_density.setText(n2Density+"");
+        edit_ln2_density.setText(ln2Density+"");
+        edit_ln2_heat_constant.setText(ln2HeatConstant+"");
+        edit_ln2_correct_constant.setText(ln2CorrectConstant+"");
+
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MaterialBaseTheme_AlertDialog);
         //通过setView设置我们自己的布局
         builder.setView(layout);
@@ -366,6 +421,15 @@ public class CommonTitleView extends ViewController<String> {
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppPreferences.instance().put("methaneDensity",Float.parseFloat(edit_methane_density.getText().toString().trim()));
+                AppPreferences.instance().put("lngDensity",Float.parseFloat(edit_lng_density.getText().toString().trim()));
+                AppPreferences.instance().put("lngHeatConstant",Float.parseFloat(edit_lng_heat_constant.getText().toString().trim()));
+                AppPreferences.instance().put("lngCorrectConstant",Float.parseFloat(edit_lng_correct_constant.getText().toString().trim()));
+
+                AppPreferences.instance().put("n2Density",Float.parseFloat(edit_n2_density.getText().toString().trim()));
+                AppPreferences.instance().put("ln2Density",Float.parseFloat(edit_ln2_density.getText().toString().trim()));
+                AppPreferences.instance().put("ln2HeatConstant",Float.parseFloat(edit_ln2_heat_constant.getText().toString().trim()));
+                AppPreferences.instance().put("ln2CorrectConstant",Float.parseFloat(edit_ln2_correct_constant.getText().toString().trim()));
                 dialog.dismiss();
             }
         });

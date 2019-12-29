@@ -26,6 +26,7 @@ import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.AppPreferences;
+import com.ch.utils.BrightnessTools;
 import com.ch.utils.ToastHelper;
 import com.eftimoff.androipathview.PathView;
 
@@ -51,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText editName;
     @BindView(R.id.edit_pwd)
     EditText editPwd;
-    @BindView(R.id.pathview)
-    PathView pathView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +63,12 @@ public class LoginActivity extends AppCompatActivity {
         requestPermission();
         initView();
         initData();
+        int bright = (int)AppPreferences.instance().get("bright",255);
+        BrightnessTools.setBrightness(this,bright);
     }
 
 
     private void initView() {
-        pathView.setFillAfter(true);
-        pathView.useNaturalColors();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -83,13 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 fadeIn(cardLoginView);
             }
         }, 1500);
-        pathView.getPathAnimator().delay(100).duration(0).listenerEnd(new PathView.AnimatorBuilder.ListenerEnd() {
-            @Override
-            public void onAnimationEnd() {
-//                jump();
-            }
-        }).start();
-
     }
 
     private void initData() {

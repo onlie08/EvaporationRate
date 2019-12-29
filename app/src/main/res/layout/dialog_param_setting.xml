@@ -90,7 +90,7 @@
         app:layout_constraintTop_toTopOf="@+id/btn_sure5" />
 
     <EditText
-        android:id="@+id/edit_checkout_company6"
+        android:id="@+id/edit_n2_density"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -125,8 +125,8 @@
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintBottom_toBottomOf="@+id/btn_sure6"
-        app:layout_constraintEnd_toEndOf="@+id/edit_checkout_company6"
-        app:layout_constraintStart_toStartOf="@+id/edit_checkout_company6" />
+        app:layout_constraintEnd_toEndOf="@+id/edit_n2_density"
+        app:layout_constraintStart_toStartOf="@+id/edit_n2_density" />
 
     <EditText
         android:id="@+id/edit_ln2_heat_constant"
@@ -146,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edit_checkout_company6" />
+        app:layout_constraintTop_toTopOf="@+id/edit_n2_density" />
 
     <EditText
         android:id="@+id/edit_ln2_correct_constant"
@@ -233,11 +233,11 @@
         android:text="N2密度g/L: "
         android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_checkout_company6"
-        app:layout_constraintEnd_toStartOf="@+id/edit_checkout_company6"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_n2_density"
+        app:layout_constraintEnd_toStartOf="@+id/edit_n2_density"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btn_sure6"
-        app:layout_constraintTop_toTopOf="@+id/edit_checkout_company6" />
+        app:layout_constraintTop_toTopOf="@+id/edit_n2_density" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -265,7 +265,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/edit_ln2_heat_constant"
         app:layout_constraintEnd_toStartOf="@+id/edit_ln2_heat_constant"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/edit_checkout_company6"
+        app:layout_constraintStart_toEndOf="@+id/edit_n2_density"
         app:layout_constraintTop_toTopOf="@+id/edit_ln2_heat_constant" />
 
     <TextView

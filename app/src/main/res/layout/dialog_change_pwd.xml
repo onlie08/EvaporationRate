@@ -33,12 +33,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout10"
             app:layout_constraintVertical_bias="0.0"
+
             app:normalBackgroundColor="@color/gary_background"
-            app:normalStrokeColor="@color/textcolorAccent"
+            app:normalStrokeColor="#f5f5f5"
+
             app:normalStrokeWidth="1dp"
             app:normalTextColor="@color/textcolorAccent"
+
             app:pressedBackgroundColor="@color/colorAccent"
             app:pressedTextColor="@android:color/white"
+
             app:round="true"
             app:unableBackgroundColor="@android:color/darker_gray"
             app:unableTextColor="@android:color/darker_gray" />

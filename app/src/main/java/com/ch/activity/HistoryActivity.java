@@ -25,6 +25,8 @@ import com.ch.bean.TestProcess;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.service.bean.BeanRTData;
+import com.ch.utils.AppPreferences;
+import com.ch.utils.BrightnessTools;
 import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
 
@@ -87,6 +89,8 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_new);
         ButterKnife.bind(this);
+        int bright = (int)AppPreferences.instance().get("bright",255);
+        BrightnessTools.setBrightness(this,bright);
         deviceId = getIntent().getStringExtra("deviceId");
         initView();
         initData();

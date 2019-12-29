@@ -43,14 +43,16 @@
         android:text="取消"
         android:textSize="@dimen/text_size_thire"
 
+        android:visibility="gone"
         app:animationDuration="200"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:normalBackgroundColor="@color/gary_background"
 
-        app:normalStrokeColor="@color/textcolorAccent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:normalBackgroundColor="@android:color/white"
+
+        app:normalStrokeColor="#f5f5f5"
         app:normalStrokeWidth="1dp"
         app:normalTextColor="@color/textcolorAccent"
         app:pressedBackgroundColor="@color/colorAccent"

@@ -22,6 +22,8 @@ import com.ch.bean.Sensor;
 import com.ch.bean.TestProcess;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.utils.AppPreferences;
+import com.ch.utils.BrightnessTools;
 import com.ch.utils.DateUtil;
 import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
@@ -159,6 +161,8 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_new);
         ButterKnife.bind(this);
+        int bright = (int)AppPreferences.instance().get("bright",255);
+        BrightnessTools.setBrightness(this,bright);
         deviceId = getIntent().getStringExtra("deviceId");
         initView();
         initData();
@@ -255,7 +259,9 @@ public class ReportActivity extends AppCompatActivity {
         tvLicenseNo.setText(isNotNull(parameter.getLicenseNo()) ? parameter.getLicenseNo():"---");
         tvFullRate.setText(isNotNull(parameter.getFullnessRate()) ? parameter.getFullnessRate():"---");
         tvNer.setText(isNotNull(parameter.getQualificationRate()) ? parameter.getQualificationRate():"---");
-        tvTestStandard.setText(isNotNull(parameter.getDesignStandard()) ? parameter.getDesignStandard():"---");
+
+        String standard = (String)AppPreferences.instance().get("standard","GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
+        tvTestStandard.setText(isNotNull(standard) ? standard:"---");
     }
 
     @Override

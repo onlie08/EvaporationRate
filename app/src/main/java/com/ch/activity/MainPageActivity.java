@@ -15,6 +15,8 @@ import com.ch.fragment.DateFragment;
 import com.ch.fragment.DeviceFragment;
 import com.ch.fragment.ParameterFragment;
 import com.ch.fragment.ProcessFragment;
+import com.ch.utils.AppPreferences;
+import com.ch.utils.BrightnessTools;
 import com.ch.view.CommonBottomView;
 import com.ch.view.CommonTitleView;
 import com.gyf.barlibrary.ImmersionBar;
@@ -50,6 +52,8 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        int bright = (int)AppPreferences.instance().get("bright",255);
+        BrightnessTools.setBrightness(this,bright);
         initView();
         initData();
     }

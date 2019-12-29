@@ -131,6 +131,16 @@ public class ProcessFragment extends BaseProcessFragment{
              *      ln2         - LN2 计算参数
              *      validV      - 有效容积（来自试验参数）单位L
              */
+            float methaneDensity = (float)AppPreferences.instance().get("methaneDensity",0.676f);
+            float lngDensity = (float)AppPreferences.instance().get("lngDensity",422.53f);
+            float lngHeatConstant = (float)AppPreferences.instance().get("lngHeatConstant",1f);
+            float lngCorrectConstant = (float)AppPreferences.instance().get("lngCorrectConstant",1f);
+
+            float n2Density = (float)AppPreferences.instance().get("n2Density",1.2555f);
+            float ln2Density = (float)AppPreferences.instance().get("ln2Density",808.61f);
+            float ln2HeatConstant = (float)AppPreferences.instance().get("ln2HeatConstant",1f);
+            float ln2CorrectConstant = (float)AppPreferences.instance().get("ln2CorrectConstant",1f);
+
             long recPeroid = mTimeInterval * 60l;
             int mediumtype = 1;
             if("LN2".equals(parameter.getMediumType())){
@@ -138,10 +148,10 @@ public class ProcessFragment extends BaseProcessFragment{
             }else if("LNG".equals(parameter.getMediumType())){
                 mediumtype = 2;
             }
-            long expperiod = 2* 60 * 60l; //6分钟便于测试 ,应该一次实验室24小时
-            BeanOperaParam ln2 = new BeanOperaParam(1.2555f, 808.61f, 1f, 1f);
-            BeanOperaParam lng = new BeanOperaParam(0.676f, 422.53f, 1f, 1f);
-            float validV = 40.5f*1000f;
+            long expperiod = 1 * 60l; //6分钟便于测试 ,应该一次实验室24小时
+            BeanOperaParam ln2 = new BeanOperaParam(n2Density, ln2Density, ln2HeatConstant, ln2CorrectConstant);
+            BeanOperaParam lng = new BeanOperaParam(methaneDensity, lngDensity, lngHeatConstant, lngCorrectConstant);
+            float validV = Float.parseFloat(parameter.getEffectiveVolume()) *1000f;
 
             mDataService.startTest(recPeroid, mediumtype, expperiod, lng, ln2, validV);
         }

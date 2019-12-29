@@ -7,16 +7,15 @@
     android:layout_height="wrap_content">
 
 
-    <com.eftimoff.androipathview.PathView
+    <ImageView
         android:id="@+id/pathview"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:src="@mipmap/zhongche_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:svg="@raw/zhongche_logo"
-        app:pathColor="@color/red"
-        app:pathWidth="1dp"/>
+        />
 
     <TextView
         android:id="@+id/textView215"

@@ -36,4 +36,9 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/red</item>
+        <item name="colorControlActivated">@color/red</item>
+    </style>
+
 </resources>
