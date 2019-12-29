@@ -421,13 +421,11 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"
             android:background="@drawable/edit_background"
             android:padding="5dp"
             android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
             app:layout_constraintTop_toBottomOf="@+id/edit_pressure_type" />
 
@@ -658,11 +656,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX"
-            android:textColor="@color/textcolorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_humidity_passed_date"
             app:layout_constraintEnd_toEndOf="@+id/tv_flowmeter_value"
             app:layout_constraintTop_toTopOf="@+id/edit_humidity_passed_date" />
+
+        <TextView
+            android:id="@+id/tv_humidity_value2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="XX"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_flowmeter_value"
+            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_value" />
 
         <TextView
             android:id="@+id/textView126"
@@ -706,6 +717,16 @@
             app:layout_constraintTop_toTopOf="@+id/tv_temperature_value" />
 
         <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ºC"
+            android:textColor="@color/textcolorAccent"
+            android:textSize="@dimen/text_size_thire"
+            app:layout_constraintStart_toStartOf="@+id/textView128"
+            app:layout_constraintTop_toTopOf="@+id/tv_humidity_value2" />
+
+        <TextView
             android:id="@+id/textView130"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -730,7 +751,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX"
-            android:textColor="@color/textcolorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_laser_passed_date"
             app:layout_constraintEnd_toEndOf="@+id/tv_flowmeter_value"
@@ -742,7 +763,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="XXXXX"
-            android:textColor="@color/textcolorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_flowmeter_passed_date"
             app:layout_constraintEnd_toStartOf="@+id/textView128"
@@ -753,7 +774,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX"
-            android:textColor="@color/textcolorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_temperature_passed_date"
             app:layout_constraintEnd_toEndOf="@+id/tv_flowmeter_value"
@@ -764,7 +785,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX"
-            android:textColor="@color/textcolorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_air_pressure_passed_date"
             app:layout_constraintEnd_toEndOf="@+id/tv_flowmeter_value"
@@ -775,7 +796,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XX"
-            android:textColor="@color/textcolorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintEnd_toEndOf="@+id/tv_flowmeter_value"
             app:layout_constraintTop_toTopOf="@+id/tv_pressure_device_state" />
@@ -835,7 +856,7 @@
             android:id="@+id/tv_laser_test_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="64dp"
             android:text="已检验"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"

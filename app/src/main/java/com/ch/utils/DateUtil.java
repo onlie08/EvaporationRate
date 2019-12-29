@@ -86,6 +86,12 @@ public class DateUtil {
         return date;
     }
 
+    public static Date StringToDate1(String str) throws ParseException{
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = (Date) formatter.parse(str);
+        return date;
+    }
+
     /**
      * 将CST时间类型字符串进行格式化输出
      * @param str

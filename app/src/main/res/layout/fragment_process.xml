@@ -154,11 +154,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="6"
+            android:maxLength="12"
+            android:singleLine="true"
             android:text="---"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
-            android:singleLine="true"
-            android:maxLength="12"
             app:layout_constraintEnd_toStartOf="@+id/textView6"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -1047,96 +1047,102 @@
         android:id="@+id/btn_auto_heat"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:enabled="false"
         android:text="自动加热"
         android:textSize="@dimen/text_size_thire"
-        app:layout_constraintEnd_toStartOf="@+id/btn_entrance_temperature"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
+
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-
         app:normalBackgroundColor="@color/colorAccent"
+
         app:normalTextColor="@color/colorWhite"
-
         app:pressedBackgroundColor="@color/colorAccent"
-        app:pressedTextColor="@color/colorWhite"
 
+        app:pressedTextColor="@color/colorWhite"
         app:round="true"
         app:unableBackgroundColor="@color/transparent"
         app:unableTextColor="@color/textcolorAccent" />
 
-    <com.deadline.statebutton.StateButton
+    <TextView
         android:id="@+id/btn_entrance_temperature"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:enabled="false"
         android:text="入口温度℃"
+        android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
         app:layout_constraintEnd_toStartOf="@+id/btn_entrance_pressure"
         app:layout_constraintStart_toEndOf="@+id/btn_auto_heat"
-        app:layout_constraintTop_toTopOf="@+id/btn_auto_heat"
+        app:layout_constraintTop_toTopOf="@+id/btn_auto_heat" />
 
-        app:normalBackgroundColor="@color/colorAccent"
-        app:normalTextColor="@color/colorWhite"
-
-        app:pressedBackgroundColor="@color/colorAccent"
-        app:pressedTextColor="@color/colorWhite"
-
-        app:round="true"
-        app:unableBackgroundColor="@color/colorWhite"
-        app:unableTextColor="@color/textcolorAccent"
-
+    <TextView
+        android:id="@+id/tv_entrance_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        android:text="---"
+        app:layout_constraintStart_toStartOf="@+id/btn_entrance_temperature"
+        app:layout_constraintBottom_toTopOf="@+id/btn_entrance_temperature"
+        app:layout_constraintEnd_toEndOf="@+id/btn_entrance_temperature"
         />
 
-    <com.deadline.statebutton.StateButton
+    <TextView
         android:id="@+id/btn_entrance_pressure"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:enabled="false"
         android:text="入口压力KPa"
+        android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
         app:layout_constraintEnd_toStartOf="@+id/btn_flow_counter"
         app:layout_constraintStart_toEndOf="@+id/btn_entrance_temperature"
-        app:layout_constraintTop_toTopOf="@+id/btn_auto_heat"
+        app:layout_constraintTop_toTopOf="@+id/btn_auto_heat" />
 
-        app:normalBackgroundColor="@color/colorAccent"
-        app:normalTextColor="@color/colorWhite"
+    <TextView
+        android:id="@+id/tv_entrance_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        android:text="---"
+        app:layout_constraintStart_toStartOf="@+id/btn_entrance_pressure"
+        app:layout_constraintBottom_toTopOf="@+id/btn_entrance_pressure"
+        app:layout_constraintEnd_toEndOf="@+id/btn_entrance_pressure"
+        />
 
-        app:pressedBackgroundColor="@color/colorAccent"
-        app:pressedTextColor="@color/colorWhite"
-
-        app:round="true"
-        app:unableBackgroundColor="@color/colorWhite"
-        app:unableTextColor="@color/textcolorAccent" />
-
-    <com.deadline.statebutton.StateButton
+    <TextView
         android:id="@+id/btn_flow_counter"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:enabled="false"
         android:text="流量计L/Min"
+        android:textColor="@color/textcolorAccent"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/btn_entrance_pressure"
         app:layout_constraintTop_toTopOf="@+id/btn_auto_heat"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
+        />
 
-        app:normalBackgroundColor="@color/colorAccent"
-        app:normalTextColor="@color/colorWhite"
-
-        app:pressedBackgroundColor="@color/colorAccent"
-        app:pressedTextColor="@color/colorWhite"
-
-        app:round="true"
-        app:unableBackgroundColor="@color/colorWhite"
-        app:unableTextColor="@color/textcolorAccent" />
-
+    <TextView
+        android:id="@+id/tv_flow_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_thire"
+        android:text="---"
+        app:layout_constraintStart_toStartOf="@+id/btn_flow_counter"
+        app:layout_constraintBottom_toTopOf="@+id/btn_flow_counter"
+        app:layout_constraintEnd_toEndOf="@+id/btn_flow_counter"
+        />
 
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
@@ -1232,9 +1238,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="湿度%"
                 android:textColor="@color/textcolorAccent"
                 android:textSize="@dimen/text_size_thire"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView3"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/tv_monitor_temptrue" />
@@ -1244,9 +1252,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="环境温度℃"
                 android:textColor="@color/textcolorAccent"
                 android:textSize="@dimen/text_size_thire"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView4"
                 app:layout_constraintStart_toStartOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/tv_envirmont_temptrue" />
@@ -1256,9 +1266,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="压力KPa"
                 android:textColor="@color/textcolorAccent"
                 android:textSize="@dimen/text_size_thire"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView5"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/tv_monitor_pressure" />

@@ -78,7 +78,7 @@ public class LineChartMarkView extends MarkerView {
                     tvValue5.setText(dataSet.getLabel() + "：" + y + "%");
                 }
             }
-            tvDate.setText("时间："+xAxisValueFormatter.getFormattedValue(e.getX(), null));
+            tvDate.setText(xAxisValueFormatter.getFormattedValue(e.getX(), null));
         }
         super.refreshContent(e, highlight);
     }

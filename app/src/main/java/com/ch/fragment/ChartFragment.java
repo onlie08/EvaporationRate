@@ -149,7 +149,6 @@ public class ChartFragment extends Fragment {
             tvDeviceId.setText(parameter.getDeviceId());
             tvTestMedium.setText(parameter.getMediumType());
         }
-
         RxChartTimerUtil.interval(60*1000, new RxChartTimerUtil.IRxNext() {
             @Override
             public void doNext(long number) {
@@ -160,6 +159,21 @@ public class ChartFragment extends Fragment {
                 refreshChart();
             }
         });
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端显示 相当于调用了onPause();
+            return;
+        }else{  // 在最前端显示 相当于调用了onResume();
+            parameter = DbManage.getInstance().getParamter();
+            if(null != parameter){
+                tvDeviceId.setText(parameter.getDeviceId());
+                tvTestMedium.setText(parameter.getMediumType());
+            }
+        }
+
     }
 
     @Override

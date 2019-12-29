@@ -15,6 +15,7 @@ import com.ch.bean.Sensor;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
 import com.ch.service.bean.BeanRTData;
+import com.ch.utils.DateUtil;
 import com.ch.utils.ToastHelper;
 import com.ch.view.DateChooseController;
 import com.deadline.statebutton.StateButton;
@@ -22,6 +23,9 @@ import com.deadline.statebutton.StateButton;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.text.ParseException;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +96,8 @@ public class DeviceFragment extends Fragment {
     TextView tvHumidityDeviceState;
     @BindView(R.id.tv_humidity_value)
     TextView tvHumidityValue;
+    @BindView(R.id.tv_humidity_value2)
+    TextView tvHumidityValue2;
     @BindView(R.id.tv_laser_value)
     TextView tvLaserValue;
     @BindView(R.id.tv_flowmeter_value)
@@ -148,6 +154,10 @@ public class DeviceFragment extends Fragment {
         if(null == sensor){
             return;
         }
+
+        editEvaporationrateType.setText(sensor.getEvaporationRateType());
+        editEvaporationrateNum.setText(sensor.getEvaporationRateNum());
+
         editLaserType.setText(sensor.getLaserType());
         editLaserNum.setText(sensor.getLaserNum());
         tvLaserTestDate.setText(sensor.getLaserTestDate());
@@ -178,6 +188,117 @@ public class DeviceFragment extends Fragment {
         tvHumidityTestDate.setText(sensor.getHumidityTestDate());
         editHumidityPassedDate.setText(sensor.getHumidityPassedDate());
 
+        setStateData();
+    }
+
+    private void setStateData(){
+        if(TextUtils.isEmpty(tvLaserTestDate.getText().toString()) || TextUtils.isEmpty(editLaserPassedDate.getText().toString())){
+            tvLaserDeviceState.setText("---");
+            tvLaserDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+            tvLaserTestState.setText("---");
+        }else {
+            if(checkState(tvLaserTestDate.getText().toString(),editLaserPassedDate.getText().toString())){
+                tvLaserDeviceState.setText("正常");
+                tvLaserDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvLaserTestState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvLaserTestState.setText("已检验");
+            }else {
+                tvLaserDeviceState.setText("异常");
+                tvLaserDeviceState.setTextColor(getResources().getColor(R.color.red));
+                tvLaserTestState.setText("未检验");
+                tvLaserTestState.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
+
+        if(TextUtils.isEmpty(tvFlowmeterTestDate.getText().toString()) || TextUtils.isEmpty(editFlowmeterPassedDate.getText().toString())){
+            tvFlowmeterDeviceState.setText("---");
+            tvFlowmeterDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+            tvFlowmeterTestState.setText("---");
+        }else {
+            if(checkState(tvFlowmeterTestDate.getText().toString(),editFlowmeterPassedDate.getText().toString())){
+                tvFlowmeterDeviceState.setText("正常");
+                tvFlowmeterDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvFlowmeterTestState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvFlowmeterTestState.setText("已检验");
+            }else {
+                tvFlowmeterDeviceState.setText("异常");
+                tvFlowmeterDeviceState.setTextColor(getResources().getColor(R.color.red));
+                tvFlowmeterTestState.setText("未检验");
+                tvFlowmeterTestState.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
+
+        if(TextUtils.isEmpty(tvTemperatureTestDate.getText().toString()) || TextUtils.isEmpty(editTemperaturePassedDate.getText().toString())){
+            tvTemperatureDeviceState.setText("---");
+            tvTemperatureDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+            tvTemperatureTestState.setText("---");
+        }else {
+            if(checkState(tvTemperatureTestDate.getText().toString(),editTemperaturePassedDate.getText().toString())){
+                tvTemperatureDeviceState.setText("正常");
+                tvTemperatureDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvTemperatureTestState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvTemperatureTestState.setText("已检验");
+            }else {
+                tvTemperatureDeviceState.setText("异常");
+                tvTemperatureDeviceState.setTextColor(getResources().getColor(R.color.red));
+                tvTemperatureTestState.setText("未检验");
+                tvTemperatureTestState.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
+
+        if(TextUtils.isEmpty(tvAirPressureTestDate.getText().toString()) || TextUtils.isEmpty(editAirPressurePassedDate.getText().toString())){
+            tvAirPressureDeviceState.setText("---");
+            tvAirPressureDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+            tvAirPressureTestState.setText("---");
+        }else {
+            if(checkState(tvAirPressureTestDate.getText().toString(),editAirPressurePassedDate.getText().toString())){
+                tvAirPressureDeviceState.setText("正常");
+                tvAirPressureDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvAirPressureTestState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvAirPressureTestState.setText("已检验");
+            }else {
+                tvAirPressureDeviceState.setText("异常");
+                tvAirPressureDeviceState.setTextColor(getResources().getColor(R.color.red));
+                tvAirPressureTestState.setText("未检验");
+                tvAirPressureTestState.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
+
+        if(TextUtils.isEmpty(tvPressureTestDate.getText().toString()) || TextUtils.isEmpty(editPressurePassedDate.getText().toString())){
+            tvPressureDeviceState.setText("---");
+            tvPressureDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+            tvPressureTestState.setText("---");
+        }else {
+            if(checkState(tvPressureTestDate.getText().toString(),editPressurePassedDate.getText().toString())){
+                tvPressureDeviceState.setText("正常");
+                tvPressureDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvPressureTestState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvPressureTestState.setText("已检验");
+            }else {
+                tvPressureDeviceState.setText("异常");
+                tvPressureDeviceState.setTextColor(getResources().getColor(R.color.red));
+                tvPressureTestState.setText("未检验");
+                tvPressureTestState.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
+
+        if(TextUtils.isEmpty(tvHumidityTestDate.getText().toString()) || TextUtils.isEmpty(editHumidityPassedDate.getText().toString())){
+            tvHumidityDeviceState.setText("---");
+            tvHumidityDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+            tvHumidityTestState.setText("---");
+        }else {
+            if(checkState(tvHumidityTestDate.getText().toString(),editHumidityPassedDate.getText().toString())){
+                tvHumidityDeviceState.setText("正常");
+                tvHumidityDeviceState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvHumidityTestState.setTextColor(getResources().getColor(R.color.textcolorAccent));
+                tvHumidityTestState.setText("已检验");
+            }else {
+                tvHumidityDeviceState.setText("异常");
+                tvHumidityDeviceState.setTextColor(getResources().getColor(R.color.red));
+                tvHumidityTestState.setText("未检验");
+                tvHumidityTestState.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
@@ -193,6 +314,7 @@ public class DeviceFragment extends Fragment {
         tvPressureValue.setText(beanRTData.getEnterpressure()+"");
         tvPressureValue.setText(beanRTData.getEnterpressure()+"");
         tvHumidityValue.setText(beanRTData.getSurroundhumidity()+"");
+        tvHumidityValue2.setText(beanRTData.getSurroundtemperature()+"");
     }
 
     @Override
@@ -248,7 +370,17 @@ public class DeviceFragment extends Fragment {
                 laserTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        tvLaserTestDate.setText(date1);
+                        try {
+                            Date dateEnd = DateUtil.StringToDate1(date1);
+                            if(System.currentTimeMillis() < dateEnd.getTime()){
+                                ToastHelper.showToast("检测日期不能晚于当前日期，请重新选择");
+                            }else {
+                                tvLaserTestDate.setText(date1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        setStateData();
                     }
                 });
                 break;
@@ -258,7 +390,17 @@ public class DeviceFragment extends Fragment {
                 flowmeterTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        tvFlowmeterTestDate.setText(date1);
+                        try {
+                            Date dateEnd = DateUtil.StringToDate1(date1);
+                            if(System.currentTimeMillis() < dateEnd.getTime()){
+                                ToastHelper.showToast("检测日期不能晚于当前日期，请重新选择");
+                            }else {
+                                tvFlowmeterTestDate.setText(date1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        setStateData();
                     }
                 });
                 break;
@@ -268,7 +410,17 @@ public class DeviceFragment extends Fragment {
                 temperatureTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        tvTemperatureTestDate.setText(date1);
+                        try {
+                            Date dateEnd = DateUtil.StringToDate1(date1);
+                            if(System.currentTimeMillis() < dateEnd.getTime()){
+                                ToastHelper.showToast("检测日期不能晚于当前日期，请重新选择");
+                            }else {
+                                tvTemperatureTestDate.setText(date1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        setStateData();
                     }
                 });
                 break;
@@ -278,7 +430,17 @@ public class DeviceFragment extends Fragment {
                 airPressureTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        tvAirPressureTestDate.setText(date1);
+                        try {
+                            Date dateEnd = DateUtil.StringToDate1(date1);
+                            if(System.currentTimeMillis() < dateEnd.getTime()){
+                                ToastHelper.showToast("检测日期不能晚于当前日期，请重新选择");
+                            }else {
+                                tvAirPressureTestDate.setText(date1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        setStateData();
                     }
                 });
                 break;
@@ -288,7 +450,17 @@ public class DeviceFragment extends Fragment {
                 pressureTestDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        tvPressureTestDate.setText(date1);
+                        try {
+                            Date dateEnd = DateUtil.StringToDate1(date1);
+                            if(System.currentTimeMillis() < dateEnd.getTime()){
+                                ToastHelper.showToast("检测日期不能晚于当前日期，请重新选择");
+                            }else {
+                                tvPressureTestDate.setText(date1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        setStateData();
                     }
                 });
                 break;
@@ -298,7 +470,17 @@ public class DeviceFragment extends Fragment {
                 humidityDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {
-                        tvHumidityTestDate.setText(date1);
+                        try {
+                            Date dateEnd = DateUtil.StringToDate1(date1);
+                            if(System.currentTimeMillis() < dateEnd.getTime()){
+                                ToastHelper.showToast("检测日期不能晚于当前日期，请重新选择");
+                            }else {
+                                tvHumidityTestDate.setText(date1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        setStateData();
                     }
                 });
                 break;
@@ -323,6 +505,10 @@ public class DeviceFragment extends Fragment {
         }
         Sensor sensor = new Sensor();
         sensor.setDeviceId(DbManage.getInstance().getParamter().getDeviceId());
+
+        sensor.setEvaporationRateType(editEvaporationrateType.getText().toString().trim());
+        sensor.setEvaporationRateNum(editEvaporationrateNum.getText().toString().trim());
+
         sensor.setLaserType(editLaserType.getText().toString().trim());
         sensor.setLaserNum(editLaserNum.getText().toString().trim());
         sensor.setLaserTestDate(tvLaserTestDate.getText().toString().trim());
@@ -370,4 +556,19 @@ public class DeviceFragment extends Fragment {
         }
 
     }
+
+    private boolean checkState(String date,String month){
+        try {
+            long dates = DateUtil.StringToDate1(date).getTime();
+            int days = (int) ((System.currentTimeMillis() - dates) / (1000 * 60 * 60 * 24));
+            if((days/30.0f) > Float.parseFloat(month)){
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

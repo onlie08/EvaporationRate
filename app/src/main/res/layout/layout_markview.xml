@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:drawableLeft="@mipmap/button_seagreen"
+        android:drawableLeft="@mipmap/button_green"
         android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
 
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:drawableLeft="@mipmap/button_purple"
+        android:drawableLeft="@mipmap/button_orange"
         android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:drawableLeft="@mipmap/button_green"
+        android:drawableLeft="@mipmap/button_purple"
         android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
     <TextView
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:drawableLeft="@mipmap/circle_yellow"
+        android:drawableLeft="@mipmap/button_red"
         android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
     <TextView
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:drawableLeft="@mipmap/circle_blue"
+        android:drawableLeft="@mipmap/button_seagreen"
         android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
 </LinearLayout>

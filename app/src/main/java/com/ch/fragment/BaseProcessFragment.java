@@ -2,12 +2,17 @@ package com.ch.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,12 +106,18 @@ public abstract class BaseProcessFragment extends Fragment {
     StateButton btnStaticStart;
     @BindView(R.id.btn_auto_heat)
     StateButton btnAutoHeat;
-    @BindView(R.id.btn_entrance_temperature)
-    StateButton btnEntranceTemperature;
-    @BindView(R.id.btn_entrance_pressure)
-    StateButton btnEntrancePressure;
-    @BindView(R.id.btn_flow_counter)
-    StateButton btnFlowCounter;
+//    @BindView(R.id.btn_entrance_temperature)
+//    StateButton btnEntranceTemperature;
+//    @BindView(R.id.btn_entrance_pressure)
+//    StateButton btnEntrancePressure;
+//    @BindView(R.id.btn_flow_counter)
+//    StateButton btnFlowCounter;
+    @BindView(R.id.tv_entrance_temperature)
+    TextView tvEntranceTemperature;
+    @BindView(R.id.tv_entrance_pressure)
+    TextView tvEntrancePressure;
+    @BindView(R.id.tv_flow_counter)
+    TextView tvFlowCounter;
     @BindView(R.id.tv_monitor_temptrue)
     TextView tvMonitorTemptrue;
     @BindView(R.id.tv_envirmont_temptrue)
@@ -210,9 +221,9 @@ public abstract class BaseProcessFragment extends Fragment {
         tvEnvirmontTemptrue.setText("---");
         tvMonitorPressure.setText("---");
 
-        btnEntrancePressure.setText("入口压力: KPa");
-        btnEntranceTemperature.setText("入口温度: ℃");
-        btnFlowCounter.setText("流量计: L/Min");
+//        btnEntrancePressure.setText("入口压力: KPa");
+//        btnEntranceTemperature.setText("入口温度: ℃");
+//        btnFlowCounter.setText("流量计: L/Min");
 
         tvAlarm.setSelected(false);
 
@@ -501,9 +512,14 @@ public abstract class BaseProcessFragment extends Fragment {
         tvEnvirmontTemptrue.setText(String.valueOf(beanRTData.getSurroundtemperature()));
         tvMonitorPressure.setText(String.valueOf(beanRTData.getSurroundpressure()));
 
-        btnEntrancePressure.setText("入口压力: " + String.valueOf(beanRTData.getEnterpressure()) + "KPa");
-        btnEntranceTemperature.setText("入口温度: " + String.valueOf(beanRTData.getEntertemperature()) + "℃");
-        btnFlowCounter.setText("流量计: " + String.valueOf(beanRTData.getInstantFlow()) + "L/Min");
+        tvEntrancePressure.setText(String.valueOf(beanRTData.getEnterpressure()));
+        tvEntranceTemperature.setText(String.valueOf(beanRTData.getEntertemperature()));
+        tvFlowCounter.setText(String.valueOf(beanRTData.getInstantFlow()));
+
+//        btnEntrancePressure.setText("入口压力: " + String.valueOf(beanRTData.getEnterpressure()) + "KPa");
+//        btnEntranceTemperature.setText("入口温度: " + String.valueOf(beanRTData.getEntertemperature()) + "℃");
+//        btnFlowCounter.setText("流量计: " + String.valueOf(beanRTData.getInstantFlow()) + "L/Min");
+
         String alarmVaule = (String) AppPreferences.instance().get("alarmValue", "5");
         double alarm = Double.parseDouble(alarmVaule)/100;
         if (beanRTData.getConcentration() > alarm) {

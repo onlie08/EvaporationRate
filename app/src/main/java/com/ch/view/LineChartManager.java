@@ -1000,12 +1000,12 @@ public class LineChartManager {
         LineDataSet lineDataSet6 = new LineDataSet(entries6, "湿度");
         LineDataSet lineDataSet7 = new LineDataSet(entries7, "累计流量");
         // CUBIC_BEZIER 圆滑曲线
-        initLineDataSet(lineDataSet1, Color.BLUE, LineDataSet.Mode.CUBIC_BEZIER);
-        initLineDataSet(lineDataSet2, Color.CYAN, LineDataSet.Mode.CUBIC_BEZIER);
-        initLineDataSet(lineDataSet3, Color.MAGENTA, LineDataSet.Mode.CUBIC_BEZIER);
-        initLineDataSet(lineDataSet4, Color.GREEN, LineDataSet.Mode.CUBIC_BEZIER);
-        initLineDataSet(lineDataSet5, Color.YELLOW, LineDataSet.Mode.CUBIC_BEZIER);
-        initLineDataSet(lineDataSet6, Color.GRAY, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet1, Color.parseColor("#3355ff"), LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet2, Color.parseColor("#17e5c3"), LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet3, Color.parseColor("#ffb2ff"), LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet4, Color.parseColor("#aaff00"), LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet5, Color.parseColor("#ffd400"), LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet6, Color.parseColor("#00d5ff"), LineDataSet.Mode.CUBIC_BEZIER);
 //        initLineDataSet(lineDataSet7, Color.RED, LineDataSet.Mode.CUBIC_BEZIER);
 
         //线条自定义内容 放在这里
