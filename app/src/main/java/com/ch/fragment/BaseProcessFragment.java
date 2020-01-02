@@ -480,7 +480,7 @@ public abstract class BaseProcessFragment extends Fragment {
                 final CommonDialog commonDialog = new CommonDialog(getActivity());
                 commonDialog.setTitle("警告")
                         .setMessage("结束试验会删除此次试验数据，确定结束试验吗？")
-                        .setSingle(true).setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
+                        .setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                     @Override
                     public void onPositiveClick() {
                         stopTest();
@@ -488,7 +488,6 @@ public abstract class BaseProcessFragment extends Fragment {
                         endStaticTotalTime();
                         endTestTotalTime();
                         commonDialog.dismiss();
-
                     }
 
                     @Override

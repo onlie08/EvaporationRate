@@ -46,6 +46,9 @@ public class LineChartManager {
         initChart(lineChart);
     }
 
+    public void clear(){
+        lineChart.clear();
+    }
     /**
      * 初始化图表
      */
@@ -428,8 +431,8 @@ public class LineChartManager {
     /**
      * 设置 可以显示X Y 轴自定义值的 MarkerView
      */
-    public void setMarkerView(Context context) {
-        LineChartMarkView mv = new LineChartMarkView(context, xAxis.getValueFormatter());
+    public void setMarkerView(Context context,boolean show1, boolean show2, boolean show3, boolean show4, boolean show5, boolean show6, boolean show7,List<ChartBean> data1, List<ChartBean> data2, List<ChartBean> data3, List<ChartBean> data4, List<ChartBean> data5, List<ChartBean> data6, List<ChartBean> data7) {
+        LineChartMarkView mv = new LineChartMarkView(context, xAxis.getValueFormatter(),show1, show2, show3, show4, show5, show6, show7,data1, data2, data3, data4, data5, data6, data7);
         mv.setChartView(lineChart);
         lineChart.setMarker(mv);
         lineChart.invalidate();
@@ -916,7 +919,7 @@ public class LineChartManager {
         lineChart.setData(data);
     }
 
-    public void showLineChart0(final List<ChartBean> yData1,List<ChartBean> yData2,List<ChartBean> yData3,List<ChartBean> yData4,List<ChartBean> yData5,List<ChartBean> yData6,List<ChartBean> yData7,String lineName, int color) {
+    public void showLineChart0(final List<ChartBean> yData1,List<ChartBean> yData2,List<ChartBean> yData3,List<ChartBean> yData4,List<ChartBean> yData5,List<ChartBean> yData6,List<ChartBean> yData7,boolean show1, boolean show2, boolean show3, boolean show4, boolean show5, boolean show6, boolean show7) {
         ArrayList<Entry> entries1 = new ArrayList<>();
         ArrayList<Entry> entries2 = new ArrayList<>();
         ArrayList<Entry> entries3 = new ArrayList<>();
@@ -961,7 +964,7 @@ public class LineChartManager {
         }
 
         /******根据需求的不同 在此在次设置X Y轴的显示内容******/
-        xAxis.setLabelCount(4, false);
+        xAxis.setLabelCount(2, false);
         //设置是否绘制刻度
         xAxis.setDrawScale(false);
         //是否绘制X轴线
@@ -972,7 +975,7 @@ public class LineChartManager {
             public String getFormattedValue(float value, AxisBase axis) {
                 String tradeDate = yData1.get((int) value % yData1.size()).getDate();
 //                return DateUtil.formatDateToMD(tradeDate);
-                return tradeDate.substring(5,tradeDate.length());
+                return tradeDate.substring(11,tradeDate.length());
 //                return "";
             }
         });
@@ -1006,7 +1009,7 @@ public class LineChartManager {
         initLineDataSet(lineDataSet4, Color.parseColor("#aaff00"), LineDataSet.Mode.CUBIC_BEZIER);
         initLineDataSet(lineDataSet5, Color.parseColor("#ffd400"), LineDataSet.Mode.CUBIC_BEZIER);
         initLineDataSet(lineDataSet6, Color.parseColor("#00d5ff"), LineDataSet.Mode.CUBIC_BEZIER);
-//        initLineDataSet(lineDataSet7, Color.RED, LineDataSet.Mode.CUBIC_BEZIER);
+        initLineDataSet(lineDataSet7, Color.parseColor("#f03200"), LineDataSet.Mode.CUBIC_BEZIER);
 
         //线条自定义内容 放在这里
         lineDataSet1.setValueFormatter(new IValueFormatter() {
@@ -1018,13 +1021,27 @@ public class LineChartManager {
         });
 
         LineData data = new LineData();
-        data.addDataSet(lineDataSet1);
-        data.addDataSet(lineDataSet2);
-        data.addDataSet(lineDataSet3);
-        data.addDataSet(lineDataSet4);
-        data.addDataSet(lineDataSet5);
-        data.addDataSet(lineDataSet6);
-//        data.addDataSet(lineDataSet7);
+        if(show1){
+            data.addDataSet(lineDataSet1);
+        }
+        if(show2){
+            data.addDataSet(lineDataSet2);
+        }
+        if(show3){
+            data.addDataSet(lineDataSet3);
+        }
+        if(show4){
+            data.addDataSet(lineDataSet4);
+        }
+        if(show5){
+            data.addDataSet(lineDataSet5);
+        }
+        if(show6){
+            data.addDataSet(lineDataSet6);
+        }
+        if(show7){
+            data.addDataSet(lineDataSet7);
+        }
         lineChart.setData(data);
     }
 }

@@ -5,12 +5,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.SwitchCompat;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +29,7 @@ import com.ch.evaporationrate.R;
 import com.ch.utils.AppPreferences;
 import com.ch.utils.BrightnessTools;
 import com.ch.utils.DateUtil;
+import com.ch.utils.PhoneNetUtil;
 import com.ch.utils.RxTimerUtil;
 import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
@@ -373,8 +376,19 @@ public class CommonTitleView extends ViewController<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View layout = inflater.inflate(R.layout.dialog_setting, null);
         ImageView img_close = layout.findViewById(R.id.img_close);
+        SwitchCompat switch1 = layout.findViewById(R.id.switch1);
+        boolean netEnable = (boolean)AppPreferences.instance().get("netEnable",true);
+        switch1.setChecked(netEnable);
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                AppPreferences.instance().put("netEnable",b);
+                PhoneNetUtil.getInstance(getContext()).setMobileDataState(getContext(),b);
+            }
+        });
         SeekBar progressBar = layout.findViewById(R.id.progressBar);
         int bright = (int)AppPreferences.instance().get("bright",255);
+        String alarmVaule = (String) AppPreferences.instance().get("alarmValue", "5");
         progressBar.setProgress(bright);
         progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -403,6 +417,7 @@ public class CommonTitleView extends ViewController<String> {
         //此处设置位置窗体大小
         dialog.getWindow().setLayout(DensityUtil.dp2px(600f), LinearLayout.LayoutParams.WRAP_CONTENT);
         final EditText edit_alarm_num = layout.findViewById(R.id.edit_alarm_num);
+        edit_alarm_num.setText(alarmVaule);
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

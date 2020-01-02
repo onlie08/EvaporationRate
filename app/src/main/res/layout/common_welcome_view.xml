@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="静态蒸发自动检测仪"
+        android:text="静态蒸发率自动检测仪"
         android:textStyle="bold"
         android:textColor="@color/textColorPrimary"
         android:textSize="28sp"

@@ -194,7 +194,7 @@ public class ParameterFragment extends Fragment {
                 break;
             case R.id.tv_test_date:
                 DateChooseController startDate = new DateChooseController(getActivity());
-                startDate.showChooseDateDialog();
+                startDate.chooseSingleDateDialog();
                 startDate.setListener(new DateChooseController.DateChooseListener() {
                     @Override
                     public void dateResult(final String date1) {

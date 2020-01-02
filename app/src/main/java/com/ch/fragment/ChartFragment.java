@@ -79,6 +79,11 @@ public class ChartFragment extends Fragment {
         curBeanRTData = beanRTData;
     }
 
+    @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
+    public void Event(boolean endTest) {
+        beanRTDataList.clear();
+    }
+
     private void refreshChart() {
         List<ChartBean> chartBeans1 = new ArrayList<>();
         List<ChartBean> chartBeans2 = new ArrayList<>();
@@ -127,13 +132,13 @@ public class ChartFragment extends Fragment {
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
             chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
-            chartBean.setValue(beanRTDataList.get(i).getSurroundpressure());
-//            chartBean.setValue(beanRTDataList.get(i).getAccFlow());
+            chartBean.setValue(beanRTDataList.get(i).getAccFlow());
             chartBeans7.add(chartBean);
         }
 
         commonChartLineViewController.fillData(chartBeans1);
-        commonChartLineViewController.loadData(chartBeans1,chartBeans2,chartBeans3,chartBeans4,chartBeans5,chartBeans6,chartBeans7);
+        commonChartLineViewController.setRealVaule(chartBeans1,chartBeans2,chartBeans3,chartBeans4,chartBeans5,chartBeans6,chartBeans7);
+        commonChartLineViewController.loadData(dealDate(chartBeans1),dealDate(chartBeans2),dealDate(chartBeans3),dealDate(chartBeans4),dealDate(chartBeans5),dealDate(chartBeans6),dealDate(chartBeans7));
     }
 
     private void refreshRtData(BeanRTData beanRTData) {
@@ -152,8 +157,11 @@ public class ChartFragment extends Fragment {
         RxChartTimerUtil.interval(60*1000, new RxChartTimerUtil.IRxNext() {
             @Override
             public void doNext(long number) {
-                if(beanRTDataList.size()>60){
-                    beanRTDataList.remove(0);
+//                if(beanRTDataList.size()>60){
+//                    beanRTDataList.remove(0);
+//                }
+                if(null == curBeanRTData){
+                    return;
                 }
                 beanRTDataList.add(curBeanRTData);
                 refreshChart();
@@ -210,5 +218,29 @@ public class ChartFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private List<ChartBean> dealDate(List<ChartBean> chartBeans){
+        if(chartBeans.isEmpty()){
+            return chartBeans;
+        }
+        double maxVaule = chartBeans.get(0).getValue();
+        double mixVaule = chartBeans.get(0).getValue();
+        List<ChartBean> chartBeanList = new ArrayList<>();
+        for(int i=0;i<chartBeans.size();i++){
+            if(chartBeans.get(i).getValue() > maxVaule){
+                maxVaule = chartBeans.get(i).getValue();
+            }
+            if(chartBeans.get(i).getValue() < mixVaule){
+                mixVaule = chartBeans.get(i).getValue();
+            }
+        }
+        for(int i=0;i<chartBeans.size();i++){
+            ChartBean chartBean = new ChartBean();
+            chartBean.setValue(chartBeans.get(i).getValue()/maxVaule*100);
+            chartBean.setDate(chartBeans.get(i).getDate());
+            chartBeanList.add(chartBean);
+        }
+        return chartBeanList;
     }
 }

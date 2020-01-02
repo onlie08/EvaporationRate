@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">静态蒸发自动检测仪</string>
+    <string name="app_name">静态蒸发率自动检测仪</string>
     <string name="title_home">主页</string>
     <string name="title_frame">实时画面</string>
     <string name="title_dashboard">远程监控</string>

@@ -121,4 +121,31 @@ public class PhoneNetUtil {
     public interface PhoneNetLevelListener {
         void onNetLevel(int level);
     }
+
+
+    public void setMobileDataState(Context context, boolean enabled) {
+        TelephonyManager telephonyService = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        try {
+            Method setDataEnabled = telephonyService.getClass().getDeclaredMethod("setDataEnabled",boolean.class);
+            if (null != setDataEnabled) {
+                setDataEnabled.invoke(telephonyService, enabled);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean getMobileDataState(Context context) {
+        TelephonyManager telephonyService = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        try {
+            Method getDataEnabled = telephonyService.getClass().getDeclaredMethod("getDataEnabled");
+            if (null != getDataEnabled) {
+                return (Boolean) getDataEnabled.invoke(telephonyService);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
 }

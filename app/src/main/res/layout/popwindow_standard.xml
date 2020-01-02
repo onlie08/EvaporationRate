@@ -25,7 +25,7 @@
         android:id="@+id/tv_menu_two"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="修改标准"
+        android:text="试验标准"
         android:padding="@dimen/alie_padding_thire"
         android:gravity="center"
         android:clickable="true"

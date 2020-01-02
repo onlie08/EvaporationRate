@@ -47,7 +47,9 @@ public class ProcessFragment extends BaseProcessFragment{
                 @Override
                 public void revRealTimeData(BeanRTData data) {
                     setBeanRTDataDate(data);
-                    EventBus.getDefault().postSticky(data);
+                    if(testProgress>0){
+                        EventBus.getDefault().postSticky(data);
+                    }
                     Log.d("Data service", "---activity get data:" + new Gson().toJson(data));
                 }
 
@@ -193,6 +195,7 @@ public class ProcessFragment extends BaseProcessFragment{
         RxTestTotalTime.cancel();
         testProgress = 0;
         saveTestProcessToDB();
+        EventBus.getDefault().postSticky(true);
     }
 
     void testFail() {

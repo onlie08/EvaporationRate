@@ -61,4 +61,12 @@
         android:drawableLeft="@mipmap/button_seagreen"
         android:drawablePadding="5dp"
         android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/tv_value6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@mipmap/circle_blue"
+        android:drawablePadding="5dp"
+        android:textColor="@android:color/white" />
 </LinearLayout>
