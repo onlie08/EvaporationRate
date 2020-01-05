@@ -24,7 +24,7 @@ import java.util.TimerTask;
 
 public class DataService extends Service {
 
-    public static boolean IS_SIMULATOR = false;//test 是否是模拟数据
+    public static boolean IS_SIMULATOR = true;//test 是否是模拟数据
 
     private boolean mIsTest = false;    //是否开始实验
     private boolean mIsPause = false;   //是否暂停

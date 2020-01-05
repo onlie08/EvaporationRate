@@ -157,8 +157,10 @@ public class ChartFragment extends Fragment {
             @Override
             public void doNext(long number) {
                 beanRTDataList.clear();
-                beanRTDataList = DbManage.getInstance().queryBeanRTData(parameter.getDeviceId());
-                refreshChart();
+                if(null != parameter){
+                    beanRTDataList = DbManage.getInstance().queryBeanRTData(parameter.getDeviceId());
+                    refreshChart();
+                }
             }
         });
     }

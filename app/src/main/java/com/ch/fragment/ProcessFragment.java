@@ -55,10 +55,12 @@ public class ProcessFragment extends BaseProcessFragment{
             float ln2CorrectConstant = (float)AppPreferences.instance().get("ln2CorrectConstant",1f);
 
             int mediumtype = 1;
-            if("LN2".equals(parameter.getMediumType())){
-                mediumtype = 1;
-            }else if("LNG".equals(parameter.getMediumType())){
-                mediumtype = 2;
+            if(null != parameter){
+                if("LN2".equals(parameter.getMediumType())){
+                    mediumtype = 1;
+                }else if("LNG".equals(parameter.getMediumType())){
+                    mediumtype = 2;
+                }
             }
             BeanOperaParam ln2 = new BeanOperaParam(n2Density, ln2Density, ln2HeatConstant, ln2CorrectConstant);
             BeanOperaParam lng = new BeanOperaParam(methaneDensity, lngDensity, lngHeatConstant, lngCorrectConstant);
