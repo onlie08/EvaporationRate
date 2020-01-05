@@ -8,7 +8,10 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.ch.bean.TestProcess;
@@ -35,21 +38,42 @@ import java.util.List;
 
 public class ProcessFragment extends BaseProcessFragment{
     private BeanRTData finalResult;
-    private DataService mDataService;//xxg
+
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Log.d("Data service", "---service connected");
 
+            float methaneDensity = (float)AppPreferences.instance().get("methaneDensity",0.676f);
+            float lngDensity = (float)AppPreferences.instance().get("lngDensity",422.53f);
+            float lngHeatConstant = (float)AppPreferences.instance().get("lngHeatConstant",1f);
+            float lngCorrectConstant = (float)AppPreferences.instance().get("lngCorrectConstant",1f);
+
+            float n2Density = (float)AppPreferences.instance().get("n2Density",1.2555f);
+            float ln2Density = (float)AppPreferences.instance().get("ln2Density",808.61f);
+            float ln2HeatConstant = (float)AppPreferences.instance().get("ln2HeatConstant",1f);
+            float ln2CorrectConstant = (float)AppPreferences.instance().get("ln2CorrectConstant",1f);
+
+            int mediumtype = 1;
+            if("LN2".equals(parameter.getMediumType())){
+                mediumtype = 1;
+            }else if("LNG".equals(parameter.getMediumType())){
+                mediumtype = 2;
+            }
+            BeanOperaParam ln2 = new BeanOperaParam(n2Density, ln2Density, ln2HeatConstant, ln2CorrectConstant);
+            BeanOperaParam lng = new BeanOperaParam(methaneDensity, lngDensity, lngHeatConstant, lngCorrectConstant);
+
             mDataService = ((DataService.LocalBinder) iBinder).getService();
-            mDataService.startAcqData();
+            mDataService.startAcqData(mediumtype,lng,ln2);
+
             mDataService.addOnDataCallback(new DataService.OnDataCallback() {
                 @Override
                 public void revRealTimeData(BeanRTData data) {
                     setBeanRTDataDate(data);
-                    if(testProgress>0){
+
+//                    if(testProgress>0){
                         EventBus.getDefault().postSticky(data);
-                    }
+//                    }
                     Log.d("Data service", "---activity get data:" + new Gson().toJson(data));
                 }
 
@@ -61,6 +85,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
                 @Override
                 public void revAcqTimeData(BeanRTData data) {
+//                    EventBus.getDefault().postSticky(data);
                     saveDateToDB(data);
                     Log.d("Data service", "---revAcqTimeData data:" + new Gson().toJson(data));
                 }
@@ -70,6 +95,11 @@ public class ProcessFragment extends BaseProcessFragment{
                     Log.d("Data service", "---experimentOver data:" + new Gson().toJson(data) + "testEvaR:"+testEvaR+" staticEvaR:"+staticEvaR);
                     finalResult = data;
                     testControll(staticEvaR);
+                }
+
+                @Override
+                public void getErrors(int value) {
+
                 }
             });
         }
@@ -101,11 +131,23 @@ public class ProcessFragment extends BaseProcessFragment{
         testProcess.setEvaporationRateTwo(tvTestTwoCount.getText().toString());
         testProcess.setEvaporationRateThire(tvTestThireCount.getText().toString());
         testProcess.setAcquisitionError(tvCollectError.getText().toString());
-        testProcess.setEvaporationRateFinal(tvPrejudge.getText().toString());
+
+        if(!TextUtils.isEmpty(tvTestOneCount.getText().toString())){
+            testProcess.setEvaporationRateFinal(tvTestOneCount.getText().toString());
+        }
+        if(!TextUtils.isEmpty(tvTestTwoCount.getText().toString())){
+            testProcess.setEvaporationRateFinal(tvTestTwoCount.getText().toString());
+        }
+        if(!TextUtils.isEmpty(tvTestThireCount.getText().toString())){
+            testProcess.setEvaporationRateFinal(tvTestThireCount.getText().toString());
+        }
         testProcess.setTestProcess(testProgress);
-        testProcess.setSurroundhumidity(finalResult.getSurroundhumidity());
-        testProcess.setSurroundpressure(finalResult.getSurroundpressure());
-        testProcess.setSurroundtemperature(finalResult.getSurroundtemperature());
+        if(null != finalResult){
+            testProcess.setSurroundhumidity(finalResult.getSurroundhumidity());
+            testProcess.setSurroundpressure(finalResult.getSurroundpressure());
+            testProcess.setSurroundtemperature(finalResult.getSurroundtemperature());
+        }
+
         if(testState == 1){
             testProcess.setIsPass(true);
         }else if(testState == 2){
@@ -120,6 +162,7 @@ public class ProcessFragment extends BaseProcessFragment{
         mCtx = this.getActivity();
         Intent intent = new Intent(mCtx, DataService.class);
         ((Activity) mCtx).bindService(intent, connection, Context.BIND_AUTO_CREATE);
+
     }
 
     @Override
@@ -150,12 +193,11 @@ public class ProcessFragment extends BaseProcessFragment{
             }else if("LNG".equals(parameter.getMediumType())){
                 mediumtype = 2;
             }
-            long expperiod = 30 * 60l; //6分钟便于测试 ,应该一次实验室24小时
+            long expperiod = 2 * 60l; //6分钟便于测试 ,应该一次实验室24小时
             BeanOperaParam ln2 = new BeanOperaParam(n2Density, ln2Density, ln2HeatConstant, ln2CorrectConstant);
             BeanOperaParam lng = new BeanOperaParam(methaneDensity, lngDensity, lngHeatConstant, lngCorrectConstant);
-            float validV = Float.parseFloat(parameter.getEffectiveVolume()) *1000f;
-
-            mDataService.startTest(recPeroid, mediumtype, expperiod, lng, ln2, validV);
+            float validV = Float.parseFloat(parameter.getEffectiveVolume())*1.0f;
+            mDataService.startTest(recPeroid, mediumtype, expperiod, lng, ln2, validV,testProgress);
         }
 
         Toast.makeText(mCtx, "开始第"+testProgress+"次试验", Toast.LENGTH_SHORT).show();
@@ -169,6 +211,7 @@ public class ProcessFragment extends BaseProcessFragment{
     @Override
     void stopTest() {
         mDataService.stopTest();
+        EventBus.getDefault().postSticky(true);
     }
 
     @Override
@@ -184,10 +227,11 @@ public class ProcessFragment extends BaseProcessFragment{
     @Override
     void testSuccess() {
         stopTest();
-        ToastHelper.showToast("试验成功完成");
+//        ToastHelper.showToast("试验成功完成");
         btnTestReport.setEnabled(true);
         btnTestStart.setEnabled(true);
         btnTestStart.setText("开始试验");
+        btnStaticStart.setText("开始静置");
         btnTestEnd.setEnabled(true);
         btnStaticStart.setEnabled(true);
         btnStaticEnd.setEnabled(true);
@@ -195,7 +239,6 @@ public class ProcessFragment extends BaseProcessFragment{
         RxTestTotalTime.cancel();
         testProgress = 0;
         saveTestProcessToDB();
-        EventBus.getDefault().postSticky(true);
     }
 
     void testFail() {
@@ -249,6 +292,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void endStaticTotalTime() {
+        staticTotal = 0;
         RxStaticTotalTime.cancel();
     }
 
@@ -267,6 +311,7 @@ public class ProcessFragment extends BaseProcessFragment{
 
     @Override
     void endTestTotalTime() {
+        testTotal = 0;
         RxTestTotalTime.cancel();
     }
 
@@ -276,6 +321,7 @@ public class ProcessFragment extends BaseProcessFragment{
         if(testProgress == 1){
             staticEvaR1 = staticEvaR;
             tvTestOneCount.setText(""+staticEvaR);
+            tvTestOneResult.setVisibility(View.VISIBLE);
             if(staticEvaR1 > qualificate){
 //                initAllState();
                 testState = 2;
@@ -286,7 +332,7 @@ public class ProcessFragment extends BaseProcessFragment{
                             .setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                                 @Override
                                 public void onPositiveClick() {
-                                    initAllState();
+//                                    initAllState();
                                     testFail();
                                     commonDialog.dismiss();
                                 }
@@ -299,44 +345,55 @@ public class ProcessFragment extends BaseProcessFragment{
 
                 tvTestOneResult.setText("不合格");
                 tvTestOneResult.setSelected(true);
+                endTestTotalTime();
+                testSuccess();
             }else {
                 testProgress = 2;
                 startTest();
                 tvTestOneResult.setText("合格");
                 tvTestOneResult.setSelected(false);
             }
+
         }else if(testProgress == 2){
             float diff;
             staticEvaR2 = staticEvaR;
             tvTestTwoCount.setText(""+staticEvaR);
             if(staticEvaR2 > staticEvaR1){
-                diff = (staticEvaR2 - staticEvaR1)/staticEvaR2;
+                diff = (staticEvaR2 - staticEvaR1)/staticEvaR2 *100;
             }else {
-                diff = (staticEvaR1 - staticEvaR2)/staticEvaR1;
+                diff = (staticEvaR1 - staticEvaR2)/staticEvaR1*100;
             }
             tvCollectError.setText(diff+"");
+            tvTestTwoResult.setVisibility(View.VISIBLE);
+            tvCollectResult.setVisibility(View.VISIBLE);
             Log.d("Data service", "---service testControll"+diff);
+            if(staticEvaR2 > qualificate){
+                tvTestTwoResult.setText("不合格");
+                tvTestTwoResult.setSelected(true);
+            }else {
+                tvTestTwoResult.setText("合格");
+                tvTestTwoResult.setSelected(false);
+            }
             if(diff > 5){
                 testProgress = 3;
                 startTest();
                 ToastHelper.showToast("第二次试验不合格");
-                tvTestTwoResult.setText("不合格");
-                tvTestTwoResult.setSelected(true);
+
                 tvCollectResult.setText("不合格");
                 tvCollectResult.setSelected(true);
 
             }else {
                 testState = 1;
-                tvTestTwoResult.setText("合格");
-                tvTestTwoResult.setSelected(false);
+
                 tvCollectResult.setText("合格");
                 tvCollectResult.setSelected(false);
+                testSuccess();
             }
-            testSuccess();
         }else if(testProgress == 3){
             staticEvaR3 = staticEvaR;
             tvTestThireCount.setText(""+staticEvaR);
-            if(staticEvaR1 > qualificate){
+            tvTestThireResult.setVisibility(View.VISIBLE);
+            if(staticEvaR3 > qualificate){
                 testState = 2;
                 testProgress = 2;
                 ToastHelper.showToast("第三次试验不合格");

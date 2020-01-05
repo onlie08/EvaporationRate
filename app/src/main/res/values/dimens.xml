@@ -9,13 +9,13 @@
     <dimen name="nav_header_height">176dp</dimen>
 
     <dimen name="alie_padding_one">18dp</dimen>
-    <dimen name="alie_padding_two">16dp</dimen>
+    <dimen name="alie_padding_two">32dp</dimen>
     <dimen name="alie_padding_thire">14dp</dimen>
     <dimen name="alie_padding_four">11dp</dimen>
     <dimen name="alie_padding_five">8dp</dimen>
 
-    <dimen name="text_size_one">22sp</dimen>
-    <dimen name="text_size_two">18sp</dimen>
-    <dimen name="text_size_thire">14sp</dimen>
+    <dimen name="text_size_one">38sp</dimen>
+    <dimen name="text_size_two">32sp</dimen>
+    <dimen name="text_size_thire">24sp</dimen>
     <dimen name="text_size_four">10sp</dimen>
 </resources>

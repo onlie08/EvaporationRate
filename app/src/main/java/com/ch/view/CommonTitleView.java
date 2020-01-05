@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.SwitchCompat;
 import android.text.InputType;
@@ -98,13 +99,14 @@ public class CommonTitleView extends ViewController<String> {
         View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.dialog_person_layout, null);
         TextView tv_change_pwd = layout.findViewById(R.id.tv_change_pwd);
         TextView tv_logout = layout.findViewById(R.id.tv_logout);
-        final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(300f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(450f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
 //        popupWindow.setOnDismissListener(this);
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
         } else {
-            popupWindow.showAsDropDown(imgPerson,0,0);
+            popupWindow.showAsDropDown(imgPerson,0,DensityUtil.dp2px(8));
         }
         tv_change_pwd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +139,7 @@ public class CommonTitleView extends ViewController<String> {
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
-        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(DensityUtil.dp2px(600f), LinearLayout.LayoutParams.WRAP_CONTENT);
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,7 +275,7 @@ public class CommonTitleView extends ViewController<String> {
         final AlertDialog dialog =builder.create();
         dialog.show();
         //此处设置位置窗体大小
-        dialog.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(DensityUtil.dp2px(600f), LinearLayout.LayoutParams.WRAP_CONTENT);
 
         ImageView img_close = layout.findViewById(R.id.img_close);
         StateButton btn_sure = layout.findViewById(R.id.btn_sure);
@@ -336,11 +338,12 @@ public class CommonTitleView extends ViewController<String> {
         View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.popwindow_standard, null);
         final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(250f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
 //        popupWindow.setOnDismissListener(this);
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
         } else {
-            popupWindow.showAsDropDown(view,0,0);
+            popupWindow.showAsDropDown(view,0,DensityUtil.dp2px(8));
         }
         layout.findViewById(R.id.tv_menu_one).setOnClickListener(new View.OnClickListener() {
             @Override

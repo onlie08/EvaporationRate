@@ -33,9 +33,9 @@
 
     <TextView
         android:id="@+id/tv_message"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/alie_padding_two"
         android:layout_marginBottom="24dp"
@@ -58,8 +58,8 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_cancel"
         android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="取消"
         android:textSize="@dimen/text_size_thire"
         android:visibility="visible"
@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:normalBackgroundColor="@color/gary_background"
 
-        app:normalStrokeColor="@color/textcolorAccent"
+        app:normalStrokeColor="#f5f5f5"
         app:normalStrokeWidth="1dp"
 
         app:normalTextColor="@color/textcolorAccent"
@@ -84,7 +84,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_sure"
         android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="确定"
         android:textSize="@dimen/text_size_thire"

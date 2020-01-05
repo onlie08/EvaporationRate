@@ -16,12 +16,14 @@ import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.ch.activity.ReportActivity;
 import com.ch.bean.Parameter;
 import com.ch.db.DbManage;
 import com.ch.evaporationrate.R;
+import com.ch.service.DataService;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.AppPreferences;
 import com.ch.utils.DateUtil;
@@ -106,6 +108,8 @@ public abstract class BaseProcessFragment extends Fragment {
     StateButton btnStaticStart;
     @BindView(R.id.btn_auto_heat)
     StateButton btnAutoHeat;
+    @BindView(R.id.btn_unauto_heat)
+    StateButton btnUnautoHeat;
     @BindView(R.id.tv_entrance_temperature)
     TextView tvEntranceTemperature;
     @BindView(R.id.tv_entrance_pressure)
@@ -139,6 +143,7 @@ public abstract class BaseProcessFragment extends Fragment {
 
     public int staticTotal = 0;
     public int testTotal = 0;
+    public DataService mDataService;//xxg
     /**
      * 1:试验合格
      * 2:试验不合格
@@ -191,6 +196,16 @@ public abstract class BaseProcessFragment extends Fragment {
 
     private void initView() {
         initAllState();
+        switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    mDataService.startHeat();
+                }else {
+                    mDataService.stopHeat();
+                }
+            }
+        });
     }
 
     public void initAllState() {
@@ -206,8 +221,10 @@ public abstract class BaseProcessFragment extends Fragment {
         tvTestStartTime.setText("");
         tvTestEndTime.setText("");
         tvTestTotalTime.setText("");
+        tvPreResult.setVisibility(View.INVISIBLE);
         tvPreResult.setSelected(false);
         tvPreResult.setText("合格");
+        tvPrejudge.setText("---");
         tvFlowRate.setText("---");
         tvFlowTotal.setText("---");
 
@@ -220,15 +237,19 @@ public abstract class BaseProcessFragment extends Fragment {
 
         tvAlarm.setSelected(false);
 
+        tvTestOneResult.setVisibility(View.INVISIBLE);
         tvTestOneResult.setText("合格");
         tvTestOneResult.setSelected(false);
 
+        tvTestTwoResult.setVisibility(View.INVISIBLE);
         tvTestTwoResult.setText("合格");
         tvTestTwoResult.setSelected(false);
 
+        tvTestThireResult.setVisibility(View.INVISIBLE);
         tvTestThireResult.setText("合格");
         tvTestThireResult.setSelected(false);
 
+        tvCollectResult.setVisibility(View.INVISIBLE);
         tvCollectResult.setText("合格");
         tvCollectResult.setSelected(false);
 
@@ -241,6 +262,8 @@ public abstract class BaseProcessFragment extends Fragment {
         testState = 0;
         staticTotal = 0;
         testTotal = 0;
+        endStaticTotalTime();
+        endTestTotalTime();
     }
 
     private void initData() {
@@ -295,13 +318,21 @@ public abstract class BaseProcessFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.tv_time_interval, R.id.tv_static_start_time, R.id.tv_test_medium, R.id.tv_static_end_time, R.id.tv_test_start_time, R.id.tv_test_end_time, R.id.btn_static_end, R.id.btn_test_report, R.id.btn_test_start, R.id.btn_test_end, R.id.btn_static_start, R.id.btn_auto_heat, R.id.btn_entrance_temperature, R.id.btn_entrance_pressure, R.id.btn_flow_counter})
+    @OnClick({R.id.tv_time_interval, R.id.tv_static_start_time, R.id.tv_test_medium, R.id.tv_static_end_time, R.id.tv_test_start_time, R.id.tv_test_end_time, R.id.btn_static_end, R.id.btn_test_report, R.id.btn_test_start, R.id.btn_test_end, R.id.btn_static_start, R.id.btn_unauto_heat, R.id.btn_auto_heat, R.id.btn_entrance_temperature, R.id.btn_entrance_pressure, R.id.btn_flow_counter})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_time_interval:
+                if(testProgress>0){
+                    ToastHelper.showToast("试验过程中，无法选择选择介质");
+                    return;
+                }
                 chooseIntervalTimeDialog();
                 break;
             case R.id.tv_test_medium:
+                if(testProgress>0){
+                    ToastHelper.showToast("试验过程中，无法选择选择介质");
+                    return;
+                }
                 List<String> mediumType = new ArrayList<>();
                 mediumType.add("LN2");
                 mediumType.add("LNG");
@@ -313,6 +344,11 @@ public abstract class BaseProcessFragment extends Fragment {
                         tvTestMedium.setText(date);
                         parameter.setMediumType(date);
                         DbManage.getInstance().saveParamter(parameter);
+                        if("LN2".equals(parameter.getMediumType())){
+                            mDataService.setMediumtype(1);
+                        }else if("LNG".equals(parameter.getMediumType())){
+                            mDataService.setMediumtype(2);
+                        }
                     }
                 });
                 break;
@@ -393,12 +429,20 @@ public abstract class BaseProcessFragment extends Fragment {
                 } else {
                     if("开始静置".equals(btnStaticStart.getText().toString())){
                         btnStaticStart.setText("暂停静置");
-                        staticAuto = true;
-                        if(TextUtils.isEmpty(tvStaticTotalTime.getText().toString())){
-                            tvStaticStartTime.setText(DateUtil.getSystemDate1());
-                            startStaticTotalTime();
+                        if(staticAuto){
+                            staticPause = false;
+                            return;
                         }
-                        staticPause = false;
+                        staticAuto = true;
+//                        if(TextUtils.isEmpty(tvStaticTotalTime.getText().toString()) && TextUtils.isEmpty(tvStaticEndTime.getText().toString())){
+                            tvStaticEndTime.setText("");
+                            tvStaticTotalTime.setText("");
+                            tvStaticTotalTime.setText("00:00:00");
+                            tvStaticStartTime.setText(DateUtil.getSystemDate1());
+                            staticTotal = 0;
+                            startStaticTotalTime();
+//                        }
+
                     }else {
                         btnStaticStart.setText("开始静置");
                         staticPause = true;
@@ -415,26 +459,9 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("已清除上次实验数据");
                     return;
                 }
-                if (CheckTimeArrive()) {
-                    tvStaticEndTime.setText(DateUtil.getSystemDate1());
-                    endStaticTotalTime();
-                } else {
-                    final CommonDialog commonDialog = new CommonDialog(getActivity());
-                    commonDialog.setMessage("静置时间未达标准，结束静置将无法进行试验，确定结束静置吗？");
-                    commonDialog.setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
-                        @Override
-                        public void onPositiveClick() {
-                            initAllState();
-                            commonDialog.dismiss();
-                        }
-
-                        @Override
-                        public void onNegtiveClick() {
-                            commonDialog.dismiss();
-                        }
-                    });
-                    commonDialog.show();
-                }
+                tvStaticEndTime.setText(DateUtil.getSystemDate1());
+                btnStaticStart.setText("开始静置");
+                endStaticTotalTime();
                 staticAuto = false;
                 break;
             case R.id.btn_test_start:
@@ -442,7 +469,7 @@ public abstract class BaseProcessFragment extends Fragment {
                     ToastHelper.showToast("试验参数未设置，请设置后开始试验");
                     return;
                 }
-                if(TextUtils.isEmpty(tvStaticTotalTime.getText().toString())){
+                if(TextUtils.isEmpty(tvStaticTotalTime.getText().toString()) || TextUtils.isEmpty(tvStaticEndTime.getText().toString())){
                     ToastHelper.showToast("请先选择静置时间");
                     return;
                 }
@@ -456,6 +483,7 @@ public abstract class BaseProcessFragment extends Fragment {
                         tvTestStartTime.setText(DateUtil.getSystemDate1());
                         btnStaticStart.setEnabled(false);
                         btnStaticEnd.setEnabled(false);
+                        endStaticTotalTime();
                         startTestTotalTime();
                         testProgress = 1;
                         startTest();
@@ -479,14 +507,14 @@ public abstract class BaseProcessFragment extends Fragment {
                 }
                 final CommonDialog commonDialog = new CommonDialog(getActivity());
                 commonDialog.setTitle("警告")
-                        .setMessage("结束试验会删除此次试验数据，确定结束试验吗？")
+                        .setMessage("确定结束试验吗？")
                         .setOnClickBottomListener(new CommonDialog.OnClickBottomListener() {
                     @Override
                     public void onPositiveClick() {
-                        stopTest();
-                        initAllState();
+//                        stopTest();
+//                        initAllState();
+                        testSuccess();
                         endStaticTotalTime();
-                        endTestTotalTime();
                         commonDialog.dismiss();
                     }
 
@@ -497,6 +525,18 @@ public abstract class BaseProcessFragment extends Fragment {
                 }).show();
                 break;
             case R.id.btn_auto_heat:
+                if(btnAutoHeat.isSelected()){
+                    btnAutoHeat.setSelected(false);
+                }else {
+                    btnAutoHeat.setSelected(true);
+                }
+                break;
+            case R.id.btn_unauto_heat:
+                if(btnUnautoHeat.isSelected()){
+                    btnUnautoHeat.setSelected(false);
+                }else {
+                    btnUnautoHeat.setSelected(true);
+                }
                 break;
             case R.id.btn_entrance_temperature:
                 break;
@@ -537,14 +577,14 @@ public abstract class BaseProcessFragment extends Fragment {
             tvAlarm.setSelected(false);
         }
         switch (beanRTData.getIswarm()){
-            case 0:
+            case 5:
                 btnAutoHeat.setEnabled(false);
                 stopGif1();
                 stopGif2();
 //                playGif1();
 //                playGif2();
                 break;
-            case 1:
+            case 4:
                 btnAutoHeat.setEnabled(true);
                 playGif1();
                 playGif2();
@@ -556,6 +596,7 @@ public abstract class BaseProcessFragment extends Fragment {
     public void setEvaRDate(float staticEvaR) {
         double qualificate = Double.parseDouble(parameter.getQualificationRate());
         tvPrejudge.setText(String.valueOf(staticEvaR));
+        tvPreResult.setVisibility(View.VISIBLE);
         if (staticEvaR > qualificate) {//替换成NER值
             tvPreResult.setSelected(true);
             tvPreResult.setText("不合格");

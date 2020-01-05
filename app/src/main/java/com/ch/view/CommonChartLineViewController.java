@@ -195,6 +195,9 @@ public class CommonChartLineViewController extends ViewController<List<ChartBean
 
     private void refreshChart(){
         mChart.clear();
+        if(null == lineChartManager1){
+            return;
+        }
         lineChartManager1.showLineChart0(mData1, mData2,mData3, mData4, mData5, mData6, mData7, mShow1, mShow2, mShow3, mShow4, mShow5, mShow6, mShow7);
         lineChartManager1.setMarkerView(getContext(), mShow1, mShow2, mShow3, mShow4, mShow5, mShow6, mShow7,rData1, rData2, rData3, rData4, rData5, rData6, rData7);
     }
@@ -207,5 +210,10 @@ public class CommonChartLineViewController extends ViewController<List<ChartBean
         rData5 = data5;
         rData6 = data6;
         rData7 = data7;
+    }
+
+    public void reset() {
+        mChart.clear();
+        mChart.invalidate();
     }
 }

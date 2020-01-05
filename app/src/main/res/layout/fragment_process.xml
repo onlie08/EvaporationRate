@@ -10,7 +10,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorAccentPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +20,8 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:gravity="right"
             android:text="记录间隔: "
             android:textColor="@color/textcolorAccent"
@@ -77,7 +79,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:gravity="right"
             android:text="累计流量(L): "
             android:textColor="@color/textcolorAccent"
@@ -91,7 +93,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:gravity="right"
             android:text="瞬时质量(kg): "
             android:textColor="@color/textcolorAccent"
@@ -105,7 +107,7 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:gravity="right"
             android:text="累积质量(kg): "
             android:textColor="@color/textcolorAccent"
@@ -123,10 +125,10 @@
             android:drawableRight="@mipmap/common_ddm"
             android:ems="4"
             android:gravity="center"
+            android:padding="5dp"
             android:text=""
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
-            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView1"
             app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -139,11 +141,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="6"
+            android:maxLength="12"
+            android:singleLine="true"
             android:text="---"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
-            android:singleLine="true"
-            android:maxLength="12"
             app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -169,11 +171,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="6"
+            android:maxLength="10"
+            android:singleLine="true"
             android:text="---"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
-            android:singleLine="true"
-            android:maxLength="10"
             app:layout_constraintEnd_toStartOf="@+id/textView7"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -184,11 +186,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="6"
+            android:maxLength="12"
+            android:singleLine="true"
             android:text="---"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
-            android:singleLine="true"
-            android:maxLength="12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -198,18 +200,20 @@
             android:id="@+id/tv_time_interval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/edit_background"
             android:ems="4"
             android:gravity="center"
+            android:padding="5dp"
             android:text="30"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_thire"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/textView1"
-            app:layout_constraintTop_toTopOf="@+id/textView1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -526,9 +530,10 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/alie_padding_one"
-        android:layout_marginRight="@dimen/alie_padding_one"
-        android:layout_marginBottom="@dimen/alie_padding_one"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@color/titleBackgroundAccent"
         android:padding="@dimen/alie_padding_two"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
@@ -611,6 +616,7 @@
             android:text="合格"
             android:textColor="@drawable/select_leagl_text"
             android:textSize="@dimen/text_size_one"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/textView50"
             app:layout_constraintStart_toStartOf="@+id/tv_prejudge"
             app:layout_constraintTop_toTopOf="@+id/textView50" />
@@ -631,6 +637,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:text="开始静置时间"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -672,7 +679,8 @@
             android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:text="开始试验时间"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
@@ -824,7 +832,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_static_end"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="结束静置"
@@ -850,7 +858,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_test_report"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:enabled="false"
         android:text="输出报告"
@@ -878,7 +886,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_test_start"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="开始试验"
@@ -904,7 +912,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_test_end"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="终止试验"
@@ -930,8 +938,8 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_static_start"
         android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:text="开始静置"
         android:textSize="@dimen/text_size_thire"
@@ -993,23 +1001,10 @@
         app:layout_constraintStart_toEndOf="@+id/btn_test_end"
         app:layout_constraintTop_toTopOf="@+id/btn_test_end" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="680dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-
-        android:background="@mipmap/process_bac"
-        app:layout_constraintStart_toEndOf="@+id/textView30"
-        app:layout_constraintTop_toBottomOf="@+id/btn_static_start" />
-
     <com.cunoraz.gifview.library.GifView
         android:id="@+id/gif1"
         android:layout_width="0dp"
         android:layout_height="20dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
         android:alpha="0.5"
         android:visibility="gone"
         app:gif="@mipmap/process_air_cross"
@@ -1018,6 +1013,17 @@
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="906dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+
+        android:background="@mipmap/process_bac"
+        app:layout_constraintStart_toEndOf="@+id/btn_unauto_heat"
+        app:layout_constraintTop_toBottomOf="@+id/btn_static_start" />
 
     <com.cunoraz.gifview.library.GifView
         android:id="@+id/gif2"
@@ -1031,24 +1037,32 @@
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView30"
+    <com.deadline.statebutton.StateButton
+        android:id="@+id/btn_unauto_heat"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
         android:gravity="bottom"
         android:text="手动加热"
         android:textSize="@dimen/text_size_thire"
         app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:normalBackgroundColor="@color/colorAccent"
+
+        app:normalTextColor="@color/colorWhite"
+        app:pressedBackgroundColor="@color/colorAccent"
+
+        app:pressedTextColor="@color/colorWhite"
+        app:round="true"
+        app:unableBackgroundColor="@color/transparent"
+        app:unableTextColor="@color/textcolorAccent" />
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_auto_heat"
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:enabled="false"
         android:text="自动加热"
         android:textSize="@dimen/text_size_thire"
@@ -1149,9 +1163,8 @@
         android:layout_height="0dp"
 
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_flow_counter"
@@ -1169,8 +1182,8 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="16dp"
                 android:src="@mipmap/process_humidity"
                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
@@ -1179,8 +1192,8 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="64dp"
                 android:src="@mipmap/process_temperateure"
@@ -1190,8 +1203,8 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@mipmap/process_pressure"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -1286,11 +1299,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:checked="true"
+        android:checked="false"
 
-        app:layout_constraintBottom_toTopOf="@+id/textView30"
-        app:layout_constraintEnd_toEndOf="@+id/textView30"
-        app:layout_constraintStart_toStartOf="@+id/textView30"
+        app:layout_constraintBottom_toTopOf="@+id/btn_unauto_heat"
+        app:layout_constraintEnd_toEndOf="@+id/btn_unauto_heat"
+        app:layout_constraintStart_toStartOf="@+id/btn_unauto_heat"
         app:showText="false"
         app:splitTrack="false"
         app:switchMinWidth="50dp"

@@ -11,6 +11,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,6 +33,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -158,6 +160,10 @@ public class ReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Window window = getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE;
+        window.setAttributes(params);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_new);
         ButterKnife.bind(this);
@@ -188,6 +194,33 @@ public class ReportActivity extends AppCompatActivity {
         if (null != testProcess) {
             setTestProcess(testProcess);
         }
+        String testRequirement = "静态蒸发率试验按照 GB/T18443.5-2010《真空绝热深冷设备性能试验方法 第5部分:静态蒸发 率测量》的相关要求进行，储罐的静态蒸发率应不大于"+parameter.getQualificationRate()+"%/d。";
+        tvTestRequirement.setText(testRequirement);
+        String pass;
+        if(!TextUtils.isEmpty(testProcess.getEvaporationRateFinal())){
+            if(Double.parseDouble(parameter.getQualificationRate()) < Double.parseDouble(testProcess.getEvaporationRateFinal())){
+                pass = "不符合";
+            }else {
+                pass = "符合";
+            }
+        }else {
+            pass = "不符合";
+        }
+//        String pass = testProcess.getIsPass()?"符合":"不符合";
+        tvConclusion.setText("根据试验标准的要求，对编号为"+parameter.getDeviceId()+"的"+parameter.getDeviceType()+"进行了静态蒸发率试验，试验中测得静态蒸发率值为"+testProcess.getEvaporationRateFinal()+"%/d，试验结果"+pass+"试验标准的相关要求。");
+        try {
+            String startTime = testProcess.getTestStartTime();
+            Date date1 = DateUtil.StringToDate(startTime);
+            String endTime = testProcess.getTestEndTime();
+            Date date2 = DateUtil.StringToDate(endTime);
+            long diff=date2.getTime()-date1.getTime();
+            long nh = 1000 * 60 * 60;
+            long nd = 1000 * 24 * 60 * 60;
+            long hour = diff % nd / nh;
+            tvAverageEvaporation.setText("");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setTestProcess(TestProcess testProcess) {
@@ -207,34 +240,36 @@ public class ReportActivity extends AppCompatActivity {
         tvAveragePressure.setText(testProcess.getSurroundpressure()+"");
         tvAverageTempture.setText(testProcess.getSurroundtemperature()+"");
         tvAverageEvaporation.setText(testProcess.getSurroundhumidity()+"");
+        tvTestDate1.setText(testProcess.getTestStartTime());
     }
 
     private void setSensor(Sensor sensor) {
-        String evaporationrateInfo = sensor.getEvaporationRateType()+sensor.getEvaporationRateNum();
+        String evaporationrateInfo = sensor.getEvaporationRateType()+ "/"+ sensor.getEvaporationRateNum();
         if(!TextUtils.isEmpty(evaporationrateInfo)){
             tvEvaporationrateInfo.setText(evaporationrateInfo);
         }
-        String flowmeterInfo = sensor.getFlowmeterType()+sensor.getFlowmeterNum();
+        tvTestDeviceNum.setText(isNotNull(sensor.getEvaporationRateNum()) ? sensor.getEvaporationRateNum():"---");
+        String flowmeterInfo = sensor.getFlowmeterType()+ "/"+sensor.getFlowmeterNum();
         if(!TextUtils.isEmpty(flowmeterInfo)){
             tvFlowmeterInfo.setText(flowmeterInfo);
         }
-        String temperatureInfo = sensor.getTemperatureType() + sensor.getTemperatureNum();
+        String temperatureInfo = sensor.getTemperatureType()+ "/" + sensor.getTemperatureNum();
         if(!TextUtils.isEmpty(temperatureInfo)){
             tvTemperatureInfo.setText(temperatureInfo);
         }
-        String pressureInfo = sensor.getPressureType() + sensor.getPressureNum();
+        String pressureInfo = sensor.getPressureType()+ "/" + sensor.getPressureNum();
         if(!TextUtils.isEmpty(pressureInfo)){
             tvPressureInfo.setText(pressureInfo);
         }
-        String humidityInfo = sensor.getHumidityType() + sensor.getHumidityNum();
+        String humidityInfo = sensor.getHumidityType()+ "/" + sensor.getHumidityNum();
         if(!TextUtils.isEmpty(humidityInfo)){
             tvHumidityInfo.setText(humidityInfo);
         }
-        String airPressureInfo = sensor.getAirPressureType() + sensor.getAirPressureNum();
+        String airPressureInfo = sensor.getAirPressureType()+ "/" + sensor.getAirPressureNum();
         if(!TextUtils.isEmpty(airPressureInfo)){
             tvAirPressureInfo.setText(airPressureInfo);
         }
-        String laserInfo = sensor.getLaserType() + sensor.getLaserNum();
+        String laserInfo = sensor.getLaserType()+ "/" + sensor.getLaserNum();
         if(!TextUtils.isEmpty(laserInfo)){
             tvLaserInfo.setText(laserInfo);
         }
@@ -246,7 +281,7 @@ public class ReportActivity extends AppCompatActivity {
         tvDeviceId.setText(isNotNull(parameter.getDeviceId()) ? parameter.getDeviceId():"---");
         tvReportTime.setText(DateUtil.getSystemDate());
         tvDeviceNum.setText(isNotNull(parameter.getDeviceId()) ? parameter.getDeviceId():"---");
-        tvTestDeviceNum.setText("---");
+
         tvUseDeviceCompany.setText(isNotNull(parameter.getUseDeviceCompany()) ? parameter.getUseDeviceCompany():"---");
         tvDeviceType.setText(isNotNull(parameter.getDeviceType()) ? parameter.getDeviceType():"---");
         tvDeviceName.setText(isNotNull(parameter.getDeviceName()) ? parameter.getDeviceName():"---");
@@ -259,9 +294,13 @@ public class ReportActivity extends AppCompatActivity {
         tvLicenseNo.setText(isNotNull(parameter.getLicenseNo()) ? parameter.getLicenseNo():"---");
         tvFullRate.setText(isNotNull(parameter.getFullnessRate()) ? parameter.getFullnessRate():"---");
         tvNer.setText(isNotNull(parameter.getQualificationRate()) ? parameter.getQualificationRate():"---");
+        tvLiquidfillingDateInfo.setText(isNotNull(parameter.getLiquidFillingEndDate()) ? parameter.getLiquidFillingEndDate():"---");
 
         String standard = (String)AppPreferences.instance().get("standard","GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
         tvTestStandard.setText(isNotNull(standard) ? standard:"---");
+
+
+
     }
 
     @Override

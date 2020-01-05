@@ -26,7 +26,7 @@
         android:text="欢迎使用"
         android:textStyle="bold"
         android:textColor="@color/textColorPrimary"
-        android:textSize="28sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pathview" />
@@ -39,7 +39,7 @@
         android:text="静态蒸发率自动检测仪"
         android:textStyle="bold"
         android:textColor="@color/textColorPrimary"
-        android:textSize="28sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView215" />

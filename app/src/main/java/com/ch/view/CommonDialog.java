@@ -150,7 +150,7 @@ public class CommonDialog extends Dialog {
         messageTv = (TextView) findViewById(R.id.tv_message);
         imageColse = (ImageView) findViewById(R.id.img_close);
 
-        this.getWindow().setLayout(DensityUtil.dp2px(500f), LinearLayout.LayoutParams.WRAP_CONTENT);
+        this.getWindow().setLayout(DensityUtil.dp2px(600f), LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     /**
