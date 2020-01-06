@@ -52,7 +52,7 @@ public class DateUtil {
     }
 
     public static String getSystemDate1(){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");// HH:mm:ss
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd_HH:mm:ss");// HH:mm:ss
         Date date = new Date(System.currentTimeMillis());
         return simpleDateFormat.format(date);
     }

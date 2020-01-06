@@ -2215,7 +2215,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date19"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:background="@color/colorAccentPrimary"
                 android:minHeight="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -2269,7 +2269,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date20"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:minHeight="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

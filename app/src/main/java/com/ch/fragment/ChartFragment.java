@@ -141,6 +141,9 @@ public class ChartFragment extends Fragment {
     }
 
     private void refreshRtData(BeanRTData beanRTData) {
+        if(null == tvFlowTotal3){
+            return;
+        }
         tvFlowTotal5.setText(beanRTData.getInstantFlow()+"");
         tvFlowTotal4.setText(beanRTData.getAccFlow()+"");
         tvFlowTotal3.setText(beanRTData.getInstantQuality()+"");

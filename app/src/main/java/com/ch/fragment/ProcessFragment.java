@@ -237,10 +237,18 @@ public class ProcessFragment extends BaseProcessFragment{
         btnTestEnd.setEnabled(true);
         btnStaticStart.setEnabled(true);
         btnStaticEnd.setEnabled(true);
-        tvTestEndTime.setText(DateUtil.getSystemDate1());
+        tvTestEndTime.setText(DateUtil.getSystemDate());
         RxTestTotalTime.cancel();
         testProgress = 0;
         saveTestProcessToDB();
+    }
+
+    @Override
+    protected void clearHistoryDate() {
+        if(null == parameter){
+            return;
+        }
+        DbManage.getInstance().delectTest(parameter.getDeviceId());
     }
 
     void testFail() {

@@ -939,7 +939,7 @@
         android:id="@+id/btn_static_start"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="开始静置"
         android:textSize="@dimen/text_size_thire"
@@ -1016,10 +1016,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="906dp"
+        android:layout_width="900dp"
         android:layout_height="120dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="64dp"
 
         android:background="@mipmap/process_bac"
         app:layout_constraintStart_toEndOf="@+id/btn_unauto_heat"
@@ -1037,6 +1037,31 @@
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/tv_unauto_heat"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/selector_menu_text_background_pressed"
+        android:gravity="center"
+        android:text="手动加热"
+        android:textColor="@drawable/selector_menu_text_pressed"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_auto_heat"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="自动加热"
+        android:gravity="center"
+        android:background="@drawable/selector_menu_text_background_pressed"
+        android:textColor="@drawable/selector_menu_text_pressed"
+        android:textSize="@dimen/text_size_thire"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
+        app:layout_constraintStart_toEndOf="@+id/tv_unauto_heat" />
+
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_unauto_heat"
         android:layout_width="wrap_content"
@@ -1045,13 +1070,14 @@
         android:gravity="bottom"
         android:text="手动加热"
         android:textSize="@dimen/text_size_thire"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/btn_auto_heat"
         app:layout_constraintStart_toStartOf="parent"
+
         app:normalBackgroundColor="@color/colorAccent"
-
         app:normalTextColor="@color/colorWhite"
-        app:pressedBackgroundColor="@color/colorAccent"
 
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@color/colorWhite"
         app:round="true"
         app:unableBackgroundColor="@color/transparent"
@@ -1066,14 +1092,15 @@
         android:enabled="false"
         android:text="自动加热"
         android:textSize="@dimen/text_size_thire"
+        android:visibility="invisible"
+
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
+
         app:normalBackgroundColor="@color/colorAccent"
-
         app:normalTextColor="@color/colorWhite"
-        app:pressedBackgroundColor="@color/colorAccent"
 
+        app:pressedBackgroundColor="@color/colorAccent"
         app:pressedTextColor="@color/colorWhite"
         app:round="true"
         app:unableBackgroundColor="@color/transparent"
@@ -1163,7 +1190,7 @@
         android:layout_height="0dp"
 
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
@@ -1298,9 +1325,10 @@
         android:id="@+id/switch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="35dp"
         android:checked="false"
 
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_unauto_heat"
         app:layout_constraintEnd_toEndOf="@+id/btn_unauto_heat"
         app:layout_constraintStart_toStartOf="@+id/btn_unauto_heat"

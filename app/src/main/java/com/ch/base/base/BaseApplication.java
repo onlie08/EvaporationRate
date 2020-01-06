@@ -34,6 +34,7 @@ public class BaseApplication extends Application {
     private static DaoSession daoSession;
     public static SharedPreferences sharedPreferences;
     public static String pwd;
+    public static String loginTime = "";
 
     static {
         //设置全局的Header构建器

@@ -25,6 +25,7 @@ import com.ch.view.CommonDialog;
 import com.deadline.statebutton.StateButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class DateFragment extends Fragment {
     private FragmentDateListAdapter fragmentDateListAdapter;
     private List<TestProcess> allTestProcess = new ArrayList<>();
     private HashMap<Long, Boolean> hashMap;
-    private int offset = 0;
+//    private int offset = 0;
     private int totalNum = 0;
 
     @Override
@@ -142,16 +143,15 @@ public class DateFragment extends Fragment {
     }
 
     private void initData() {
-        allTestProcess = DbManage.getInstance().queryAllTestProcess(offset);
+        allTestProcess = DbManage.getInstance().queryAllTestProcess();
+        Collections.reverse(allTestProcess);
         totalNum = DbManage.getInstance().queryTestProcessNum();
         loadListDate();
         if(allTestProcess.size() == 0){
             tvPageCount.setText("0");
         }else {
-            int count = totalNum/10 + 1;
-            tvPageCount.setText(count + "");
+            tvPageCount.setText(totalNum + "");
         }
-        tvPageNum.setText((offset+1) +"");
     }
 
     @Override
@@ -189,18 +189,6 @@ public class DateFragment extends Fragment {
     @OnClick({R.id.btn_next_page, R.id.btn_pre_page, R.id.btn_delect, R.id.tv_select_time, R.id.checkBox_id,R.id.btn_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn_next_page:
-                if(offset < totalNum/10){
-                    offset++;
-                    initData();
-                }
-                break;
-            case R.id.btn_pre_page:
-                if(offset>0){
-                    offset--;
-                }
-                initData();
-                break;
             case R.id.btn_delect:
                 if(null == hashMap){
                     ToastHelper.showLongToast("请选择试验数据");

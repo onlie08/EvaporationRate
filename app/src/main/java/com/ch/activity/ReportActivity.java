@@ -10,6 +10,7 @@ import android.os.Message;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,13 +29,17 @@ import com.ch.utils.BrightnessTools;
 import com.ch.utils.DateUtil;
 import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
+import com.why.project.poilib.PoiUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -193,21 +198,24 @@ public class ReportActivity extends AppCompatActivity {
         testProcess = DbManage.getInstance().queryTestProcess(deviceId);
         if (null != testProcess) {
             setTestProcess(testProcess);
-        }
-        String testRequirement = "静态蒸发率试验按照 GB/T18443.5-2010《真空绝热深冷设备性能试验方法 第5部分:静态蒸发 率测量》的相关要求进行，储罐的静态蒸发率应不大于"+parameter.getQualificationRate()+"%/d。";
-        tvTestRequirement.setText(testRequirement);
-        String pass;
-        if(!TextUtils.isEmpty(testProcess.getEvaporationRateFinal())){
-            if(Double.parseDouble(parameter.getQualificationRate()) < Double.parseDouble(testProcess.getEvaporationRateFinal())){
-                pass = "不符合";
+            String pass;
+            if(!TextUtils.isEmpty(testProcess.getEvaporationRateFinal())){
+                if(Double.parseDouble(parameter.getQualificationRate()) < Double.parseDouble(testProcess.getEvaporationRateFinal())){
+                    pass = "不符合";
+                }else {
+                    pass = "符合";
+                }
             }else {
-                pass = "符合";
+                pass = "不符合";
             }
-        }else {
-            pass = "不符合";
+            String testRequirement = "静态蒸发率试验按照 GB/T18443.5-2010《真空绝热深冷设备性能试验方法 第5部分:静态蒸发 率测量》的相关要求进行，储罐的静态蒸发率应不大于"+parameter.getQualificationRate()+"%/d。";
+            tvTestRequirement.setText(testRequirement);
+            tvConclusion.setText("根据试验标准的要求，对编号为"+parameter.getDeviceId()+"的"+parameter.getDeviceType()+"进行了静态蒸发率试验，试验中测得静态蒸发率值为"+testProcess.getEvaporationRateFinal()+"%/d，试验结果"+pass+"试验标准的相关要求。");
+
         }
+
+
 //        String pass = testProcess.getIsPass()?"符合":"不符合";
-        tvConclusion.setText("根据试验标准的要求，对编号为"+parameter.getDeviceId()+"的"+parameter.getDeviceType()+"进行了静态蒸发率试验，试验中测得静态蒸发率值为"+testProcess.getEvaporationRateFinal()+"%/d，试验结果"+pass+"试验标准的相关要求。");
         try {
             String startTime = testProcess.getTestStartTime();
             Date date1 = DateUtil.StringToDate(startTime);
@@ -216,8 +224,10 @@ public class ReportActivity extends AppCompatActivity {
             long diff=date2.getTime()-date1.getTime();
             long nh = 1000 * 60 * 60;
             long nd = 1000 * 24 * 60 * 60;
-            long hour = diff % nd / nh;
-            tvAverageEvaporation.setText("");
+            double acc = DbManage.getInstance().queryBeanRTData(parameter.getDeviceId()).get(0).getAccQuality();
+            double hour = diff / nh;
+            Log.i("caohai",hour+"");
+            tvAverageEvaporation.setText(hour != 0? acc/hour+"" :"0");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -313,14 +323,16 @@ public class ReportActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_export:
-                progressBar2.setVisibility(View.VISIBLE);
-                tvTip.setVisibility(View.VISIBLE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        pdfModel();
-                    }
-                }).start();
+//                progressBar2.setVisibility(View.VISIBLE);
+//                tvTip.setVisibility(View.VISIBLE);
+                saveWord();
+                handler.sendEmptyMessage(0);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        saveWord();
+//                    }
+//                }).start();
                 break;
             case R.id.btn_printing:
                 ToastHelper.showLongToast("未找到打印设备");
@@ -341,44 +353,44 @@ public class ReportActivity extends AppCompatActivity {
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
-            progressBar2.setVisibility(View.GONE);
-            tvTip.setVisibility(View.GONE);
-            ToastHelper.showLongToast("Pdf报告成功生成，已保存到本地");
+//            progressBar2.setVisibility(View.GONE);
+//            tvTip.setVisibility(View.GONE);
+            ToastHelper.showLongToast("报告成功生成，已保存到本地");
             return false;
         }
     });
 
-    private void pdfModel(){
-        PdfDocument document = new PdfDocument();
-        // ll_model是一个LinearLayout
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(scrollView2.getWidth(),scrollView2.getChildAt(0).getHeight(),2).create();
-        PdfDocument.Page page = document.startPage(pageInfo);
-        scrollView2.draw(page.getCanvas());
-//        Canvas canvas = page.getCanvas();
-//        canvas.translate(0, -scrollView2.getHeight());
-//        scrollView2.draw(canvas);
-        document.finishPage(page);
-
-        try {
-            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+parameter.getDeviceId()+"_report.pdf";
-            File file = new File(path);
-            if (file.exists()) {
-                file.delete();
-            }else {
-                file.createNewFile();//创建文件
-            }
-            FileOutputStream outputStream = null;
-            outputStream = new FileOutputStream(file);
-            document.writeTo(outputStream);
-            document.close();
-            handler.sendEmptyMessage(0);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void pdfModel(){
+//        PdfDocument document = new PdfDocument();
+//        // ll_model是一个LinearLayout
+//        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(scrollView2.getWidth(),scrollView2.getChildAt(0).getHeight(),2).create();
+//        PdfDocument.Page page = document.startPage(pageInfo);
+//        scrollView2.draw(page.getCanvas());
+////        Canvas canvas = page.getCanvas();
+////        canvas.translate(0, -scrollView2.getHeight());
+////        scrollView2.draw(canvas);
+//        document.finishPage(page);
+//
+//        try {
+//            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+parameter.getDeviceId()+"_"+DateUtil.getSystemDate()+"_report.pdf";
+//            File file = new File(path);
+//            if (file.exists()) {
+//                file.delete();
+//            }else {
+//                file.createNewFile();//创建文件
+//            }
+//            FileOutputStream outputStream = null;
+//            outputStream = new FileOutputStream(file);
+//            document.writeTo(outputStream);
+//            document.close();
+//            handler.sendEmptyMessage(0);
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    private void pdfInterviewContent(PdfDocument document) {
 ////        // 一页pdf的高度
@@ -407,4 +419,37 @@ public class ReportActivity extends AppCompatActivity {
 //        }
 //        document.close();
 //    }
+
+    private void saveWord(){
+            try {
+                InputStream templetDocStream = getAssets().open("储罐静态蒸发率试验报告.doc");
+                String targetDocPath = Environment.getExternalStorageDirectory() + File.separator + "001evaporation/"+ DateUtil.getSystemDate1()+"_"+parameter.getDeviceId()+"_储罐静态蒸发率试验报告.doc";
+
+                Map<String, String> dataMap = new HashMap<String, String>();
+                dataMap.put("$testDate$", testProcess.getTestStartTime());
+                String standard = (String)AppPreferences.instance().get("standard","GB/T18443.5-2010 《真空绝热深冷设备性能试验方法 第5部分：静态蒸发率测量》、\n《NB/T47059-冷冻液化气体罐式集装箱》");
+
+                dataMap.put("$testStandard$", standard);
+                dataMap.put("$deviceNum$", parameter.getDeviceId());
+                dataMap.put("$standardRate$", parameter.getQualificationRate());
+                dataMap.put("$testRate$", testProcess.getEvaporationRateFinal());
+                dataMap.put("$testDeviceNum$", null != sensor ?  sensor.getEvaporationRateNum() : "");
+                dataMap.put("$testStartDate$", testProcess.getTestStartTime());
+                dataMap.put("$testEndDate$", testProcess.getTestEndTime());
+                dataMap.put("$fillEndDate$", parameter.getLiquidFillingEndDate());
+                dataMap.put("$fillRate$", parameter.getFullnessRate());
+                dataMap.put("$tmpVaule$", testProcess.getSurroundtemperature()+"℃");
+                dataMap.put("$pressVaule$", testProcess.getSurroundpressure()+"KPa");
+                dataMap.put("$volVaule$", parameter.getEffectiveVolume());
+                dataMap.put("$rateVaule$", tvAverageEvaporation.getText().toString());
+                dataMap.put("$evaVaule$", testProcess.getEvaporationRateFinal());
+
+                PoiUtils.writeToDoc(templetDocStream,targetDocPath,dataMap);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e){
+
+            }
+    }
 }

@@ -969,11 +969,14 @@ public class LineChartManager {
         xAxis.setDrawScale(false);
         //是否绘制X轴线
         xAxis.setDrawAxisLine(false);
-        xAxis.setTextSize(30f);
+        xAxis.setTextSize(16f);
 
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
+                if(yData1.isEmpty()){
+                    return "";
+                }
                 String tradeDate = yData1.get((int) value % yData1.size()).getDate();
 //                return DateUtil.formatDateToMD(tradeDate);
                 return tradeDate.substring(0,tradeDate.length());

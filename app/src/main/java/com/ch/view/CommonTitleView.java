@@ -99,7 +99,9 @@ public class CommonTitleView extends ViewController<String> {
         View layout = ((Activity)getContext()).getLayoutInflater().inflate(R.layout.dialog_person_layout, null);
         TextView tv_change_pwd = layout.findViewById(R.id.tv_change_pwd);
         TextView tv_logout = layout.findViewById(R.id.tv_logout);
-        final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(450f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        TextView tv_login_time = layout.findViewById(R.id.tv_login_time);
+        tv_login_time.setText(BaseApplication.loginTime);
+        final PopupWindow popupWindow = new PopupWindow(layout, DensityUtil.dp2px(500f), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
 //        popupWindow.setOnDismissListener(this);

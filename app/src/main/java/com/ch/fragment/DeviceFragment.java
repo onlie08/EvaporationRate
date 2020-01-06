@@ -188,7 +188,7 @@ public class DeviceFragment extends Fragment {
         tvHumidityTestDate.setText(sensor.getHumidityTestDate());
         editHumidityPassedDate.setText(sensor.getHumidityPassedDate());
 
-        setStateData();
+
     }
 
     private void setStateData(){
@@ -295,7 +295,7 @@ public class DeviceFragment extends Fragment {
             }else {
                 tvHumidityDeviceState.setText("异常");
                 tvHumidityDeviceState.setTextColor(getResources().getColor(R.color.red));
-                tvHumidityTestState.setText("未检验");
+                tvHumidityTestState.setText("已过期");
                 tvHumidityTestState.setTextColor(getResources().getColor(R.color.red));
             }
         }
@@ -307,6 +307,9 @@ public class DeviceFragment extends Fragment {
     }
 
     private void refreshRtData(BeanRTData beanRTData) {
+        if(null == tvLaserValue){
+            return;
+        }
         tvLaserValue.setText(beanRTData.getInstantFlow()+"");
         tvFlowmeterValue.setText(beanRTData.getInstantFlow()+"");
         tvTemperatureValue.setText(beanRTData.getEntertemperature()+"");
@@ -359,6 +362,7 @@ public class DeviceFragment extends Fragment {
             case R.id.btn_sure:
                 if(checkInputLegal()){
                     saveDateToDb();
+                    setStateData();
                     ToastHelper.showToast("保存成功");
                 }else {
                     ToastHelper.showToast("有未填写信息，请填写完整后提交");
@@ -560,8 +564,9 @@ public class DeviceFragment extends Fragment {
     private boolean checkState(String date,String month){
         try {
             long dates = DateUtil.StringToDate1(date).getTime();
-            int days = (int) ((System.currentTimeMillis() - dates) / (1000 * 60 * 60 * 24));
-            if((days/30.0f) > Float.parseFloat(month)){
+            long diff = System.currentTimeMillis() - dates;
+            float mot = Float.parseFloat(month)*30*24*60*60*1000;
+            if(diff < mot){
                 return true;
             }
         } catch (ParseException e) {

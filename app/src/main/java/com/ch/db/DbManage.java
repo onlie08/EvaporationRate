@@ -107,9 +107,9 @@ public class DbManage {
         return testProcessDao.queryBuilder().where(TestProcessDao.Properties.DeviceId.eq(s)).list();
     }
 
-    public List<TestProcess> queryAllTestProcess(int offset) {
-//        return testProcessDao.queryBuilder().list();
-        return testProcessDao.queryBuilder().offset(offset * 10).limit(10).list();
+    public List<TestProcess> queryAllTestProcess() {
+        return testProcessDao.queryBuilder().list();
+//        return testProcessDao.queryBuilder().offset(offset * 10).limit(10).list();
     }
 
     public List<BeanRTData> queryBeanRTData(String deviceId) {
@@ -122,5 +122,9 @@ public class DbManage {
 
     public int queryTestProcessNum() {
         return testProcessDao.queryBuilder().list().size();
+    }
+
+    public void delectTest(String deviceId) {
+        beanRTDataDao.queryBuilder().where(BeanRTDataDao.Properties.DeviceId.eq(deviceId)).buildDelete().executeDeleteWithoutDetachingEntities();
     }
 }
