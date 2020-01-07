@@ -83,8 +83,8 @@
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_export"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginTop="8dp"
 
@@ -108,8 +108,8 @@
 
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_printing"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginTop="8dp"
 
@@ -135,12 +135,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="110dp" />
+        app:layout_constraintGuide_begin="150dp" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +201,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/ConstraintLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/titleBackgroundAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +209,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:gravity="center"
                     android:text="1.被检测件基本信息"
@@ -223,11 +223,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date1"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout1"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout1">
 
                 <TextView
                     android:layout_width="0dp"
@@ -326,7 +325,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -428,11 +427,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date2"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date">
 
                 <TextView
                     android:layout_width="0dp"
@@ -532,7 +530,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date3"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -635,11 +633,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date4"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date3"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date3">
 
                 <TextView
                     android:layout_width="0dp"
@@ -738,7 +735,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date5"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -841,7 +838,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/ConstraintLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/titleBackgroundAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -863,11 +860,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date6"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout2"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout2">
 
                 <TextView
                     android:layout_width="0dp"
@@ -967,7 +963,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date7"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1070,11 +1066,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date8"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date7"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date7">
 
                 <TextView
                     android:layout_width="0dp"
@@ -1173,7 +1168,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date9"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1263,7 +1258,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="---"
+                    android:text="正常"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1276,7 +1271,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/ConstraintLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/titleBackgroundAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1298,11 +1293,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date10"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout3"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout3">
 
                 <TextView
                     android:layout_width="0dp"
@@ -1373,7 +1367,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="---"
+                    android:text="流量计法"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1401,7 +1395,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date11"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1428,7 +1422,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="充满率"
+                    android:text="充满率%"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1504,11 +1498,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date12"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date11"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date11">
 
                 <TextView
                     android:layout_width="0dp"
@@ -1575,7 +1568,7 @@
                 <TextView
                     android:id="@+id/tv_liquidfilling_date_info"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="61dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
@@ -1607,7 +1600,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date13"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1682,7 +1675,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="---"
+                    android:text="正常"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1710,11 +1703,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date14"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date13"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date13">
 
                 <TextView
                     android:layout_width="0dp"
@@ -1814,7 +1806,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date15"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1918,11 +1910,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date16"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date15"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date15">
 
                 <TextView
                     android:layout_width="0dp"
@@ -2019,11 +2010,10 @@
             </android.support.constraint.ConstraintLayout>
 
 
-
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date17"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2035,7 +2025,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="两次采集误差"
+                    android:text="两次采集误差%"
                     android:textColor="@color/textcolorAccent"
                     android:textSize="@dimen/text_size_thire"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -2126,11 +2116,10 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date18"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date17"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date17">
 
                 <TextView
                     android:layout_width="0dp"
@@ -2226,9 +2215,9 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date19"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:minHeight="40dp"
+                android:layout_height="100dp"
                 android:background="@color/colorAccentPrimary"
+                android:minHeight="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraint_date18">
@@ -2280,7 +2269,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date20"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:minHeight="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2333,7 +2322,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/ConstraintLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/titleBackgroundAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2355,7 +2344,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date21"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="160dp"
                 android:minHeight="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -2409,12 +2398,11 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraint_date22"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:background="@color/colorAccentPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date21"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date21">
 
                 <TextView
                     android:layout_width="0dp"
@@ -2520,183 +2508,177 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraint_date22" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            app:layout_constraintEnd_toStartOf="@+id/view61"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraint_date22"
-            >
-
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraint_date23"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:minHeight="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="180dp"
+                app:layout_constraintEnd_toStartOf="@+id/view61"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/constraint_date22">
 
-                <TextView
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_date23"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="编制人员及日期"
-                    android:textColor="@color/textcolorAccent"
-                    android:textSize="@dimen/text_size_thire"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/view62"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <View
-                    android:id="@+id/view62"
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="@color/divider_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="60dp"
+                    android:minHeight="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:text="编制人员及日期"
+                        android:textColor="@color/textcolorAccent"
+                        android:textSize="@dimen/text_size_thire"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/view62"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/tv_test_person"
+                    <View
+                        android:id="@+id/view62"
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:background="@color/divider_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tv_test_person"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/text_size_thire"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view62"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_date24"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="---"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/text_size_thire"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="60dp"
+                    android:background="@color/colorAccentPrimary"
+                    android:minHeight="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view62"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_date23">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:text="核对人员及日期"
+                        android:textColor="@color/textcolorAccent"
+                        android:textSize="@dimen/text_size_thire"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/view63"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <View
+                        android:id="@+id/view63"
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:background="@color/divider_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tv_verify_person"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/text_size_thire"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view63"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_date25"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:minHeight="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_date24">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:text="审核人员及日期"
+                        android:textColor="@color/textcolorAccent"
+                        android:textSize="@dimen/text_size_thire"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/view64"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <View
+                        android:id="@+id/view64"
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:background="@color/divider_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/text_size_thire"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view64"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
 
             </android.support.constraint.ConstraintLayout>
-
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraint_date24"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:minHeight="40dp"
-                android:background="@color/colorAccentPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date23"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="核对人员及日期"
-                    android:textColor="@color/textcolorAccent"
-                    android:textSize="@dimen/text_size_thire"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/view63"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <View
-                    android:id="@+id/view63"
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="@color/divider_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <TextView
-                    android:id="@+id/tv_verify_person"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="---"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/text_size_thire"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view63"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraint_date25"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:minHeight="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_date24"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:text="审核人员及日期"
-                    android:textColor="@color/textcolorAccent"
-                    android:textSize="@dimen/text_size_thire"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/view64"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <View
-                    android:id="@+id/view64"
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="@color/divider_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.4"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="center"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="@dimen/text_size_thire"
-                    android:text="---"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view64"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
-
-
-        </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/tv_chapter"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="180dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view61"
                 app:layout_constraintTop_toBottomOf="@+id/constraint_date22">

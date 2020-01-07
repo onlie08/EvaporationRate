@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -27,14 +28,19 @@ import com.ch.evaporationrate.R;
 import com.ch.service.bean.BeanRTData;
 import com.ch.utils.AppPreferences;
 import com.ch.utils.BrightnessTools;
+import com.ch.utils.DateUtil;
 import com.ch.utils.ToastHelper;
 import com.deadline.statebutton.StateButton;
+import com.why.project.poilib.PoiUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -86,6 +92,10 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Window window = getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE;
+        window.setAttributes(params);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_new);
         ButterKnife.bind(this);
@@ -176,12 +186,14 @@ public class HistoryActivity extends AppCompatActivity {
             case R.id.btn_export:
                 progressBar2.setVisibility(View.VISIBLE);
                 tvTip.setVisibility(View.VISIBLE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        pdfModel();
-                    }
-                }).start();
+                saveWord();
+                handler.sendEmptyMessage(0);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        pdfModel();
+//                    }
+//                }).start();
                 break;
             case R.id.btn_printing:
                 ToastHelper.showLongToast("未找到打印设备");
@@ -201,7 +213,7 @@ public class HistoryActivity extends AppCompatActivity {
         document.finishPage(page);
 
         try {
-            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+parameter.getDeviceId()+"_history.pdf";
+            String path = Environment.getExternalStorageDirectory() + File.separator + "/001evaporation/"+parameter.getDeviceId()+"_"+DateUtil.getSystemDate()+"_history.pdf";
             File file = new File(path);
             if (file.exists()) {
                 file.delete();
@@ -231,4 +243,30 @@ public class HistoryActivity extends AppCompatActivity {
             return false;
         }
     });
+
+    private void saveWord(){
+        try {
+            InputStream templetDocStream = getAssets().open("静态蒸发率检测记录.doc");
+            String targetDocPath = Environment.getExternalStorageDirectory() + File.separator + "001evaporation/"+ DateUtil.getSystemDate1()+"_"+parameter.getDeviceId()+"_静态蒸发率检测记录.doc";
+
+            Map<String, String> dataMap = new HashMap<String, String>();
+            dataMap.put("$deviceNum$",  null != sensor ?  sensor.getEvaporationRateNum() : "");
+            dataMap.put("$tempType$", sensor.getTemperatureType());
+            dataMap.put("$tempNum$", sensor.getTemperatureNum());
+            dataMap.put("$testDate$", testProcess.getTestStartTime());
+            dataMap.put("$testAddress$", parameter.getTestAddress());
+            dataMap.put("$pressType$", sensor.getPressureType());
+            dataMap.put("$pressNum$", sensor.getPressureNum());
+            dataMap.put("$flowType$", sensor.getFlowmeterType());
+            dataMap.put("$flowNum$", sensor.getFlowmeterNum());
+            dataMap.put("$fillEndDate$", parameter.getLiquidFillingEndDate());
+
+            PoiUtils.writeToDoc(templetDocStream,targetDocPath,dataMap);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e){
+
+        }
+    }
 }

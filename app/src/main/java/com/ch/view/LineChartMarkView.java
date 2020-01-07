@@ -44,7 +44,7 @@ public class LineChartMarkView extends MarkerView {
     private List<ChartBean> rData7;
 
     private IAxisValueFormatter xAxisValueFormatter;
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormat df = new DecimalFormat("##0.00");
 
     public LineChartMarkView(Context context, IAxisValueFormatter xAxisValueFormatter,boolean show1, boolean show2, boolean show3, boolean show4, boolean show5, boolean show6, boolean show7,List<ChartBean> data1, List<ChartBean> data2, List<ChartBean> data3, List<ChartBean> data4, List<ChartBean> data5, List<ChartBean> data6, List<ChartBean> data7) {
         super(context, R.layout.layout_markview);
@@ -95,7 +95,7 @@ public class LineChartMarkView extends MarkerView {
             LineData lineData = ((LineChart) chart).getLineData();
             //获取到图表中的所有曲线
             List<ILineDataSet> dataSetList = lineData.getDataSets();
-            DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("0.00");
             for (int i = 0; i < dataSetList.size(); i++) {
                 LineDataSet dataSet = (LineDataSet) dataSetList.get(i);
                 //获取到曲线的所有在Y轴的数据集合，根据当前X轴的位置 来获取对应的Y轴值

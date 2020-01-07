@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -21,6 +22,7 @@ import com.ch.view.CommonBottomView;
 import com.ch.view.CommonTitleView;
 import com.gyf.barlibrary.ImmersionBar;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,10 @@ public class MainPageActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Window window = getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE;
+        window.setAttributes(params);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -77,6 +83,13 @@ public class MainPageActivity extends AppCompatActivity {
                 setFragmentPosition(pos);
             }
         });
+
+        String dbDir=android.os.Environment.getExternalStorageDirectory().toString();
+        dbDir += "/001evaporation";//数据库所在目录
+        //判断目录是否存在，不存在则创建该目录
+        File dirFile = new File(dbDir);
+        if(!dirFile.exists())
+            dirFile.mkdirs();
     }
 
     private void initData() {
@@ -88,6 +101,7 @@ public class MainPageActivity extends AppCompatActivity {
         mFragments.add(new DateFragment());
         // 初始化展示MessageFragment
         setFragmentPosition(0);
+
     }
 
     private void setFragmentPosition(int position) {

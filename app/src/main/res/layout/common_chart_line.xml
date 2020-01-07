@@ -9,7 +9,11 @@
         android:id="@+id/common_chart_line"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:minHeight="100dp"
+        android:padding="32dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +41,7 @@
             android:drawablePadding="5dp"
             android:textColor="@drawable/select_text_enable"
             android:text="流量计(L/Min)"
-            android:textSize="12sp"
+            android:textSize="24sp"
         />
 
 
@@ -46,11 +50,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="32dp"
             android:drawableLeft="@mipmap/button_green"
             android:drawablePadding="5dp"
             android:textColor="@drawable/select_text_enable"
             android:text="入口温度(℃)"
-            android:textSize="12sp"
+            android:textSize="24sp"
             />
 
 
@@ -61,9 +66,10 @@
             android:layout_marginStart="8dp"
             android:drawableLeft="@mipmap/button_orange"
             android:drawablePadding="5dp"
+            android:layout_marginLeft="32dp"
             android:textColor="@drawable/select_text_enable"
             android:text="入口压力(KPa)"
-            android:textSize="12sp"
+            android:textSize="24sp"
             />
 
 
@@ -74,9 +80,10 @@
             android:layout_marginStart="8dp"
             android:drawableLeft="@mipmap/button_purple"
             android:drawablePadding="5dp"
+            android:layout_marginLeft="32dp"
             android:textColor="@drawable/select_text_enable"
             android:text="环境温度(℃)"
-            android:textSize="12sp"
+            android:textSize="24sp"
             />
 
 
@@ -87,9 +94,10 @@
             android:layout_marginStart="8dp"
             android:drawableLeft="@mipmap/button_red"
             android:drawablePadding="5dp"
+            android:layout_marginLeft="32dp"
             android:textColor="@drawable/select_text_enable"
             android:text="大气压(KPa)"
-            android:textSize="12sp"
+            android:textSize="24sp"
             />
 
 
@@ -100,9 +108,10 @@
             android:layout_marginStart="8dp"
             android:drawableLeft="@mipmap/button_seagreen"
             android:drawablePadding="5dp"
+            android:layout_marginLeft="32dp"
             android:textColor="@drawable/select_text_enable"
             android:text="湿度(%)"
-            android:textSize="12sp"
+            android:textSize="24sp"
             />
 
 
@@ -113,9 +122,10 @@
             android:layout_marginStart="8dp"
             android:drawableLeft="@mipmap/circle_blue"
             android:drawablePadding="5dp"
+            android:layout_marginLeft="32dp"
             android:textColor="@drawable/select_text_enable"
             android:text="累计流量(L)"
-            android:textSize="12sp"
+            android:textSize="24sp"
             android:visibility="visible" />
 
 

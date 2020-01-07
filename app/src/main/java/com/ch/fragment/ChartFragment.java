@@ -50,7 +50,6 @@ public class ChartFragment extends Fragment {
 
     private Parameter parameter;
     private List<BeanRTData> beanRTDataList = new ArrayList<>();
-    private BeanRTData curBeanRTData;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,12 +75,12 @@ public class ChartFragment extends Fragment {
     @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
     public void Event(BeanRTData beanRTData) {
         refreshRtData(beanRTData);
-        curBeanRTData = beanRTData;
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.POSTING)
     public void Event(boolean endTest) {
         beanRTDataList.clear();
+        commonChartLineViewController.reset();
     }
 
     private void refreshChart() {
@@ -125,7 +124,7 @@ public class ChartFragment extends Fragment {
         for (int i = 0; i < beanRTDataList.size(); i++) {
             ChartBean chartBean = new ChartBean();
             chartBean.setDate(DateUtil.dateFormat(beanRTDataList.get(i).getAcqTime()));
-            chartBean.setValue(beanRTDataList.get(i).getSurroundhumidity()*100);
+            chartBean.setValue(beanRTDataList.get(i).getSurroundhumidity());
             chartBeans6.add(chartBean);
 
         }
@@ -142,6 +141,9 @@ public class ChartFragment extends Fragment {
     }
 
     private void refreshRtData(BeanRTData beanRTData) {
+        if(null == tvFlowTotal3){
+            return;
+        }
         tvFlowTotal5.setText(beanRTData.getInstantFlow()+"");
         tvFlowTotal4.setText(beanRTData.getAccFlow()+"");
         tvFlowTotal3.setText(beanRTData.getInstantQuality()+"");
@@ -154,17 +156,14 @@ public class ChartFragment extends Fragment {
             tvDeviceId.setText(parameter.getDeviceId());
             tvTestMedium.setText(parameter.getMediumType());
         }
-        RxChartTimerUtil.interval(60*1000, new RxChartTimerUtil.IRxNext() {
+        RxChartTimerUtil.interval(59*1000, new RxChartTimerUtil.IRxNext() {
             @Override
             public void doNext(long number) {
-//                if(beanRTDataList.size()>60){
-//                    beanRTDataList.remove(0);
-//                }
-                if(null == curBeanRTData){
-                    return;
+                beanRTDataList.clear();
+                if(null != parameter){
+                    beanRTDataList = DbManage.getInstance().queryBeanRTData(parameter.getDeviceId());
+                    refreshChart();
                 }
-                beanRTDataList.add(curBeanRTData);
-                refreshChart();
             }
         });
     }
@@ -179,6 +178,9 @@ public class ChartFragment extends Fragment {
             if(null != parameter){
                 tvDeviceId.setText(parameter.getDeviceId());
                 tvTestMedium.setText(parameter.getMediumType());
+                beanRTDataList.clear();
+                beanRTDataList = DbManage.getInstance().queryBeanRTData(parameter.getDeviceId());
+                refreshChart();
             }
         }
 

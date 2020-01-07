@@ -99,7 +99,7 @@ public class LineChartManager {
         legend = lineChart.getLegend();
         //设置显示类型，LINE CIRCLE SQUARE EMPTY 等等 多种方式，查看LegendForm 即可
         legend.setForm(Legend.LegendForm.LINE);
-        legend.setTextSize(12f);
+        legend.setTextSize(50f);
         //显示位置 左下方
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
@@ -120,7 +120,7 @@ public class LineChartManager {
     private void initLineDataSet(LineDataSet lineDataSet, int color, LineDataSet.Mode mode) {
         lineDataSet.setColor(color);
         lineDataSet.setCircleColor(color);
-        lineDataSet.setLineWidth(1f);
+        lineDataSet.setLineWidth(3f);
         lineDataSet.setCircleRadius(3f);
 
         lineDataSet.setDrawCircles(false);
@@ -964,18 +964,22 @@ public class LineChartManager {
         }
 
         /******根据需求的不同 在此在次设置X Y轴的显示内容******/
-        xAxis.setLabelCount(2, false);
+        xAxis.setLabelCount(4, false);
         //设置是否绘制刻度
         xAxis.setDrawScale(false);
         //是否绘制X轴线
         xAxis.setDrawAxisLine(false);
+        xAxis.setTextSize(16f);
 
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
+                if(yData1.isEmpty()){
+                    return "";
+                }
                 String tradeDate = yData1.get((int) value % yData1.size()).getDate();
 //                return DateUtil.formatDateToMD(tradeDate);
-                return tradeDate.substring(11,tradeDate.length());
+                return tradeDate.substring(0,tradeDate.length());
 //                return "";
             }
         });
@@ -1002,6 +1006,7 @@ public class LineChartManager {
         LineDataSet lineDataSet5 = new LineDataSet(entries5, "大气压");
         LineDataSet lineDataSet6 = new LineDataSet(entries6, "湿度");
         LineDataSet lineDataSet7 = new LineDataSet(entries7, "累计流量");
+
         // CUBIC_BEZIER 圆滑曲线
         initLineDataSet(lineDataSet1, Color.parseColor("#3355ff"), LineDataSet.Mode.CUBIC_BEZIER);
         initLineDataSet(lineDataSet2, Color.parseColor("#17e5c3"), LineDataSet.Mode.CUBIC_BEZIER);

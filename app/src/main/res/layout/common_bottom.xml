@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:background="#ffffff"
         app:cardElevation="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
                 android:padding="8dp"
                 android:text="试验过程"
                 android:textColor="@drawable/selector_menu_text_pressed"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_monitor"
                 app:layout_constraintEnd_toStartOf="@+id/tv_alarm"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
                 android:padding="8dp"
                 android:text="试验参数"
                 android:textColor="@drawable/selector_menu_text_pressed"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_monitor"
                 app:layout_constraintEnd_toStartOf="@+id/tv_monitor"
                 app:layout_constraintStart_toEndOf="@+id/tv_home"
@@ -75,7 +75,7 @@
                 android:padding="8dp"
                 android:text="曲线"
                 android:textColor="@drawable/selector_menu_text_pressed"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_device"
                 app:layout_constraintStart_toEndOf="@+id/tv_alarm"
@@ -92,7 +92,7 @@
                 android:padding="8dp"
                 android:text="设备状态"
                 android:textColor="@drawable/selector_menu_text_pressed"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_monitor"
                 app:layout_constraintEnd_toStartOf="@+id/tv_person"
                 app:layout_constraintStart_toEndOf="@+id/tv_monitor"
@@ -109,7 +109,7 @@
                 android:padding="8dp"
                 android:text="数据记录"
                 android:textColor="@drawable/selector_menu_text_pressed"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_monitor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_device"
@@ -117,7 +117,6 @@
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
-
 
 
 </android.support.constraint.ConstraintLayout>

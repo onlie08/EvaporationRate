@@ -2,6 +2,8 @@ package com.ch.base.base;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
@@ -32,6 +34,7 @@ public class BaseApplication extends Application {
     private static DaoSession daoSession;
     public static SharedPreferences sharedPreferences;
     public static String pwd;
+    public static String loginTime = "";
 
     static {
         //设置全局的Header构建器
@@ -102,5 +105,26 @@ public class BaseApplication extends Application {
 
     public static DaoSession getDaoInstant() {
         return daoSession;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //非默认值
+        if (newConfig.fontScale != 1){
+            getResources();
+        }
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public Resources getResources() {//还原字体大小
+        Resources res = super.getResources();
+        //非默认值
+        if (res.getConfiguration().fontScale != 1) {
+            Configuration newConfig = new Configuration();
+            newConfig.setToDefaults();//设置默认
+            res.updateConfiguration(newConfig, res.getDisplayMetrics());
+        }
+        return res;
     }
 }

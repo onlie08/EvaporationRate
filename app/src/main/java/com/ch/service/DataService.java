@@ -14,6 +14,7 @@ import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
 import com.ch.service.dataacq.DataCalculate;
 import com.ch.service.dataacq.DataReader;
+import com.ch.service.serialport.SerialPortIO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +23,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class DataService extends Service {
+
+    public static boolean IS_SIMULATOR = true;//test 是否是模拟数据
 
     private boolean mIsTest = false;    //是否开始实验
     private boolean mIsPause = false;   //是否暂停
@@ -55,6 +58,7 @@ public class DataService extends Service {
         super.onCreate();
         mlstHandler = new ArrayList<OnDataCallback>();
         mDataReader = new DataReader();
+
         mlsthisData    = new ArrayList<BeanRTData>();
         mlstPauseTime = new ArrayList<Long>();
     }
@@ -102,6 +106,13 @@ public class DataService extends Service {
          */
         public void experimentOver(BeanRTData data,Float testEvaR,Float staticEvaR);
 
+
+        /**
+         * 获取发生了错误 value( 1 - 串口没有打开)
+         * @param value
+         */
+        public void getErrors(int value);
+
     }
 
     public void addOnDataCallback(OnDataCallback cb)
@@ -130,13 +141,20 @@ public class DataService extends Service {
     /**
      * 开始进行数据采集（实时显示）
      */
-    public void startAcqData()
+    public void startAcqData(int mediumtype,BeanOperaParam lng,BeanOperaParam ln2)
     {
+        //初始化串口读取模块
+        mDataReader.initReader(mSpDataCBHandler);
+
+        //开启定时线程
         if(mTimerRT==null)
         {
             mTimerRT = new Timer();
             mTimerRT.schedule(mTask,1000,1000);
         }
+
+        //设置数据采集
+        mDataReader.setParam(mediumtype,lng,ln2);
     }
 
     /**
@@ -158,8 +176,12 @@ public class DataService extends Service {
      *      ln2         - LN2 计算参数
      *      validV      - 有效容积（来自试验参数）
      */
-    public void startTest(long recPeroid, int mediumtype, long expperiod, BeanOperaParam lng,BeanOperaParam ln2,float validV)
+    public void startTest(long recPeroid, int mediumtype, long expperiod, BeanOperaParam lng,BeanOperaParam ln2,float validV,int progress)
     {
+
+        if(progress==1){
+            mDataReader.resetData();
+        }
 
         mlsthisData.clear();
         mlstPauseTime.clear();
@@ -176,6 +198,10 @@ public class DataService extends Service {
         mStartTime = new Date();
 
         mIsTest = true;
+
+        mDataReader.setParam(mediumtype,lng,ln2);
+        mDataReader.setAcqStatus(1);
+
     }
 
     /**
@@ -184,6 +210,7 @@ public class DataService extends Service {
 
     public void stopTest()
     {
+        mDataReader.setAcqStatus(0);
         mIsTest = false;
         mlsthisData.clear();
         mlstPauseTime.clear();
@@ -196,6 +223,7 @@ public class DataService extends Service {
     private List<Long> mlstPauseTime;
     public void pauseAcqData()
     {
+        mDataReader.setAcqStatus(2);
         mPauseStartTime = new Date();
         mIsPause = true;
     }
@@ -204,6 +232,7 @@ public class DataService extends Service {
      */
     public void resumeAcqData()
     {
+        mDataReader.setAcqStatus(1);
         mIsPause = false;
         if(mlstPauseTime!=null)
         {
@@ -212,6 +241,35 @@ public class DataService extends Service {
             mlstPauseTime.add(detPauseTime);
 //            mlstPauseTime = null;
         }
+    }
+
+    /**
+     * 介质切换 type: 1-(切换到LN2) 2-(切换到LNG)
+     * @param type
+     */
+    public void setMediumtype(int type)
+    {
+        if(type==1)
+        {
+            mDataReader.sendCMD((byte)0x03);
+        }else{
+            mDataReader.sendCMD((byte)0x02);
+        }
+    }
+    /*
+     * 开始加热
+     */
+    public void startHeat()
+    {
+        mDataReader.sendCMD((byte)0x04);
+    }
+
+    /**
+     * 停止加热
+     */
+    public void stopHeat()
+    {
+        mDataReader.sendCMD((byte)0x05);
     }
 
 
@@ -232,23 +290,64 @@ public class DataService extends Service {
         public void run() {
             //Log.e("data Service gen", "--timer run");
 
-            //if(!mIsPause)
+            if(IS_SIMULATOR)
             {
-                BeanRTData testData = mDataReader.getData();
-
+                BeanRTData testData = mDataReader.getDataSimulate();
                 Message msg = new Message();
+                msg.arg1 = 1;
                 msg.obj = testData;
                 handlerRTData.sendMessage(msg);
-            }
+            }else{
 
+                //判断串口是否打开,没打开则提示
+                if(mDataReader.isSerialPortOpen()==0)
+                {
+                    Message msg = new Message();
+                    msg.arg1 = -1;//串口没有打开
+                    msg.obj = null;
+                    handlerRTData.sendMessage(msg);
+                    return;
+                }
+                 mDataReader.getDataReal();
+            }
         }
     };
+
+    //串口数据回调
+    private DataReader.OnDataReaderCB mSpDataCBHandler = new DataReader.OnDataReaderCB() {
+        @Override
+        public void revData(BeanRTData data) {
+
+            if(data==null)
+            {
+                return;
+            }
+            Message msg = new Message();
+            msg.arg1 = 1;
+            msg.obj = data;
+            handlerRTData.sendMessage(msg);
+        }
+    };
+
     private Handler handlerRTData = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
+            //表示串口没有打开
+            if(msg.arg1 == -1)
+            {
+                for (int i=0;i<mlstHandler.size();i++)
+                {
+                    mlstHandler.get(i).getErrors(1);
+                }
+            }
+
             //实时数据回调
+            if(msg.obj==null)
+            {
+                return;
+            }
             BeanRTData revData = (BeanRTData)msg.obj;
             //Log.e("data Service rev", "--receive data flow: "+revData.getAccFlow());
             for (int i=0;i<mlstHandler.size();i++)

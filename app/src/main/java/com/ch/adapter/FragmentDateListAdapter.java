@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.ch.activity.HistoryActivity;
 import com.ch.activity.ReportActivity;
@@ -63,7 +64,14 @@ public class FragmentDateListAdapter extends BaseQuickAdapter<TestProcess, BaseV
         });
         helper.setText(R.id.tv_device_num,item.getDeviceId());
         helper.setText(R.id.tv_time,item.getTestEndTime());
-        helper.setText(R.id.tv_result,item.getIsPass() ? "合格" : "不合格");
+        TextView tv_result = helper.getView(R.id.tv_result);
+        if(item.getIsPass()){
+            tv_result.setText("合格");
+            tv_result.setTextColor(mContext.getResources().getColor(R.color.textcolorAccent));
+        }else {
+            tv_result.setText("不合格");
+            tv_result.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
         helper.setText(R.id.tv_id,helper.getPosition()+"");
 
         CheckBox checkBox = helper.getView(R.id.checkbox);

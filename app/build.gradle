@@ -13,7 +13,7 @@ android {
     }
     defaultConfig {
         applicationId "com.ch.evaporationrate"
-        minSdkVersion 23
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 2
         versionName "2.0"
@@ -36,6 +36,10 @@ android {
 //            universalApk true
 //        }
 //    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -89,5 +93,6 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.eftimoff:android-pathview:1.0.8@aar'
     implementation 'com.github.Cutta:GifView:1.4'
-
+    implementation 'com.github.freyskill:SerialPortHelper:v1.0.1'
+    implementation project(':poilib')
 }

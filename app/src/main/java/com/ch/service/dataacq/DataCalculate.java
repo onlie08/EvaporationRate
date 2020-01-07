@@ -2,6 +2,7 @@ package com.ch.service.dataacq;
 
 import com.ch.service.bean.BeanOperaParam;
 import com.ch.service.bean.BeanRTData;
+import com.ch.utils.NumberUtil;
 
 import java.util.List;
 
@@ -39,7 +40,8 @@ public class DataCalculate {
             avgEnviPress = accEnviPress/lstData.size();
             avgEnviTemp = accEnviTemp/lstData.size() + 273.15f;
 
-            qm = (avgFlow/1000) * lstData.size()  * ln2.getGasDensity();
+            //qm = (avgFlow/1000) * lstData.size()  * ln2.getGasDensity();
+            qm = (avgFlow/1000)*1440* ln2.getGasDensity();
             Float cf = ln2.getCorrecFactor();
 
             Float[] liquidParam = DataCalConstant.getStardardPressInfoLn2();
@@ -58,8 +60,8 @@ public class DataCalculate {
 
             a20 = (float)( a0 * (h/hfg) * (0.7 * ((293.15f-Ts)/(T1 - T2)) + 0.3* ((Math.pow(293.15,4)-Math.pow(Ts,4))/(Math.pow(T1,4)-Math.pow(T2,4)))));
 
-            res[0] = a0;
-            res[1] = a20;
+            res[0] =  NumberUtil.stayDigit(a0,3);
+            res[1] = NumberUtil.stayDigit(a20,3);
             return res;
         }else{
             //2-LNG
@@ -86,7 +88,7 @@ public class DataCalculate {
             avgEnviPress = accEnviPress/lstData.size();
             avgEnviTemp = accEnviTemp/lstData.size() + 273.15f;
 
-            qm = (avgFlow/1000) * lstData.size()  * lng.getGasDensity();
+            qm = (avgFlow/1000) *1440 * lng.getGasDensity();
             Float cf = lng.getCorrecFactor();
 
             Float[] liquidParam = DataCalConstant.getStardardPressInfoLNG();
@@ -103,8 +105,8 @@ public class DataCalculate {
 
             a20 = (float)( a0 * (h/hfg) * (0.7 * ((293.15f-Ts)/(T1 - T2)) + 0.3* ((Math.pow(293.15,4)-Math.pow(Ts,4))/(Math.pow(T1,4)-Math.pow(T2,4)))));
 
-            res[0] = a0;
-            res[1] = a20;
+            res[0] =  NumberUtil.stayDigit(a0,3);
+            res[1] = NumberUtil.stayDigit(a20,3);
             return res;
         }
     }

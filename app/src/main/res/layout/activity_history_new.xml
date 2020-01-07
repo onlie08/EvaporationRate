@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +8,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +46,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_export"
         android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginTop="8dp"
 
@@ -71,7 +70,7 @@
     <com.deadline.statebutton.StateButton
         android:id="@+id/btn_printing"
         android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
 
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -94,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="110dp" />
+        app:layout_constraintGuide_begin="150dp" />
 
 
     <ScrollView
@@ -104,8 +103,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:padding="16dp"
         android:background="@color/colorWhite"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -115,8 +114,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-        >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tv_recorder"
@@ -183,7 +181,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraint_date"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     android:background="@color/colorAccentPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +283,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraint_date1"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraint_date">
@@ -387,7 +385,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/ConstraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     android:background="@color/colorAccentPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -488,7 +486,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/ConstraintLayout4"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout3">
@@ -540,7 +538,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/ConstraintLayout5"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     android:background="@color/titleBackgroundAccent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -662,10 +660,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
 
         />
 
