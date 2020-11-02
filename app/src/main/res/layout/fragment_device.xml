@@ -374,6 +374,7 @@
             android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:text="20-1-00-1-100-100-00-21-LJ-KM7100"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
             app:layout_constraintTop_toBottomOf="@+id/edit_laser_type" />
 
@@ -387,6 +388,7 @@
             android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:text="20-1-00-1-100-100-00-21-LJ-KM7100"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
             app:layout_constraintTop_toBottomOf="@+id/edit_flowmeter_type" />
 
@@ -413,6 +415,7 @@
             android:singleLine="true"
             android:textColor="@color/textcolorAccent"
             android:textSize="@dimen/text_size_thire"
+            android:text="20-1-00-1-100-100-00-21-LJ-KM7100"
             app:layout_constraintStart_toStartOf="@+id/edit_evaporationrate_type"
             app:layout_constraintTop_toBottomOf="@+id/edit_air_pressure_type" />
 
