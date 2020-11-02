@@ -336,7 +336,7 @@
             android:id="@+id/textView63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="公测体积"
+            android:text="公称容积"
             android:textSize="@dimen/text_size_thire"
             app:layout_constraintBottom_toBottomOf="@+id/edit_measurement_volume"
             app:layout_constraintEnd_toEndOf="@+id/textView53"
